@@ -3,327 +3,916 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI 晨报 · 2026-05-28</title>
+<title>AI 智能工作台 · 2026-05-28</title>
 <style>
+/* ============ 华为深色科技风设计系统 ============ */
 :root {
-  --bg: #0a0a0f;
-  --card-bg: #111118;
-  --text: #e0e0e0;
-  --text-secondary: #8888a0;
-  --gradient-start: #6366f1;
-  --gradient-end: #a855f7;
-  --border: #1e1e2e;
-  --radius: 14px;
-  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
-  --font-mono: "SF Mono", "Cascadia Code", "Consolas", "Fira Code", monospace;
+  /* 主色调 - 华为云控制台风格 */
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #0f1629;
+  --bg-card: rgba(16, 24, 48, 0.85);
+  --bg-hover: rgba(24, 36, 72, 0.9);
+  
+  /* 强调色 */
+  --accent-cyan: #00d4aa;
+  --accent-blue: #0066ff;
+  --accent-orange: #ff6b35;
+  --accent-purple: #a78bfa;
+  --accent-gold: #fbbf24;
+  
+  /* 文字色 */
+  --text-primary: #e8ecf4;
+  --text-secondary: #8b95a8;
+  --text-muted: #5a6378;
+  
+  /* 边框与分割 */
+  --border-subtle: rgba(0, 212, 170, 0.08);
+  --border-glow: rgba(0, 212, 170, 0.25);
+  --divider: rgba(255, 255, 255, 0.06);
+  
+  /* 效果 */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 20px rgba(0, 212, 170, 0.15);
+  --radius: 12px;
+  --radius-sm: 8px;
+  
+  /* 字体 */
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "SF Mono", "Cascadia Code", "Consolas", monospace;
 }
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
-  font-family: var(--font); background: var(--bg); color: var(--text);
-  line-height: 1.6; min-height: 100vh; overflow-x: hidden;
+  font-family: var(--font);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* Grid background */
+/* 网格背景 */
 body::before {
-  content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
   background-image: 
-    linear-gradient(rgba(99,102,241,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99,102,241,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
-  pointer-events: none; z-index: 0;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* Floating particles */
-.particles {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  pointer-events: none; z-index: 1; overflow: hidden;
-}
-.particle {
-  position: absolute; width: 3px; height: 3px;
-  background: rgba(99,102,241,0.4); border-radius: 50%;
-  animation: float 15s infinite ease-in-out;
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
-}
-
+/* ============ HERO区域 ============ */
 .hero {
   position: relative;
-  background: linear-gradient(135deg, #0a0a1a 0%, #12122a 40%, #0d0d1f 70%, #0a0a0f 100%);
-  padding: 72px 24px 60px; text-align: center; overflow: hidden;
+  background: linear-gradient(135deg, #070b14 0%, #0a1020 40%, #0c1428 70%, #0a0e1a 100%);
+  padding: 80px 24px 64px;
+  text-align: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-subtle);
 }
+
 .hero::before {
-  content: ''; position: absolute; top: -50%; left: -50%;
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
   width: 200%; height: 200%;
-  background: radial-gradient(ellipse at 30% 50%, rgba(99,102,241,0.12) 0%, transparent 60%),
-              radial-gradient(ellipse at 70% 30%, rgba(168,85,247,0.06) 0%, transparent 50%);
+  background: 
+    radial-gradient(ellipse at 30% 50%, rgba(0, 212, 170, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 30%, rgba(0, 102, 255, 0.06) 0%, transparent 40%);
   animation: heroGlow 10s ease-in-out infinite alternate;
 }
+
 @keyframes heroGlow {
   0% { transform: translate(-2%, -2%) scale(1); }
   100% { transform: translate(2%, 2%) scale(1.05); }
 }
+
 .hero-content { position: relative; z-index: 1; }
+
 .hero-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-  color: #fff; font-size: 13px; font-weight: 700;
-  padding: 7px 18px; border-radius: 20px; letter-spacing: 2px; margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 212, 170, 0.1);
+  border: 1px solid rgba(0, 212, 170, 0.3);
+  color: var(--accent-cyan);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 20px;
+  border-radius: 24px;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
 }
-.robot-icon { font-size: 16px; }
+
 .hero h1 {
-  font-size: clamp(28px, 5vw, 48px); font-weight: 800;
-  background: linear-gradient(135deg, #818cf8, #c084fc, #a78bfa);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
+  background: linear-gradient(135deg, #00d4aa, #38bdf8, #0066ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+}
+
+.hero-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.hero-date {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  font-family: var(--font-mono);
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  padding: 16px 24px;
+  min-width: 110px;
+  backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-glow);
+}
+
+.stat-number {
+  font-size: 28px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.total-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(0, 212, 170, 0.15), rgba(0, 102, 255, 0.1));
+  border: 1px solid rgba(0, 212, 170, 0.3);
+  color: var(--accent-cyan);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 12px 32px;
+  border-radius: 28px;
+  backdrop-filter: blur(10px);
+}
+
+/* ============ 导航栏 ============ */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 14, 26, 0.9);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 16px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-bar::-webkit-scrollbar { height: 0; }
+
+.nav-inner {
+  display: flex;
+  gap: 6px;
+  padding: 12px 0;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav-link:hover, .nav-link.active {
+  background: rgba(0, 212, 170, 0.08);
+  color: var(--accent-cyan);
+  border-color: rgba(0, 212, 170, 0.25);
+}
+
+.nav-count {
+  font-size: 11px;
+  background: rgba(0, 212, 170, 0.15);
+  color: var(--accent-cyan);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-family: var(--font-mono);
+}
+
+/* ============ 主内容区 ============ */
+.main-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.section-block {
+  margin-bottom: 56px;
+  scroll-margin-top: 70px;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--title-color, var(--text-primary));
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.section-icon {
+  font-size: 24px;
+}
+
+.section-count {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: auto;
+  font-family: var(--font-mono);
+}
+
+/* ============ 卡片网格 ============ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--badge-color, var(--accent-cyan)), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-glow);
+}
+
+.card:hover::before { opacity: 1; }
+
+.card-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--badge-color, var(--accent-cyan));
+  font-family: var(--font-mono);
+  opacity: 0.6;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 14px;
+  padding-right: 50px;
+  color: var(--text-primary);
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.source-chip {
+  font-size: 11px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background: rgba(0, 212, 170, 0.08);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(0, 212, 170, 0.15);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-time {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.card-summary {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--link-color, var(--accent-cyan));
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.card-link:hover {
+  gap: 10px;
+  text-shadow: 0 0 10px rgba(0, 212, 170, 0.3);
+}
+
+.card-link .arrow { transition: transform 0.2s ease; }
+.card-link:hover .arrow { transform: translateX(3px); }
+
+/* ============ 自己.skill 场景分化 ============ */
+.scene-filter, .hot-filter {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(10px);
+}
+
+.filter-btn:hover {
+  border-color: var(--border-glow);
+  color: var(--text-primary);
+}
+
+.filter-btn.active {
+  background: rgba(0, 212, 170, 0.12);
+  border-color: rgba(0, 212, 170, 0.4);
+  color: var(--accent-cyan);
+}
+
+.scenes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.scene-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.scene-block:hover {
+  border-color: var(--border-glow);
+}
+
+.scene-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border-left: 3px solid var(--scene-color, var(--accent-cyan));
+}
+
+.scene-header:hover {
+  background: var(--bg-hover);
+}
+
+.scene-icon {
+  font-size: 28px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+}
+
+.scene-info { flex: 1; }
+
+.scene-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.scene-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.scene-toggle {
+  font-size: 12px;
+  color: var(--text-muted);
+  transition: transform 0.25s ease;
+}
+
+.scene-block.expanded .scene-toggle {
+  transform: rotate(180deg);
+}
+
+.scene-count {
+  font-size: 12px;
+  background: rgba(0, 212, 170, 0.1);
+  color: var(--accent-cyan);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-family: var(--font-mono);
+  margin-left: 8px;
+}
+
+.scene-abilities {
+  padding: 0 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ability-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.ability-card:hover {
+  border-color: rgba(0, 212, 170, 0.2);
+}
+
+.ability-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ability-header:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ability-icon {
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+.ability-info { flex: 1; }
+
+.ability-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.ability-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.ability-toggle {
+  font-size: 10px;
+  color: var(--text-muted);
+  transition: transform 0.2s ease;
+}
+
+.ability-card.expanded .ability-toggle {
+  transform: rotate(180deg);
+}
+
+.ability-prompt {
+  padding: 0 18px 16px;
+  border-top: 1px solid var(--divider);
+}
+
+.prompt-content {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  max-height: 300px;
+  overflow-y: auto;
   margin-bottom: 12px;
 }
-.hero-date { font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; }
-.hero-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-bottom: 36px; }
-.stat-card {
-  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
-  border-radius: var(--radius); padding: 14px 20px; min-width: 100px;
-  backdrop-filter: blur(10px); transition: transform 0.2s, border-color 0.2s;
-}
-.stat-card:hover { transform: translateY(-2px); border-color: rgba(99,102,241,0.3); }
-.stat-number {
-  font-size: 28px; font-weight: 800; font-family: var(--font-mono);
-  background: linear-gradient(135deg, #818cf8, #c084fc);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.stat-label { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
-.total-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-  color: #fff; font-size: 15px; font-weight: 700;
-  padding: 10px 28px; border-radius: 28px; box-shadow: 0 4px 24px rgba(99,102,241,0.3);
+
+.prompt-content::-webkit-scrollbar {
+  width: 6px;
 }
 
-.nav-bar {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(10,10,15,0.9); backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border); padding: 0 16px;
-  overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch;
-}
-.nav-bar::-webkit-scrollbar { height: 0; }
-.nav-inner { display: flex; gap: 4px; padding: 10px 0; max-width: 1200px; margin: 0 auto; }
-.nav-link {
-  display: inline-flex; align-items: center; gap: 5px;
-  padding: 7px 14px; border-radius: 20px; font-size: 13px;
-  color: var(--text-secondary); text-decoration: none;
-  transition: all 0.2s; white-space: nowrap; border: 1px solid transparent;
-}
-.nav-link:hover, .nav-link:focus {
-  background: rgba(255,255,255,0.05); color: var(--text);
-  border-color: var(--accent, rgba(99,102,241,0.3));
-}
-.nav-count {
-  font-size: 11px; background: rgba(255,255,255,0.06);
-  padding: 1px 7px; border-radius: 10px; font-family: var(--font-mono);
+.prompt-content::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.main-content { max-width: 1200px; margin: 0 auto; padding: 40px 20px 60px; position: relative; z-index: 2; }
-.section-block { margin-bottom: 48px; scroll-margin-top: 60px; }
-.section-title {
-  font-size: 22px; font-weight: 700; margin-bottom: 24px;
-  display: flex; align-items: center; gap: 10px;
-  color: var(--title-color, var(--text)); padding-bottom: 10px;
-  border-bottom: 2px solid var(--title-color, var(--border));
+.prompt-content::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 3px;
 }
-.section-count { font-size: 14px; font-weight: 400; color: var(--text-secondary); margin-left: auto; }
-.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
-.card {
-  background: var(--card-bg); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 20px; position: relative; overflow: hidden;
-  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-}
-.card::before {
-  content: ''; position: absolute; top: 0; left: 0;
-  width: 100%; height: 3px;
-  background: linear-gradient(90deg, var(--badge-color, #6366f1), transparent);
-  opacity: 0; transition: opacity 0.25s;
-}
-.card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(99,102,241,0.1); }
-.card:hover::before { opacity: 1; }
-.card-badge {
-  position: absolute; top: 16px; right: 16px;
-  font-size: 13px; font-weight: 700;
-  color: var(--badge-color, #6366f1); font-family: var(--font-mono); opacity: 0.7;
-}
-.card-title { font-size: 15px; font-weight: 600; line-height: 1.5; margin-bottom: 12px; padding-right: 40px; color: #f0f0f0; }
-.card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
-.source-chip {
-  font-size: 11px; padding: 3px 10px; border-radius: 10px;
-  background: rgba(255,255,255,0.05); color: var(--text-secondary);
-  border: 1px solid rgba(255,255,255,0.08);
-  max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-.card-time { font-size: 11px; color: #555; }
-.card-summary {
-  font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 14px;
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-}
-.card-link {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-size: 13px; font-weight: 600;
-  color: var(--link-color, #818cf8); text-decoration: none; transition: gap 0.2s;
-}
-.card-link:hover { gap: 8px; }
-.card-link .arrow { transition: transform 0.2s; }
-.card-link:hover .arrow { transform: translateX(2px); }
 
-/* Skill Station Styles */
-.skill-station {
-  background: linear-gradient(135deg, #0d0d1a 0%, #12122a 50%, #0a0a1a 100%);
-  border: 1px solid rgba(99,102,241,0.15);
-  border-radius: 20px; padding: 40px 32px; margin-top: 60px;
-  position: relative; overflow: hidden;
-}
-.skill-station::before {
-  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
-  background: linear-gradient(90deg, #6366f1, #a855f7, #00d4ff);
-}
-.station-header {
-  text-align: center; margin-bottom: 36px;
-}
-.station-header h2 {
-  font-size: 28px; font-weight: 800;
-  background: linear-gradient(135deg, #818cf8, #c084fc);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  margin-bottom: 10px;
-}
-.station-header p {
-  color: var(--text-secondary); font-size: 15px;
-}
-.station-workflow {
-  display: flex; align-items: center; justify-content: center;
-  gap: 12px; margin-bottom: 36px; flex-wrap: wrap;
-}
-.workflow-step {
-  background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
-  border-radius: 12px; padding: 12px 18px; font-size: 13px;
-  color: #a5b4fc; text-align: center;
-}
-.workflow-arrow {
-  color: #6366f1; font-size: 20px;
-}
-.skill-card {
-  background: var(--card-bg); border: 1px solid var(--border);
-  border-radius: var(--radius); margin-bottom: 16px; overflow: hidden;
-  transition: border-color 0.3s;
-}
-.skill-card:hover {
-  border-color: rgba(99,102,241,0.3);
-}
-.skill-header {
-  display: flex; align-items: center; gap: 16px;
-  padding: 20px 24px; cursor: pointer;
-}
-.skill-emoji {
-  font-size: 32px; width: 48px; height: 48px;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(99,102,241,0.1); border-radius: 12px;
-}
-.skill-info { flex: 1; }
-.skill-name { font-size: 17px; font-weight: 700; margin-bottom: 6px; color: #f0f0f0; }
-.skill-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-.skill-tag {
-  font-size: 11px; padding: 3px 10px; border-radius: 10px;
-  background: rgba(99,102,241,0.1); color: var(--tag-color, #818cf8);
-  border: 1px solid rgba(99,102,241,0.2);
-}
-.skill-toggle {
-  display: flex; align-items: center; gap: 6px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  color: #fff; border: none; padding: 8px 16px;
-  border-radius: 10px; font-size: 13px; font-weight: 600;
-  cursor: pointer; transition: all 0.2s;
-}
-.skill-toggle:hover {
-  transform: translateY(-1px); box-shadow: 0 4px 16px rgba(99,102,241,0.3);
-}
-.toggle-icon { transition: transform 0.3s; font-size: 11px; }
-.toggle-icon.open { transform: rotate(180deg); }
-.skill-prompt {
-  border-top: 1px solid var(--border);
-  background: #0c0c14;
-}
-.prompt-toolbar {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 24px; background: rgba(99,102,241,0.05);
-  border-bottom: 1px solid var(--border);
-}
-.prompt-label {
-  font-size: 12px; color: #818cf8; font-weight: 600;
-}
 .copy-btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(99,102,241,0.15); color: #c7d2fe;
-  border: 1px solid rgba(99,102,241,0.3); padding: 6px 14px;
-  border-radius: 8px; font-size: 12px; cursor: pointer;
-  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: rgba(0, 212, 170, 0.08);
+  color: var(--accent-cyan);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
+
 .copy-btn:hover {
-  background: rgba(99,102,241,0.25); border-color: rgba(99,102,241,0.5);
+  background: rgba(0, 212, 170, 0.15);
+  border-color: var(--border-glow);
 }
+
 .copy-btn.copied {
-  background: rgba(16,185,129,0.2); color: #6ee7b7; border-color: rgba(16,185,129,0.4);
+  background: rgba(0, 212, 170, 0.2);
+  color: #00ffaa;
 }
-.prompt-content {
-  padding: 20px 24px; margin: 0;
-  font-family: var(--font-mono); font-size: 12px; line-height: 1.7;
-  color: #a5b4fc; white-space: pre-wrap; word-break: break-word;
-  max-height: 400px; overflow-y: auto;
-}
-.prompt-content::-webkit-scrollbar { width: 6px; }
-.prompt-content::-webkit-scrollbar-track { background: transparent; }
-.prompt-content::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 3px; }
 
+/* ============ 热搜榜单 ============ */
+.hot-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--divider);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+}
+
+.hot-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  background: var(--bg-card);
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.hot-item:hover {
+  background: var(--bg-hover);
+}
+
+.hot-rank {
+  font-size: 16px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  min-width: 28px;
+  text-align: center;
+}
+
+.hot-rank.top3 {
+  background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 18px;
+}
+
+.hot-content { flex: 1; min-width: 0; }
+
+.hot-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 6px;
+  transition: color 0.2s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hot-title:hover {
+  color: var(--accent-cyan);
+}
+
+.hot-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.hot-source {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.hot-category {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 8px;
+  background: rgba(0, 212, 170, 0.08);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(0, 212, 170, 0.15);
+}
+
+.hot-disclaimer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: rgba(251, 191, 36, 0.05);
+  border: 1px solid rgba(251, 191, 36, 0.15);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ============ 来源核验弹窗 ============ */
+.verify-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.verify-modal.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.verify-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius);
+  padding: 32px;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.verify-modal.show .verify-box {
+  transform: translateY(0);
+}
+
+.verify-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.verify-title .icon {
+  font-size: 24px;
+}
+
+.verify-info {
+  background: rgba(0, 212, 170, 0.05);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.verify-info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.verify-info-row:last-child { margin-bottom: 0; }
+
+.verify-info-label { color: var(--text-secondary); }
+.verify-info-value { color: var(--text-primary); font-weight: 500; }
+
+.verify-rating {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.rating-badge {
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.rating-badge.a { background: rgba(0, 212, 170, 0.15); color: #00d4aa; border: 1px solid rgba(0, 212, 170, 0.3); }
+.rating-badge.b { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+.rating-badge.c { background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+
+.verify-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.verify-btn {
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.verify-btn.primary {
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+  color: white;
+}
+
+.verify-btn.primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.verify-btn.secondary {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.verify-btn.secondary:hover {
+  border-color: var(--border-glow);
+  color: var(--text-primary);
+}
+
+/* ============ 页脚 ============ */
 .footer {
-  text-align: center; padding: 32px 20px 48px; font-size: 12px; color: #444;
-  border-top: 1px solid var(--border); max-width: 1200px; margin: 0 auto;
+  text-align: center;
+  padding: 40px 20px 60px;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--divider);
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
-.footer a { color: #666; text-decoration: none; }
-.footer a:hover { color: #818cf8; }
 
-[data-aos] { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
-[data-aos].aos-animate { opacity: 1; transform: translateY(0); }
+.footer a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
 
+.footer a:hover {
+  color: var(--accent-cyan);
+}
+
+/* ============ 动画 ============ */
+[data-aos] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+[data-aos].aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ 响应式 ============ */
 @media (max-width: 768px) {
-  .hero { padding: 48px 16px 40px; }
-  .hero h1 { font-size: 24px; }
+  .hero { padding: 56px 16px 48px; }
+  .hero h1 { font-size: 26px; }
   .hero-stats { gap: 10px; }
-  .stat-card { padding: 10px 16px; min-width: 80px; }
-  .stat-number { font-size: 22px; }
+  .stat-card { padding: 12px 18px; min-width: 90px; }
+  .stat-number { font-size: 24px; }
   .card-grid { grid-template-columns: 1fr; }
   .section-title { font-size: 18px; }
-  .main-content { padding: 24px 12px 40px; }
-  .skill-station { padding: 24px 16px; }
-  .station-header h2 { font-size: 22px; }
-  .skill-header { padding: 16px; }
-  .skill-emoji { font-size: 24px; width: 40px; height: 40px; }
-  .skill-name { font-size: 15px; }
-  .prompt-content { padding: 16px; font-size: 11px; }
-  .workflow-step { padding: 10px 14px; font-size: 12px; }
+  .main-content { padding: 28px 12px 40px; }
+  .scene-header { padding: 16px 18px; }
+  .hot-item { padding: 12px 16px; }
 }
+
 @media (max-width: 400px) {
-  .stat-card { padding: 8px 12px; min-width: 60px; }
-  .stat-number { font-size: 18px; }
+  .stat-card { padding: 10px 14px; min-width: 70px; }
+  .stat-number { font-size: 20px; }
 }
 </style>
 </head>
 <body>
 
-<div class="particles" id="particles"></div>
-
 <header class="hero">
   <div class="hero-content">
-    <div class="hero-badge"><span class="robot-icon">🤖</span> AI 晨报</div>
-    <h1>AI 行业每日速览</h1>
+    <div class="hero-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      AI 智能工作台
+    </div>
+    <h1>华为终端云服务 · 智能情报中心</h1>
+    <div class="hero-subtitle">AI工具 × 科技热搜 × 行业日报 · 一站式智能工作台</div>
     <div class="hero-date">2026年5月28日 · 2026-05-28</div>
     <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">14</div>
+        <div class="stat-label">🧬 AI能力</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">15</div>
+        <div class="stat-label">🔥 科技热搜</div>
+      </div>
       
       <div class="stat-card">
         <div class="stat-number">8</div>
@@ -342,869 +931,1253 @@ body::before {
         <div class="stat-label">💡 技巧与观点</div>
       </div>
     </div>
-    <div class="total-badge">📋 今日共 28 条资讯</div>
+    <div class="total-badge">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      今日共收录 57 条情报
+    </div>
   </div>
 </header>
 
 <nav class="nav-bar">
   <div class="nav-inner">
-    <a href="#ai-products" class="nav-link" style="--accent:#FF8C42">🚀 产品发布/更新<span class="nav-count">8</span></a>
-<a href="#industry" class="nav-link" style="--accent:#FFA657">📡 行业动态<span class="nav-count">8</span></a>
-<a href="#paper" class="nav-link" style="--accent:#E8783B">📄 论文研究<span class="nav-count">4</span></a>
-<a href="#tip" class="nav-link" style="--accent:#D45D2A">💡 技巧与观点<span class="nav-count">8</span></a>
-    <a href="#skill-station" class="nav-link" style="--accent:#a855f7">🛠️ AI能力工具站</a>
+    <a href="#yourself-skill" class="nav-link" style="--accent:#00d4aa">🧬 数字人格引擎<span class="nav-count">14</span></a>
+    <a href="#hot-news" class="nav-link" style="--accent:#ff6b35">🔥 科技热搜<span class="nav-count">15</span></a>
+    <a href="#ai-products" class="nav-link" style="--accent:#38bdf8">🚀 产品发布/更新<span class="nav-count">8</span></a>
+<a href="#industry" class="nav-link" style="--accent:#a78bfa">📡 行业动态<span class="nav-count">8</span></a>
+<a href="#paper" class="nav-link" style="--accent:#fbbf24">📄 论文研究<span class="nav-count">4</span></a>
+<a href="#tip" class="nav-link" style="--accent:#fb923c">💡 技巧与观点<span class="nav-count">8</span></a>
   </div>
 </nav>
 
 <main class="main-content">
   
+  <section id="yourself-skill" class="section-block">
+    <h2 class="section-title" style="--title-color:#00d4aa">
+      <span class="section-icon">🧬</span>
+      数字人格建模引擎 · 自己.skill
+      <span class="section-count">4大场景 · 14项能力</span>
+    </h2>
+    <div class="scene-filter">
+      <button class="filter-btn active" data-filter="all" onclick="filterScenes('all')">全部场景</button>
+      <button class="filter-btn" data-filter="work" onclick="filterScenes('work')">💼 工作场景</button><button class="filter-btn" data-filter="life" onclick="filterScenes('life')">🏠 生活场景</button><button class="filter-btn" data-filter="create" onclick="filterScenes('create')">✨ 创作场景</button><button class="filter-btn" data-filter="learn" onclick="filterScenes('learn')">📚 学习场景</button>
+    </div>
+    <div class="scenes-container">
+      
+    <div class="scene-block" data-scene="work">
+      <div class="scene-header" style="--scene-color:#00d4aa" onclick="toggleScene(this)">
+        <span class="scene-icon">💼</span>
+        <div class="scene-info">
+          <div class="scene-name">工作场景</div>
+          <div class="scene-desc">职场沟通、项目管理、汇报呈现、决策分析</div>
+        </div>
+        <span class="scene-toggle">▼</span>
+        <span class="scene-count">4</span>
+      </div>
+      <div class="scene-abilities" style="display:none;">
+        
+      <div class="ability-card" data-scene="work">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">💼</span>
+          <div class="ability-info">
+            <div class="ability-name">提示词生成器</div>
+            <div class="ability-desc">将模糊需求转化为结构化AI指令</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content">你是一位Prompt Engineering专家。请将以下用户需求转化为一个结构清晰、可执行的AI提示词：
+
+【用户需求】：{{user_input}}
+
+要求：
+1. 使用「角色-任务-约束-输出格式」四段式结构
+2. 明确指定AI的专业身份和知识边界
+3. 列出必须遵守的行为规则和禁止项
+4. 定义输出格式（表格/列表/段落/Mermaid）
+5. 添加质量自检清单
+
+输出：直接给出优化后的提示词，无需解释。</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位Prompt Engineering专家。请将以下用户需求转化为一个结构清晰、可执行的AI提示词：
+
+【用户需求】：{{user_input}}
+
+要求：
+1. 使用「角色-任务-约束-输出格式」四段式结构
+2. 明确指定AI的专业身份和知识边界
+3. 列出必须遵守的行为规则和禁止项
+4. 定义输出格式（表格/列表/段落/Mermaid）
+5. 添加质量自检清单
+
+输出：直接给出优化后的提示词，无需解释。">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      <div class="ability-card" data-scene="work">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">💼</span>
+          <div class="ability-info">
+            <div class="ability-name">爆炸式研究专家</div>
+            <div class="ability-desc">广度信息搜集，快速建立认知地图</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content">你是一位「爆炸式研究专家」，擅长在30分钟内建立对新领域的全面认知。
+
+【研究主题】：{{topic}}
+
+执行以下步骤：
+1. **概念地图**：列出该领域的核心概念（10-15个），用Mermaid思维导图呈现
+2. **关键玩家**：识别该领域的TOP 10公司/机构/产品，附一句话定位
+3. **时间线**：梳理该领域过去3年的关键里程碑事件
+4. **争议焦点**：列出当前该领域的3大核心争议/未解问题
+5. **信息缺口**：指出还需要深入调研的3个方向
+
+要求：每个要点附带来源可信度评级（A/B/C）。</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「爆炸式研究专家」，擅长在30分钟内建立对新领域的全面认知。
+
+【研究主题】：{{topic}}
+
+执行以下步骤：
+1. **概念地图**：列出该领域的核心概念（10-15个），用Mermaid思维导图呈现
+2. **关键玩家**：识别该领域的TOP 10公司/机构/产品，附一句话定位
+3. **时间线**：梳理该领域过去3年的关键里程碑事件
+4. **争议焦点**：列出当前该领域的3大核心争议/未解问题
+5. **信息缺口**：指出还需要深入调研的3个方向
+
+要求：每个要点附带来源可信度评级（A/B/C）。">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      <div class="ability-card" data-scene="work">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">💼</span>
+          <div class="ability-info">
+            <div class="ability-name">全栈商业情报智能体</div>
+            <div class="ability-desc">深度商业分析，竞品对标</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content">你是一位「全栈商业情报智能体」，擅长商业策略分析。
+
+【分析对象】：{{target_company}}
+【分析维度】：{{dimensions}}（可选：商业模式/技术栈/市场定位/财务健康度/组织文化）
+
+输出结构：
+1. **公司画像**：一句话定位 + 核心业务矩阵
+2. **商业模式画布**：用表格呈现价值主张/客户细分/收入来源/成本结构/关键资源
+3. **竞争雷达图**：与直接竞品在6个维度上的对比（技术/价格/品牌/渠道/服务/生态）
+4. **SWOT分析**：优势/劣势/机会/威胁，每项至少3条，附依据
+5. **华为可借鉴点**：列出3个华为可以学习或规避的具体策略
+
+数据来源要求：必须引用A级或B级来源，标注链接。</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「全栈商业情报智能体」，擅长商业策略分析。
+
+【分析对象】：{{target_company}}
+【分析维度】：{{dimensions}}（可选：商业模式/技术栈/市场定位/财务健康度/组织文化）
+
+输出结构：
+1. **公司画像**：一句话定位 + 核心业务矩阵
+2. **商业模式画布**：用表格呈现价值主张/客户细分/收入来源/成本结构/关键资源
+3. **竞争雷达图**：与直接竞品在6个维度上的对比（技术/价格/品牌/渠道/服务/生态）
+4. **SWOT分析**：优势/劣势/机会/威胁，每项至少3条，附依据
+5. **华为可借鉴点**：列出3个华为可以学习或规避的具体策略
+
+数据来源要求：必须引用A级或B级来源，标注链接。">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      <div class="ability-card" data-scene="work">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">💼</span>
+          <div class="ability-info">
+            <div class="ability-name">决策分析助手</div>
+            <div class="ability-desc">多方案对比，量化决策支持</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content">你是一位「决策分析助手」，擅长用结构化方法辅助重大决策。
+
+【决策情境】：{{decision_context}}
+【可选方案】：{{options}}
+【约束条件】：{{constraints}}
+
+执行分析：
+1. **决策矩阵**：用表格对比各方案在「成本/风险/收益/时间/资源需求」五个维度的评分（1-5分）
+2. **敏感性分析**：识别影响决策的3个关键变量，分析其变化对结果的影响
+3. **风险雷达**：列出每个方案的TOP 3风险及应对预案
+4. **推荐排序**：给出明确的方案排序及理由
+5. **执行路线图**：推荐方案的落地步骤（短期/中期/长期）
+
+要求：量化为主，避免模糊表述。</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「决策分析助手」，擅长用结构化方法辅助重大决策。
+
+【决策情境】：{{decision_context}}
+【可选方案】：{{options}}
+【约束条件】：{{constraints}}
+
+执行分析：
+1. **决策矩阵**：用表格对比各方案在「成本/风险/收益/时间/资源需求」五个维度的评分（1-5分）
+2. **敏感性分析**：识别影响决策的3个关键变量，分析其变化对结果的影响
+3. **风险雷达**：列出每个方案的TOP 3风险及应对预案
+4. **推荐排序**：给出明确的方案排序及理由
+5. **执行路线图**：推荐方案的落地步骤（短期/中期/长期）
+
+要求：量化为主，避免模糊表述。">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      </div>
+    </div>
+    
+    <div class="scene-block" data-scene="life">
+      <div class="scene-header" style="--scene-color:#ff6b9d" onclick="toggleScene(this)">
+        <span class="scene-icon">🏠</span>
+        <div class="scene-info">
+          <div class="scene-name">生活场景</div>
+          <div class="scene-desc">日常规划、健康管理、财务规划、人际关系</div>
+        </div>
+        <span class="scene-toggle">▼</span>
+        <span class="scene-count">3</span>
+      </div>
+      <div class="scene-abilities" style="display:none;">
+        
+      <div class="ability-card" data-scene="life">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">🏠</span>
+          <div class="ability-info">
+            <div class="ability-name">生活规划师</div>
+            <div class="ability-desc">周/月/季度生活目标拆解</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content">你是一位「生活规划师」，擅长将模糊的生活目标转化为可执行的计划。
+
+【用户目标】：{{life_goal}}
+【时间范围】：{{timeframe}}
+【当前状态】：{{current_status}}
+
+输出：
+1. **目标拆解树**：将大目标拆解为3个月目标 → 月目标 → 周目标 → 日行动
+2. **习惯养成方案**：设计3个微习惯，附触发条件和奖励机制
+3. **时间块规划**：推荐一周时间分配方案（工作/学习/休息/社交/自我提升）
+4. **进度追踪表**：设计可量化的KPI和自检清单
+5. **障碍预判**：列出最可能遇到的3个障碍及应对策略</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「生活规划师」，擅长将模糊的生活目标转化为可执行的计划。
+
+【用户目标】：{{life_goal}}
+【时间范围】：{{timeframe}}
+【当前状态】：{{current_status}}
+
+输出：
+1. **目标拆解树**：将大目标拆解为3个月目标 → 月目标 → 周目标 → 日行动
+2. **习惯养成方案**：设计3个微习惯，附触发条件和奖励机制
+3. **时间块规划**：推荐一周时间分配方案（工作/学习/休息/社交/自我提升）
+4. **进度追踪表**：设计可量化的KPI和自检清单
+5. **障碍预判**：列出最可能遇到的3个障碍及应对策略">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      <div class="ability-card" data-scene="life">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">🏠</span>
+          <div class="ability-info">
+            <div class="ability-name">健康顾问</div>
+            <div class="ability-desc">运动/饮食/睡眠优化建议</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content">你是一位「健康顾问」，提供基于循证医学的健康建议。
+
+【用户情况】：{{health_context}}
+【关注领域】：{{focus_area}}（运动/饮食/睡眠/心理）
+
+输出：
+1. **现状评估**：基于提供信息的3点观察
+2. **个性化方案**：针对关注领域的具体建议（含频率/强度/注意事项）
+3. **一周行动计划**：具体到每天的执行清单
+4. **监测指标**：建议追踪的3-5个数据点
+5. **风险提示**：需要避免的行为和寻求专业帮助的信号
+
+免责声明：本建议仅供参考，不构成医疗诊断。</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「健康顾问」，提供基于循证医学的健康建议。
+
+【用户情况】：{{health_context}}
+【关注领域】：{{focus_area}}（运动/饮食/睡眠/心理）
+
+输出：
+1. **现状评估**：基于提供信息的3点观察
+2. **个性化方案**：针对关注领域的具体建议（含频率/强度/注意事项）
+3. **一周行动计划**：具体到每天的执行清单
+4. **监测指标**：建议追踪的3-5个数据点
+5. **风险提示**：需要避免的行为和寻求专业帮助的信号
+
+免责声明：本建议仅供参考，不构成医疗诊断。">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      <div class="ability-card" data-scene="life">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">🏠</span>
+          <div class="ability-info">
+            <div class="ability-name">财务规划师</div>
+            <div class="ability-desc">收支分析、投资建议、储蓄计划</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content">你是一位「财务规划师」，擅长个人财务管理。
+
+【财务概况】：{{financial_overview}}
+【理财目标】：{{financial_goal}}
+【风险偏好】：{{risk_profile}}（保守/稳健/积极）
+
+输出：
+1. **收支分析**：收入结构 + 支出分类占比 + 优化建议
+2. **储蓄计划**：推荐「50/30/20」或自定义分配方案
+3. **投资配置**：基于风险偏好的资产配置建议（现金/固收/权益/另类）
+4. **应急基金**：计算建议的应急资金规模及存放方式
+5. **里程碑规划**：1年/3年/5年财务目标及达成路径
+
+要求：具体数字，避免泛泛而谈。</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「财务规划师」，擅长个人财务管理。
+
+【财务概况】：{{financial_overview}}
+【理财目标】：{{financial_goal}}
+【风险偏好】：{{risk_profile}}（保守/稳健/积极）
+
+输出：
+1. **收支分析**：收入结构 + 支出分类占比 + 优化建议
+2. **储蓄计划**：推荐「50/30/20」或自定义分配方案
+3. **投资配置**：基于风险偏好的资产配置建议（现金/固收/权益/另类）
+4. **应急基金**：计算建议的应急资金规模及存放方式
+5. **里程碑规划**：1年/3年/5年财务目标及达成路径
+
+要求：具体数字，避免泛泛而谈。">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      </div>
+    </div>
+    
+    <div class="scene-block" data-scene="create">
+      <div class="scene-header" style="--scene-color:#a78bfa" onclick="toggleScene(this)">
+        <span class="scene-icon">✨</span>
+        <div class="scene-info">
+          <div class="scene-name">创作场景</div>
+          <div class="scene-desc">内容创作、设计辅助、代码生成、创意发散</div>
+        </div>
+        <span class="scene-toggle">▼</span>
+        <span class="scene-count">3</span>
+      </div>
+      <div class="scene-abilities" style="display:none;">
+        
+      <div class="ability-card" data-scene="create">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">✨</span>
+          <div class="ability-info">
+            <div class="ability-name">内容创作助手</div>
+            <div class="ability-desc">文章/脚本/文案/报告生成</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content">你是一位「内容创作助手」，擅长各类文体创作。
+
+【创作类型】：{{content_type}}（文章/脚本/文案/报告/邮件）
+【主题】：{{topic}}
+【目标受众】：{{audience}}
+【风格要求】：{{style}}（专业/轻松/正式/幽默）
+【字数要求】：{{word_count}}
+
+输出：
+1. **大纲结构**：列出完整的章节/段落结构
+2. **完整内容**：按大纲生成全文
+3. **标题选项**：提供3个备选标题
+4. **优化建议**：3个可提升内容质量的修改点
+5. **SEO/传播建议**：关键词布局和传播角度建议（如适用）</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「内容创作助手」，擅长各类文体创作。
+
+【创作类型】：{{content_type}}（文章/脚本/文案/报告/邮件）
+【主题】：{{topic}}
+【目标受众】：{{audience}}
+【风格要求】：{{style}}（专业/轻松/正式/幽默）
+【字数要求】：{{word_count}}
+
+输出：
+1. **大纲结构**：列出完整的章节/段落结构
+2. **完整内容**：按大纲生成全文
+3. **标题选项**：提供3个备选标题
+4. **优化建议**：3个可提升内容质量的修改点
+5. **SEO/传播建议**：关键词布局和传播角度建议（如适用）">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      <div class="ability-card" data-scene="create">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">✨</span>
+          <div class="ability-info">
+            <div class="ability-name">代码生成器</div>
+            <div class="ability-desc">多语言代码生成与优化</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content">你是一位「代码生成器」，擅长生成高质量、可维护的代码。
+
+【编程语言】：{{language}}
+【功能需求】：{{requirement}}
+【约束条件】：{{constraints}}（性能/可读性/兼容性）
+
+输出：
+1. **代码实现**：完整可运行的代码，含注释
+2. **设计思路**：关键算法/架构选择的简要说明
+3. **复杂度分析**：时间/空间复杂度
+4. **测试用例**：3-5个边界条件测试
+5. **优化建议**：可进一步改进的3个方向
+
+要求：代码风格遵循该语言的最佳实践。</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「代码生成器」，擅长生成高质量、可维护的代码。
+
+【编程语言】：{{language}}
+【功能需求】：{{requirement}}
+【约束条件】：{{constraints}}（性能/可读性/兼容性）
+
+输出：
+1. **代码实现**：完整可运行的代码，含注释
+2. **设计思路**：关键算法/架构选择的简要说明
+3. **复杂度分析**：时间/空间复杂度
+4. **测试用例**：3-5个边界条件测试
+5. **优化建议**：可进一步改进的3个方向
+
+要求：代码风格遵循该语言的最佳实践。">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      <div class="ability-card" data-scene="create">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">✨</span>
+          <div class="ability-info">
+            <div class="ability-name">创意发散器</div>
+            <div class="ability-desc">头脑风暴、概念扩展、跨界联想</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content">你是一位「创意发散器」，擅长打破思维定势产生创新想法。
+
+【核心主题】：{{theme}}
+【发散方向】：{{direction}}（产品/营销/设计/商业模式/技术方案）
+【约束条件】：{{constraints}}
+
+输出：
+1. **核心洞察**：该主题的3个反直觉发现
+2. **跨界联想**：从3个不相关领域借鉴的创新思路
+3. **概念矩阵**：用2×2矩阵展示4种创新方向
+4. **疯狂想法**：3个看似荒谬但可能可行的创意
+5. **可行方案**：从上述想法中筛选出的3个最可行方案，附落地步骤</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「创意发散器」，擅长打破思维定势产生创新想法。
+
+【核心主题】：{{theme}}
+【发散方向】：{{direction}}（产品/营销/设计/商业模式/技术方案）
+【约束条件】：{{constraints}}
+
+输出：
+1. **核心洞察**：该主题的3个反直觉发现
+2. **跨界联想**：从3个不相关领域借鉴的创新思路
+3. **概念矩阵**：用2×2矩阵展示4种创新方向
+4. **疯狂想法**：3个看似荒谬但可能可行的创意
+5. **可行方案**：从上述想法中筛选出的3个最可行方案，附落地步骤">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      </div>
+    </div>
+    
+    <div class="scene-block" data-scene="learn">
+      <div class="scene-header" style="--scene-color:#38bdf8" onclick="toggleScene(this)">
+        <span class="scene-icon">📚</span>
+        <div class="scene-info">
+          <div class="scene-name">学习场景</div>
+          <div class="scene-desc">知识整理、技能学习、考试备考、语言学习</div>
+        </div>
+        <span class="scene-toggle">▼</span>
+        <span class="scene-count">3</span>
+      </div>
+      <div class="scene-abilities" style="display:none;">
+        
+      <div class="ability-card" data-scene="learn">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">📚</span>
+          <div class="ability-info">
+            <div class="ability-name">知识整理师</div>
+            <div class="ability-desc">结构化笔记、知识图谱构建</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content">你是一位「知识整理师」，擅长将杂乱信息转化为结构化知识。
+
+【原始材料】：{{raw_material}}
+【知识领域】：{{domain}}
+【整理目标】：{{goal}}（笔记/图谱/大纲/速查表）
+
+输出：
+1. **知识框架**：用层级大纲呈现核心知识结构
+2. **概念卡片**：每个核心概念一张卡片（定义/例子/关联/易混点）
+3. **Mermaid图谱**：概念之间的关系图
+4. **速查表**：一页纸可打印的关键信息汇总
+5. **记忆锚点**：3个帮助记忆的故事/类比/口诀</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「知识整理师」，擅长将杂乱信息转化为结构化知识。
+
+【原始材料】：{{raw_material}}
+【知识领域】：{{domain}}
+【整理目标】：{{goal}}（笔记/图谱/大纲/速查表）
+
+输出：
+1. **知识框架**：用层级大纲呈现核心知识结构
+2. **概念卡片**：每个核心概念一张卡片（定义/例子/关联/易混点）
+3. **Mermaid图谱**：概念之间的关系图
+4. **速查表**：一页纸可打印的关键信息汇总
+5. **记忆锚点**：3个帮助记忆的故事/类比/口诀">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      <div class="ability-card" data-scene="learn">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">📚</span>
+          <div class="ability-info">
+            <div class="ability-name">学习路径规划师</div>
+            <div class="ability-desc">技能学习路线图设计</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content">你是一位「学习路径规划师」，擅长设计高效的技能学习路线。
+
+【目标技能】：{{target_skill}}
+【当前水平】：{{current_level}}（零基础/入门/进阶）
+【可用时间】：{{available_time}}（每天X小时，共Y周）
+【学习目标】：{{learning_goal}}
+
+输出：
+1. **能力模型**：该技能的完整能力树（核心能力+扩展能力）
+2. **学习路线图**：分阶段的学习计划（每阶段含目标/资源/检验标准）
+3. **资源推荐**：每个阶段推荐的3个学习资源（书/课/项目）
+4. **实践项目**：3个由简到难的实战项目
+5. **避坑指南**：该技能学习中最常见的5个误区</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「学习路径规划师」，擅长设计高效的技能学习路线。
+
+【目标技能】：{{target_skill}}
+【当前水平】：{{current_level}}（零基础/入门/进阶）
+【可用时间】：{{available_time}}（每天X小时，共Y周）
+【学习目标】：{{learning_goal}}
+
+输出：
+1. **能力模型**：该技能的完整能力树（核心能力+扩展能力）
+2. **学习路线图**：分阶段的学习计划（每阶段含目标/资源/检验标准）
+3. **资源推荐**：每个阶段推荐的3个学习资源（书/课/项目）
+4. **实践项目**：3个由简到难的实战项目
+5. **避坑指南**：该技能学习中最常见的5个误区">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      <div class="ability-card" data-scene="learn">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">📚</span>
+          <div class="ability-info">
+            <div class="ability-name">考试备考助手</div>
+            <div class="ability-desc">考点梳理、模拟题生成、记忆强化</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content">你是一位「考试备考助手」，擅长高效备考策略。
+
+【考试科目】：{{exam_subject}}
+【考试形式】：{{exam_format}}（选择/简答/论述/实操）
+【备考时间】：{{prep_time}}
+【重点章节】：{{key_chapters}}
+
+输出：
+1. **考点地图**：按重要性分级的高频考点清单
+2. **知识速记**：核心概念的「一句话定义+关键词」格式
+3. **模拟题库**：生成10道高质量模拟题（含答案和解析）
+4. **记忆时间表**：基于艾宾浩斯遗忘曲线的复习计划
+5. **应试技巧**：该考试类型的3个得分策略</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「考试备考助手」，擅长高效备考策略。
+
+【考试科目】：{{exam_subject}}
+【考试形式】：{{exam_format}}（选择/简答/论述/实操）
+【备考时间】：{{prep_time}}
+【重点章节】：{{key_chapters}}
+
+输出：
+1. **考点地图**：按重要性分级的高频考点清单
+2. **知识速记**：核心概念的「一句话定义+关键词」格式
+3. **模拟题库**：生成10道高质量模拟题（含答案和解析）
+4. **记忆时间表**：基于艾宾浩斯遗忘曲线的复习计划
+5. **应试技巧**：该考试类型的3个得分策略">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      </div>
+    </div>
+    
+    </div>
+  </section>
+  
+  
+  <section id="hot-news" class="section-block">
+    <h2 class="section-title" style="--title-color:#ff6b35">
+      <span class="section-icon">🔥</span>
+      科技热搜榜 Top15
+      <span class="section-count">实时更新</span>
+    </h2>
+    <div class="hot-filter">
+      <button class="filter-btn active" data-filter="all" onclick="filterHot('all')">全部</button>
+      <button class="filter-btn" data-filter="华为" onclick="filterHot('华为')">华为</button>
+      <button class="filter-btn" data-filter="AI" onclick="filterHot('AI')">AI/大模型</button>
+      <button class="filter-btn" data-filter="芯片" onclick="filterHot('芯片')">芯片/半导体</button>
+    </div>
+    <div class="hot-list">
+      
+    <div class="hot-item" data-category="华为/芯片">
+      <span class="hot-rank top3">1</span>
+      <div class="hot-content">
+        <a href="https://www.ithome.com/0/956/274.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">人民日报专访华为何庭波：新麒麟芯片今秋将迎跳跃性提升</a>
+        <div class="hot-meta">
+          <span class="hot-source">IT之家</span>
+          <span class="hot-category">华为/芯片</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-item" data-category="AI/大模型">
+      <span class="hot-rank top3">2</span>
+      <div class="hot-content">
+        <a href="https://www.ithome.com/0/956/371.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">消息称国家大基金领投DeepSeek首轮融资，投前估值450亿美元</a>
+        <div class="hot-meta">
+          <span class="hot-source">IT之家</span>
+          <span class="hot-category">AI/大模型</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-item" data-category="华为/芯片">
+      <span class="hot-rank top3">3</span>
+      <div class="hot-content">
+        <a href="https://www.ithome.com/0/954/677.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">华为发表半导体韬定律，预计2031年达1.4nm等效水平</a>
+        <div class="hot-meta">
+          <span class="hot-source">IT之家</span>
+          <span class="hot-category">华为/芯片</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-item" data-category="芯片/半导体">
+      <span class="hot-rank ">4</span>
+      <div class="hot-content">
+        <a href="https://www.ithome.com/0/956/718.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">消息称字节跳动正开发自有CPU，支持AI基础设施扩张</a>
+        <div class="hot-meta">
+          <span class="hot-source">IT之家</span>
+          <span class="hot-category">芯片/半导体</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-item" data-category="AI/算力">
+      <span class="hot-rank ">5</span>
+      <div class="hot-content">
+        <a href="https://www.ithome.com/0/956/293.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">英伟达推出AI框架Polar，让Codex跑分暴涨594%</a>
+        <div class="hot-meta">
+          <span class="hot-source">IT之家</span>
+          <span class="hot-category">AI/算力</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-item" data-category="华为/终端">
+      <span class="hot-rank ">6</span>
+      <div class="hot-content">
+        <a href="https://www.ithome.com/0/956/177.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">华为余承东：全新问界M9系列1小时大定突破11000台</a>
+        <div class="hot-meta">
+          <span class="hot-source">IT之家</span>
+          <span class="hot-category">华为/终端</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-item" data-category="华为/芯片">
+      <span class="hot-rank ">7</span>
+      <div class="hot-content">
+        <a href="https://www.ithome.com/0/954/746.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">华为麒麟2026芯片官方剧透：晶体管密度提升53.5%，频率首超3GHz</a>
+        <div class="hot-meta">
+          <span class="hot-source">IT之家</span>
+          <span class="hot-category">华为/芯片</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-item" data-category="AI/大模型">
+      <span class="hot-rank ">8</span>
+      <div class="hot-content">
+        <a href="https://www.ithome.com/0/954/188.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">DeepSeek-V4-Pro API宣布永久降价至原价1/4</a>
+        <div class="hot-meta">
+          <span class="hot-source">IT之家</span>
+          <span class="hot-category">AI/大模型</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-item" data-category="芯片/存储">
+      <span class="hot-rank ">9</span>
+      <div class="hot-content">
+        <a href="https://www.theverge.com/gadgets/938604/memory-money-sk-hynix-micron-and-samsung-are-all-trillion-dollar-companies-now" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">Memory money：SK海力士、美光、三星均成万亿美元公司</a>
+        <div class="hot-meta">
+          <span class="hot-source">The Verge</span>
+          <span class="hot-category">芯片/存储</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-item" data-category="AI/算力">
+      <span class="hot-rank ">10</span>
+      <div class="hot-content">
+        <a href="https://techcrunch.com/2026/05/27/in-more-good-news-for-amazon-snowflake-signs-6b-deal-with-aws-for-ai-cpu-chips/" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">Snowflake与AWS签署60亿美元AI芯片大单</a>
+        <div class="hot-meta">
+          <span class="hot-source">TechCrunch</span>
+          <span class="hot-category">AI/算力</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-item" data-category="AI/大模型">
+      <span class="hot-rank ">11</span>
+      <div class="hot-content">
+        <a href="https://techcrunch.com/2026/05/27/ai-coding-startup-cognition-raises-1b-at-25b-pre-money-valuation/" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">AI编码初创Cognition融资10亿美元，投前估值250亿</a>
+        <div class="hot-meta">
+          <span class="hot-source">TechCrunch</span>
+          <span class="hot-category">AI/大模型</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-item" data-category="互联网大厂">
+      <span class="hot-rank ">12</span>
+      <div class="hot-content">
+        <a href="https://www.ithome.com/0/956/551.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">阿里达摩院首发GPU版求解器，突破亿级变量不可解难题</a>
+        <div class="hot-meta">
+          <span class="hot-source">IT之家</span>
+          <span class="hot-category">互联网大厂</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-item" data-category="海外巨头">
+      <span class="hot-rank ">13</span>
+      <div class="hot-content">
+        <a href="https://techcrunch.com/2026/05/27/meta-officially-launches-instagram-facebook-and-whatsapp-subscriptions-with-more-to-come-including-ai-plans/" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">Meta推出Instagram/Facebook/WhatsApp订阅服务，含AI计划</a>
+        <div class="hot-meta">
+          <span class="hot-source">TechCrunch</span>
+          <span class="hot-category">海外巨头</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-item" data-category="芯片/存储">
+      <span class="hot-rank ">14</span>
+      <div class="hot-content">
+        <a href="https://www.leiphone.com/category/chips/WH19inm2MOD8sKzV.html" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">长江存储IPO能撑起万亿想象吗？</a>
+        <div class="hot-meta">
+          <span class="hot-source">雷锋网</span>
+          <span class="hot-category">芯片/存储</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-item" data-category="AI/芯片">
+      <span class="hot-rank ">15</span>
+      <div class="hot-content">
+        <a href="https://www.leiphone.com/latest/index/id/4731" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">Cerebras上市：撕开美股五大AI阵营权力裂缝</a>
+        <div class="hot-meta">
+          <span class="hot-source">雷锋网</span>
+          <span class="hot-category">AI/芯片</span>
+        </div>
+      </div>
+    </div>
+  
+    </div>
+    <div class="hot-disclaimer">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      数据来源：IT之家、TechCrunch、The Verge、雷锋网等权威科技媒体
+    </div>
+  </section>
+  
+  
     <section id="ai-products" class="section-block">
-      <h2 class="section-title" style="--title-color:#FF8C42">🚀 产品发布/更新 <span class="section-count">8 条</span></h2>
+      <h2 class="section-title" style="--title-color:#38bdf8"><span class="section-icon">🚀</span> 产品发布/更新 <span class="section-count">8 条</span></h2>
       <div class="card-grid">
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#FF8C42">#1</div>
+          <div class="card-badge" style="--badge-color:#38bdf8">#1</div>
           <h3 class="card-title">Runway 推出 Model Context Protocol 服务器</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#FF8C42">Runway：News（网页）</span>
+            <span class="source-chip" style="--chip-color:#38bdf8">Runway：News（网页）</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">Runway 正式推出 Runway MCP 服务器，允许任何兼容 MCP 的 AI 智能体（如 Claude、Chat…</p>
-          <a href="https://runwayml.com/news/mcp" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#FF8C42">
+          <a href="https://runwayml.com/news/mcp" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#38bdf8" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#FF8C42">#2</div>
+          <div class="card-badge" style="--badge-color:#38bdf8">#2</div>
           <h3 class="card-title">Claude Code v2.1.152 更新发布</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#FF8C42">Claude Code：GitHub Releases（RSS）</span>
+            <span class="source-chip" style="--chip-color:#38bdf8">Claude Code：GitHub Releases（RSS）</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">Claude Code 发布 v2.1.152 版本更新。核心改进包括：`/code-review --fix` 现在会…</p>
-          <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.152" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#FF8C42">
+          <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.152" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#38bdf8" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#FF8C42">#3</div>
+          <div class="card-badge" style="--badge-color:#38bdf8">#3</div>
           <h3 class="card-title">OpenAI产品支持私有MCP服务器安全连接</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#FF8C42">X：OpenAI Developers (@OpenAIDevs)</span>
+            <span class="source-chip" style="--chip-color:#38bdf8">X：OpenAI Developers (@OpenAIDevs)</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">您的团队可以在内部网络中保留MCP服务器，同时ChatGPT、Codex和Responses API通过仅出站HTTPS…</p>
-          <a href="https://x.com/OpenAIDevs/status/2059703536825565499" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#FF8C42">
+          <a href="https://x.com/OpenAIDevs/status/2059703536825565499" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#38bdf8" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#FF8C42">#4</div>
+          <div class="card-badge" style="--badge-color:#38bdf8">#4</div>
           <h3 class="card-title">开源FastVideo Dreamverse实时视频生成工具</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#FF8C42">X：Sky Computing Lab (@haoailab)</span>
+            <span class="source-chip" style="--chip-color:#38bdf8">X：Sky Computing Lab (@haoailab)</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">🚀仅需7秒即可生成30秒1080p视频！ 我们开源了FastVideo Dreamverse：基于单张NVIDIA B…</p>
-          <a href="https://x.com/haoailab/status/2059695648103112946" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#FF8C42">
+          <a href="https://x.com/haoailab/status/2059695648103112946" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#38bdf8" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#FF8C42">#5</div>
+          <div class="card-badge" style="--badge-color:#38bdf8">#5</div>
           <h3 class="card-title">Grok编程智能体登陆Kilo IDE平台</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#FF8C42">X：xAI (@xai)</span>
+            <span class="source-chip" style="--chip-color:#38bdf8">X：xAI (@xai)</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">在 @kilocode 中使用您的 SuperGrok 或 X Premium+ 订阅。 尝试 grok-build-0…</p>
-          <a href="https://x.com/xai/status/2059666227115819149" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#FF8C42">
+          <a href="https://x.com/xai/status/2059666227115819149" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#38bdf8" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#FF8C42">#6</div>
+          <div class="card-badge" style="--badge-color:#38bdf8">#6</div>
           <h3 class="card-title">Perplexity开源Unigram分词器降低CPU占用</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#FF8C42">X：Perplexity (@perplexity_ai)</span>
+            <span class="source-chip" style="--chip-color:#38bdf8">X：Perplexity (@perplexity_ai)</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">我们开源了重新构建的Unigram分词器，可将CPU占用降低5-6倍。 小型重排序器和嵌入模型在GPU上运行时间仅为个位…</p>
-          <a href="https://x.com/perplexity_ai/status/2059664738087469511" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#FF8C42">
+          <a href="https://x.com/perplexity_ai/status/2059664738087469511" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#38bdf8" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#FF8C42">#7</div>
+          <div class="card-badge" style="--badge-color:#38bdf8">#7</div>
           <h3 class="card-title">通过万亿参数与 Hub Bucket 实现增量权重同步：TRL 中的增量权重同步</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#FF8C42">Hugging Face：Blog（RSS）</span>
+            <span class="source-chip" style="--chip-color:#38bdf8">Hugging Face：Blog（RSS）</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">本文标题涉及 Hugging Face TRL 框架中一项具体的增量权重同步技术。正文重申了 Hugging Face …</p>
-          <a href="https://huggingface.co/blog/delta-weight-sync" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#FF8C42">
+          <a href="https://huggingface.co/blog/delta-weight-sync" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#38bdf8" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#FF8C42">#8</div>
+          <div class="card-badge" style="--badge-color:#38bdf8">#8</div>
           <h3 class="card-title">OpenCode与MiMo V2.5限时免费开放</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#FF8C42">X：opencode (@opencode)</span>
+            <span class="source-chip" style="--chip-color:#38bdf8">X：opencode (@opencode)</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">OpenCode x MiMo V2.5 - 限时免费 1M 上下文 • 推理 • 文本 • 图像</p>
-          <a href="https://x.com/opencode/status/2059696100626297225" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#FF8C42">
+          <a href="https://x.com/opencode/status/2059696100626297225" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#38bdf8" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article></div>
     </section>
 
     <section id="industry" class="section-block">
-      <h2 class="section-title" style="--title-color:#FFA657">📡 行业动态 <span class="section-count">8 条</span></h2>
+      <h2 class="section-title" style="--title-color:#a78bfa"><span class="section-icon">📡</span> 行业动态 <span class="section-count">8 条</span></h2>
       <div class="card-grid">
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#FFA657">#9</div>
+          <div class="card-badge" style="--badge-color:#a78bfa">#9</div>
           <h3 class="card-title">黄仁勋展示英伟达台湾新园区</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#FFA657">X：Rohan Paul (@rohanpaul_ai)</span>
+            <span class="source-chip" style="--chip-color:#a78bfa">X：Rohan Paul (@rohanpaul_ai)</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">黄仁勋展示了新的台湾园区。 英伟达计划每年在台湾投资约1500亿美元。 就在竞争对手AMD宣布将向台湾AI领域投资超过1…</p>
-          <a href="https://x.com/rohanpaul_ai/status/2059689400267939925" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#FFA657">
+          <a href="https://x.com/rohanpaul_ai/status/2059689400267939925" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#a78bfa" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#FFA657">#10</div>
+          <div class="card-badge" style="--badge-color:#a78bfa">#10</div>
           <h3 class="card-title">我国将加快研究推进人工智能健康发展综合性立法、低空经济立法等</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#FFA657">IT之家（RSS）</span>
+            <span class="source-chip" style="--chip-color:#a78bfa">IT之家（RSS）</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary"></p>
-          <a href="https://www.ithome.com/0/955/758.htm" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#FFA657">
+          <a href="https://www.ithome.com/0/955/758.htm" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#a78bfa" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#FFA657">#11</div>
+          <div class="card-badge" style="--badge-color:#a78bfa">#11</div>
           <h3 class="card-title">Cognition成为全球最大独立智能体实验室</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#FFA657">X：swyx (@swyx)</span>
+            <span class="source-chip" style="--chip-color:#a78bfa">X：swyx (@swyx)</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">Cognition宣布已成为全球最大的独立智能体实验室。公司完成超10亿美元融资，估值达260亿美元，由Lux Capi…</p>
-          <a href="https://x.com/swyx/status/2059717021944926238" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#FFA657">
+          <a href="https://x.com/swyx/status/2059717021944926238" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#a78bfa" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#FFA657">#12</div>
+          <div class="card-badge" style="--badge-color:#a78bfa">#12</div>
           <h3 class="card-title">教皇没对AGI上头</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#FFA657">The Verge：AI（RSS）</span>
+            <span class="source-chip" style="--chip-color:#a78bfa">The Verge：AI（RSS）</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">教皇 Leo XIV 发布题为《Magnifica Humanitas》的通谕，警告人工智能的使用绝非纯粹技术问题，当其…</p>
-          <a href="https://www.theverge.com/ai-artificial-intelligence/937933/pope-ai-encyclical-tech-industry-reactions" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#FFA657">
+          <a href="https://www.theverge.com/ai-artificial-intelligence/937933/pope-ai-encyclical-tech-industry-reactions" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#a78bfa" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#FFA657">#13</div>
+          <div class="card-badge" style="--badge-color:#a78bfa">#13</div>
           <h3 class="card-title">消息称高通与字节跳动达成 AI ASIC 芯片合作，采购量在数百万颗级别</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#FFA657">IT之家（RSS）</span>
+            <span class="source-chip" style="--chip-color:#a78bfa">IT之家（RSS）</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary"></p>
-          <a href="https://www.ithome.com/0/955/674.htm" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#FFA657">
+          <a href="https://www.ithome.com/0/955/674.htm" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#a78bfa" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#FFA657">#14</div>
+          <div class="card-badge" style="--badge-color:#a78bfa">#14</div>
           <h3 class="card-title">阿里云入选Omdia智能体AI市场雷达领导者</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#FFA657">X：阿里云 / Alibaba Cloud (@alibaba_cloud)</span>
+            <span class="source-chip" style="--chip-color:#a78bfa">X：阿里云 / Alibaba Cloud (@alibaba_cloud)</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">阿里云在Omdia的智能体AI市场雷达中被评为领导者。Omdia强调了阿里云在每一层的全栈能力，认可其是首个将整个平台围…</p>
-          <a href="https://x.com/alibaba_cloud/status/2059509714854007181" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#FFA657">
+          <a href="https://x.com/alibaba_cloud/status/2059509714854007181" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#a78bfa" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#FFA657">#15</div>
+          <div class="card-badge" style="--badge-color:#a78bfa">#15</div>
           <h3 class="card-title">阿里云成为PyTorch基金会白金会员</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#FFA657">X：阿里云 / Alibaba Cloud (@alibaba_cloud)</span>
+            <span class="source-chip" style="--chip-color:#a78bfa">X：阿里云 / Alibaba Cloud (@alibaba_cloud)</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">阿里云宣布以白金会员身份加入PyTorch基金会。作为AI基础设施全球领导者，阿里云是开源模型家族Qwen的缔造方，已在…</p>
-          <a href="https://x.com/alibaba_cloud/status/2059453607075004835" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#FFA657">
+          <a href="https://x.com/alibaba_cloud/status/2059453607075004835" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#a78bfa" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#FFA657">#16</div>
+          <div class="card-badge" style="--badge-color:#a78bfa">#16</div>
           <h3 class="card-title">2026年选举信息与保障</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#FFA657">OpenAI：官网动态（RSS · 排除企业/客户案例）</span>
+            <span class="source-chip" style="--chip-color:#a78bfa">OpenAI：官网动态（RSS · 排除企业/客户案例）</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">在2026年全球选举临近之际，通过帮助公众获取选举信息、支持网络防御者以及提升人工智能透明度这三方面的努力，来为选举提供…</p>
-          <a href="https://openai.com/index/election-safeguards-2026" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#FFA657">
+          <a href="https://openai.com/index/election-safeguards-2026" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#a78bfa" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article></div>
     </section>
 
     <section id="paper" class="section-block">
-      <h2 class="section-title" style="--title-color:#E8783B">📄 论文研究 <span class="section-count">4 条</span></h2>
+      <h2 class="section-title" style="--title-color:#fbbf24"><span class="section-icon">📄</span> 论文研究 <span class="section-count">4 条</span></h2>
       <div class="card-grid">
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#E8783B">#17</div>
+          <div class="card-badge" style="--badge-color:#fbbf24">#17</div>
           <h3 class="card-title">Fast, faster, Qwen. 🚀</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#E8783B">X：通义千问 / Qwen (@Alibaba_Qwen)</span>
+            <span class="source-chip" style="--chip-color:#fbbf24">X：通义千问 / Qwen (@Alibaba_Qwen)</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">Qwen3.5在TokenSpeed推理引擎上，针对智能体工作负载达到了创纪录的580 tokens per secon…</p>
-          <a href="https://x.com/Alibaba_Qwen/status/2059674574397313277" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#E8783B">
+          <a href="https://x.com/Alibaba_Qwen/status/2059674574397313277" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#fbbf24" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#E8783B">#18</div>
+          <div class="card-badge" style="--badge-color:#fbbf24">#18</div>
           <h3 class="card-title">ITBench-AA：前沿大模型在首个智能体企业IT任务基准测试中得分均低于50%</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#E8783B">Hugging Face：Blog（RSS）</span>
+            <span class="source-chip" style="--chip-color:#fbbf24">Hugging Face：Blog（RSS）</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">由Artificial Analysis和IBM推出的ITBench-AA SRE基准测试显示，所有前沿大模型得分均未超…</p>
-          <a href="https://huggingface.co/blog/ibm-research/itbench-aa" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#E8783B">
+          <a href="https://huggingface.co/blog/ibm-research/itbench-aa" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#fbbf24" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#E8783B">#19</div>
+          <div class="card-badge" style="--badge-color:#fbbf24">#19</div>
           <h3 class="card-title">通过零信任聚合实现的隐私分析</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#E8783B">Google Research：Blog（网页）</span>
+            <span class="source-chip" style="--chip-color:#fbbf24">Google Research：Blog（网页）</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">Google Research 推出了一种新的隐私分析解决方案。该方案结合了一种新的密码学安全聚合协议与可信执行环境（T…</p>
-          <a href="https://research.google/blog/private-analytics-via-zero-trust-aggregation" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#E8783B">
+          <a href="https://research.google/blog/private-analytics-via-zero-trust-aggregation" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#fbbf24" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#E8783B">#20</div>
+          <div class="card-badge" style="--badge-color:#fbbf24">#20</div>
           <h3 class="card-title">社会科学中的编码智能体</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#E8783B">Anthropic：Research（发表成果 · 网页）</span>
+            <span class="source-chip" style="--chip-color:#fbbf24">Anthropic：Research（发表成果 · 网页）</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">一项针对1260名定量社会科学家的调查显示，虽然81%的受访者用过AI聊天机器人，但仅有20%将Claude Code、…</p>
-          <a href="https://www.anthropic.com/research/coding-agents-social-sciences" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#E8783B">
+          <a href="https://www.anthropic.com/research/coding-agents-social-sciences" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#fbbf24" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article></div>
     </section>
 
     <section id="tip" class="section-block">
-      <h2 class="section-title" style="--title-color:#D45D2A">💡 技巧与观点 <span class="section-count">8 条</span></h2>
+      <h2 class="section-title" style="--title-color:#fb923c"><span class="section-icon">💡</span> 技巧与观点 <span class="section-count">8 条</span></h2>
       <div class="card-grid">
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#D45D2A">#21</div>
+          <div class="card-badge" style="--badge-color:#fb923c">#21</div>
           <h3 class="card-title">与Google搜索产品副总裁Robby Stein的访谈：AI原生搜索时代</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#D45D2A">X：Kim (@kimmonismus)</span>
+            <span class="source-chip" style="--chip-color:#fb923c">X：Kim (@kimmonismus)</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">本文记录了与Google搜索产品副总裁Robby Stein在Google I/O的访谈，核心探讨Google Sear…</p>
-          <a href="https://x.com/kimmonismus/status/2059668961181004275" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#D45D2A">
+          <a href="https://x.com/kimmonismus/status/2059668961181004275" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#fb923c" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#D45D2A">#22</div>
+          <div class="card-badge" style="--badge-color:#fb923c">#22</div>
           <h3 class="card-title">藏师傅发布小红书图文排版AI Skill，集成地图与自动配图</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#D45D2A">X：歸藏 (@op7418)</span>
+            <span class="source-chip" style="--chip-color:#fb923c">X：歸藏 (@op7418)</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">该推文介绍了guizang-social-card-skill，一款针对小红书图文常见类别进行优化的AI Skill。其…</p>
-          <a href="https://x.com/op7418/status/2059587983289016348" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#D45D2A">
+          <a href="https://x.com/op7418/status/2059587983289016348" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#fb923c" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#D45D2A">#23</div>
+          <div class="card-badge" style="--badge-color:#fb923c">#23</div>
           <h3 class="card-title">使用大语言模型保障源代码安全</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#D45D2A">Claude：Blog（网页）</span>
+            <span class="source-chip" style="--chip-color:#fb923c">Claude：Blog（网页）</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">本文分享了使用 Claude Opus 构建威胁模型、发现代码漏洞并进行验证、分类和修复的最佳实践。其核心流程是一个六步…</p>
-          <a href="https://claude.com/blog/using-llms-to-secure-source-code" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#D45D2A">
+          <a href="https://claude.com/blog/using-llms-to-secure-source-code" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#fb923c" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#D45D2A">#24</div>
+          <div class="card-badge" style="--badge-color:#fb923c">#24</div>
           <h3 class="card-title">用好 Coding Agent，重点是两头，尤其是开头的部分，如果一开始就走偏了后面怎么改都改不好。</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#D45D2A">X：宝玉 (@dotey)</span>
+            <span class="source-chip" style="--chip-color:#fb923c">X：宝玉 (@dotey)</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">用好 Coding Agent 的关键在于初始规划。方法是先将需求整理后，用最强模型（如 GPT-5.5、Claude …</p>
-          <a href="https://x.com/dotey/status/2059773942500298934" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#D45D2A">
+          <a href="https://x.com/dotey/status/2059773942500298934" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#fb923c" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#D45D2A">#25</div>
+          <div class="card-badge" style="--badge-color:#fb923c">#25</div>
           <h3 class="card-title">我认为 Anthropic 和 OpenAI 找到了产品市场契合点</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#D45D2A">Simon Willison 博客</span>
+            <span class="source-chip" style="--chip-color:#fb923c">Simon Willison 博客</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">Anthropic 与 OpenAI 通过编程智能体找到了产品市场契合点，这导致企业客户成本显著上升。两家公司已于 20…</p>
-          <a href="https://simonwillison.net/2026/May/27/product-market-fit" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#D45D2A">
+          <a href="https://simonwillison.net/2026/May/27/product-market-fit" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#fb923c" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#D45D2A">#26</div>
+          <div class="card-badge" style="--badge-color:#fb923c">#26</div>
           <h3 class="card-title">Reachy Mini 实现完全本地化语音交互</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#D45D2A">Hugging Face：Blog（RSS）</span>
+            <span class="source-chip" style="--chip-color:#fb923c">Hugging Face：Blog（RSS）</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">Reachy Mini 机器人现可通过 `speech-to-speech` 库实现完全本地化的语音交互，无需依赖云端。…</p>
-          <a href="https://huggingface.co/blog/local-reachy-mini-conversation" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#D45D2A">
+          <a href="https://huggingface.co/blog/local-reachy-mini-conversation" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#fb923c" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#D45D2A">#27</div>
+          <div class="card-badge" style="--badge-color:#fb923c">#27</div>
           <h3 class="card-title">OpenAI 奥尔特曼称 AI 对白领冲击不如预期般严重：我很高兴自己当时错了</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#D45D2A">IT之家（RSS）</span>
+            <span class="source-chip" style="--chip-color:#fb923c">IT之家（RSS）</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary"></p>
-          <a href="https://www.ithome.com/0/956/021.htm" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#D45D2A">
+          <a href="https://www.ithome.com/0/956/021.htm" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#fb923c" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article>
 
         <article class="card" data-aos="fade-up">
-          <div class="card-badge" style="--badge-color:#D45D2A">#28</div>
+          <div class="card-badge" style="--badge-color:#fb923c">#28</div>
           <h3 class="card-title">AI智能体的零信任安全框架</h3>
           <div class="card-meta">
-            <span class="source-chip" style="--chip-color:#D45D2A">Claude：Blog（网页）</span>
+            <span class="source-chip" style="--chip-color:#fb923c">Claude：Blog（网页）</span>
             <span class="card-time">今天上午 08:00</span>
           </div>
           <p class="card-summary">Anthropic 发布了针对企业部署自主 AI 智能体的安全框架，指出前沿大语言模型正将漏洞利用周期从数月压缩至数小时…</p>
-          <a href="https://claude.com/blog/zero-trust-for-ai-agents" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#D45D2A">
+          <a href="https://claude.com/blog/zero-trust-for-ai-agents" target="_blank" rel="noopener noreferrer" class="card-link" style="--link-color:#fb923c" onclick="return verifySource(this)">
             查看原文 <span class="arrow">→</span>
           </a>
         </article></div>
     </section>
-
-  <section id="skill-station" class="skill-station" data-aos="fade-up">
-    <div class="station-header">
-      <h2>🛠️ AI 能力工具站</h2>
-      <p>封装可复用的 AI 工作流，点击展开即可复制 Prompt 到你的 ChatGPT / Claude 使用</p>
-    </div>
-    
-    <div class="station-workflow">
-      <div class="workflow-step">📊 市场调研</div>
-      <span class="workflow-arrow">→</span>
-      <div class="workflow-step">🔄 进化学习</div>
-      <span class="workflow-arrow">→</span>
-      <div class="workflow-step">🧬 人格建模</div>
-      <span class="workflow-arrow">→</span>
-      <div class="workflow-step">📄 文档输出</div>
-    </div>
-
-    
-    <div class="skill-card" data-aos="fade-up">
-      <div class="skill-header">
-        <div class="skill-emoji">🔄</div>
-        <div class="skill-info">
-          <h3 class="skill-name">自我进化学习引擎</h3>
-          <div class="skill-tags">
-            <span class="skill-tag" style="--tag-color:#00D4FF">Prompt 可复用</span>
-            <span class="skill-tag" style="--tag-color:#00D4FF">一键复制</span>
-          </div>
-        </div>
-        <button class="skill-toggle" onclick="togglePrompt('prompt-self-improvement')" data-target="prompt-self-improvement">
-          <span class="toggle-text">查看 Prompt</span>
-          <span class="toggle-icon">▼</span>
-        </button>
-      </div>
-      <div class="skill-prompt" id="prompt-self-improvement" style="display:none;">
-        <div class="prompt-toolbar">
-          <span class="prompt-label">🔄 核心 Prompt（可复制到 ChatGPT/Claude 使用）</span>
-          <button class="copy-btn" onclick="copyPrompt('prompt-self-improvement')">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            复制全部
-          </button>
-        </div>
-        <pre class="prompt-content">你是一个具备自我进化能力的AI助手。你的核心任务是在每次交互后自动识别、记录并学习经验，以持续提升服务质量。
-
-## 核心机制
-
-### 1. 错误捕获与记录
-当遇到以下情况时，必须记录学习日志：
-- 命令执行失败
-- 用户纠正你的回答（&quot;不对&quot;、&quot;错了&quot;、&quot;应该是&quot;）
-- 用户请求了你不具备的能力
-- 输出结果不符合预期
-
-记录格式：
-```
-## [LRN-YYYYMMDD-XXX] 学习记录
-
-**时间**: ISO-8601
-**类型**: error / correction / capability_gap
-**优先级**: critical / high / medium / low
-
-### 场景描述
-[发生了什么]
-
-### 错误/不足
-[我哪里做错了]
-
-### 正确做法
-[应该如何处理]
-
-### 经验要点
-[下次遇到同样情况该怎么做]
-
-### 来源
-[如何验证正确信息]
-```
-
-### 2. 知识沉淀
-每次成功完成任务后，提取可复用的知识点：
-- 有效的命令/工具组合
-- 特定场景的最优解法
-- 用户偏好和工作习惯
-
-### 3. 技能晋升评估
-当同一类经验积累≥3条时，评估是否可封装为可复用的Skill：
-- 触发条件是否明确
-- 流程是否标准化
-- 输出是否可预期
-
-### 4. 记忆更新
-根据学习日志，主动更新：
-- SOUL.md（人格和价值观）
-- IDENTITY.md（身份定义）
-- USER.md（用户画像）
-- MEMORY.md（长期记忆）
-
-## 执行原则
-1. **主动记录**：不要等到用户提醒才记录
-2. **具体明确**：避免泛泛而谈，记录具体场景和做法
-3. **可追溯**：每条记录都要能追溯到具体来源
-4. **定期回顾**：每周回顾一次学习日志，提炼模式</pre>
-      </div>
-    </div>
-
-    <div class="skill-card" data-aos="fade-up">
-      <div class="skill-header">
-        <div class="skill-emoji">🧬</div>
-        <div class="skill-info">
-          <h3 class="skill-name">数字人格建模引擎</h3>
-          <div class="skill-tags">
-            <span class="skill-tag" style="--tag-color:#A855F7">Prompt 可复用</span>
-            <span class="skill-tag" style="--tag-color:#A855F7">一键复制</span>
-          </div>
-        </div>
-        <button class="skill-toggle" onclick="togglePrompt('prompt-yourself-skill')" data-target="prompt-yourself-skill">
-          <span class="toggle-text">查看 Prompt</span>
-          <span class="toggle-icon">▼</span>
-        </button>
-      </div>
-      <div class="skill-prompt" id="prompt-yourself-skill" style="display:none;">
-        <div class="prompt-toolbar">
-          <span class="prompt-label">🧬 核心 Prompt（可复制到 ChatGPT/Claude 使用）</span>
-          <button class="copy-btn" onclick="copyPrompt('prompt-yourself-skill')">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            复制全部
-          </button>
-        </div>
-        <pre class="prompt-content">你是一个数字人格建模专家。你的核心任务是帮助用户将自己的知识、经验、风格和偏好封装为可复用的AI Skill。
-
-## 核心能力
-
-### 1. 人格解构
-将用户提供的材料（聊天记录、日记、文章、照片等）解构为五层人格体系：
-
-**L0 - 硬规则层**
-- 绝对不可违背的原则
-- 安全边界和红线
-- 格式和结构要求
-
-**L1 - 身份层**
-- 职业身份和角色定位
-- 专业领域和知识边界
-- 权威性和可信度来源
-
-**L2 - 风格层**
-- 语言风格（正式/ casual / 幽默）
-- 表达习惯（长句/短句、主动/被动）
-- 结构偏好（总分总、并列、递进）
-
-**L3 - 情感层**
-- 价值观和立场
-- 情绪表达模式
-- 同理心和共情方式
-
-**L4 - 人际层**
-- 沟通策略（直接/委婉）
-- 关系处理方式
-- 群体互动模式
-
-### 2. Skill 封装
-将解构出的人格特征封装为可运行的 Skill 文件：
-
-```
----
-name: [skill名称]
-description: [一句话描述]
-agent_created: true
----
-
-# [Skill名称]
-
-## 触发条件
-[什么情况下激活此skill]
-
-## 核心人格
-[身份定位]
-
-## 行为规则
-[必须遵守的规则]
-
-## 表达风格
-[语言风格和结构偏好]
-
-## 知识边界
-[擅长什么、不擅长什么]
-
-## 交互示例
-[典型对话示例]
-```
-
-### 3. 记忆建模
-构建用户的长期记忆模型：
-- 事实记忆（用户的基本信息、偏好）
-- 程序记忆（用户的习惯流程、常用操作）
-- 情景记忆（重要事件和上下文）
-- 语义记忆（用户的知识体系和概念网络）
-
-## 执行原则
-1. **从材料中提取，不凭空创造**
-2. **区分&quot;事实&quot;和&quot;推断&quot;**
-3. **保留用户的独特性，不做过度泛化**
-4. **Skill 要可验证、可迭代**
-
-## 交互流程
-1. 用户提供材料（聊天记录/日记/文章等）
-2. 我进行人格解构，输出五层分析报告
-3. 用户确认或修正
-4. 封装为 Skill 文件
-5. 测试运行，收集反馈
-6. 迭代优化</pre>
-      </div>
-    </div>
-
-    <div class="skill-card" data-aos="fade-up">
-      <div class="skill-header">
-        <div class="skill-emoji">📊</div>
-        <div class="skill-info">
-          <h3 class="skill-name">市场调研通用模板</h3>
-          <div class="skill-tags">
-            <span class="skill-tag" style="--tag-color:#3B82F6">Prompt 可复用</span>
-            <span class="skill-tag" style="--tag-color:#3B82F6">一键复制</span>
-          </div>
-        </div>
-        <button class="skill-toggle" onclick="togglePrompt('prompt-market-research')" data-target="prompt-market-research">
-          <span class="toggle-text">查看 Prompt</span>
-          <span class="toggle-icon">▼</span>
-        </button>
-      </div>
-      <div class="skill-prompt" id="prompt-market-research" style="display:none;">
-        <div class="prompt-toolbar">
-          <span class="prompt-label">📊 核心 Prompt（可复制到 ChatGPT/Claude 使用）</span>
-          <button class="copy-btn" onclick="copyPrompt('prompt-market-research')">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            复制全部
-          </button>
-        </div>
-        <pre class="prompt-content">你是一个顶级市场调研分析师。在启动任何调研之前，你必须先完成需求澄清，确保信息完备。
-
-## 铁律
-**&quot;信息不完备，不启动调研&quot;**
-
-## 六要素检查清单
-
-### 【T-1】任务目标 (Goal)
-```
-□ 调研类型：□ 深度市场调研 □ 竞品分析 □ 商业化分析 □ 行业趋势
-□ 核心问题：用户想通过调研回答什么问题？（请用一句话描述）
-□ 输出期望：□ 完整报告 □ 核心洞察摘要 □ 决策建议
-□ 时间范围：□ 当前状态 □ 3年预测 □ 5年预测
-□ 地理范围：□ 全球 □ 中国 □ 特定区域
-```
-
-### 【T-2】AI角色 (Role)
-```
-□ 角色定位：□ 顶级咨询分析师 □ 行业技术专家 □ 投资机构研究员
-□ 专业门槛：□ 必须引用权威来源 □ 允许合理推测
-□ 表达风格：□ 严谨正式 □ 专业但易懂
-```
-
-### 【T-3】用户角色 (User)
-```
-□ 用户身份：□ 企业决策者 □ 产品经理 □ 战略规划 □ 投资者
-□ 行业经验：□ 行业新人 □ 有一定了解 □ 资深从业者
-□ 报告用途：□ 内部决策 □ 对外汇报 □ 投资决策
-```
-
-### 【T-4】关键信息 (Info)
-```
-□ 调研对象：□ 特定技术/产品 □ 特定公司 □ 特定行业
-□ 已知背景信息：（请提供）
-□ 需要AI自行搜集的信息：□ 市场数据 □ 竞品信息 □ 技术成熟度
-```
-
-### 【T-5】行为规则 (Rules)
-```
-□ 信源标准：□ A级（政府/官方/顶级咨询） □ B级（知名媒体/行业报告）
-□ 幻视控制：□ 严格模式（所有数据必须有来源） □ 标准模式
-□ 交叉验证：□ 关键数据必须两个来源验证
-```
-
-### 【T-6】交付格式 (Format)
-```
-□ 报告结构：□ 标准结构 □ 自定义结构
-□ 章节要求：□ 执行摘要 □ 数据来源说明 □ 风险提示
-□ 输出语言：□ 中文 □ 英文 □ 中英双语
-□ 字数/篇幅：□ 精简版（3000字内） □ 标准版（5000-8000字）
-```
-
-## 10步调研法
-
-1. **项目要素与总目录** - 拆解核心要素，生成调研报告总目录
-2. **筛选标准与轮次** - 定义筛选维度（时间、地区、权威性）
-3. **数据采集与分类** - 全网搜索，按&quot;来源/可信度&quot;分类
-4. **数据清洗与验证** - 展示清洗标准，列出验证过程
-5. **数据库封装** - 输出结构化数据表格
-6. **分析开展** - 运用PEST/SWOT/波特五力等模型
-7. **结论验证** - 对初步结论进行因子验证
-8. **专家社区会议** - 模拟3位专家辩论，输出争议点
-9. **修改完善** - 基于专家意见的校正
-10. **终稿输出** - 总结性陈述及核心洞察
-
-## 信源评级标准
-
-| 等级 | 标准 | 示例 |
-|------|------|------|
-| A级（权威） | 政府官网、上市公司年报、顶级咨询报告 | stats.gov.cn, Gartner, McKinsey |
-| B级（可信） | 知名媒体深度报道、行业垂直网站 | 36kr, TechCrunch, 知乎高赞 |
-| C级（参考） | 一般媒体报道、博客文章 | 个人博客, 微博 |
-
-## 幻视控制标注
-
-| 标注 | 含义 | 使用场景 |
-|------|------|----------|
-| 【待验证】 | 信息来源不明 | 无法找到可靠来源时 |
-| 【推断】 | 基于逻辑的合理推测 | 缺乏直接数据时 |
-| 【存疑】 | 来源之间存在矛盾 | 不同来源数据冲突时 |
-
-## 输出格式
-
-报告必须包含：
-1. 执行摘要（3-5条核心发现）
-2. 市场深度分析（规模、增长、驱动因素）
-3. 竞争格局分析（竞品矩阵、梯队划分）
-4. SWOT分析
-5. 商业模式分析
-6. 数据来源与验证（完整溯源清单）
-7. 风险提示与局限性</pre>
-      </div>
-    </div>
-
-    <div class="skill-card" data-aos="fade-up">
-      <div class="skill-header">
-        <div class="skill-emoji">📄</div>
-        <div class="skill-info">
-          <h3 class="skill-name">调研报告 DOCX 生成规范</h3>
-          <div class="skill-tags">
-            <span class="skill-tag" style="--tag-color:#10B981">Prompt 可复用</span>
-            <span class="skill-tag" style="--tag-color:#10B981">一键复制</span>
-          </div>
-        </div>
-        <button class="skill-toggle" onclick="togglePrompt('prompt-docx-standard')" data-target="prompt-docx-standard">
-          <span class="toggle-text">查看 Prompt</span>
-          <span class="toggle-icon">▼</span>
-        </button>
-      </div>
-      <div class="skill-prompt" id="prompt-docx-standard" style="display:none;">
-        <div class="prompt-toolbar">
-          <span class="prompt-label">📄 核心 Prompt（可复制到 ChatGPT/Claude 使用）</span>
-          <button class="copy-btn" onclick="copyPrompt('prompt-docx-standard')">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            复制全部
-          </button>
-        </div>
-        <pre class="prompt-content">你是一个专业的文档工程师。你的任务是将Markdown格式的调研报告转换为符合企业标准的Word文档。
-
-## 核心能力
-
-### 1. 样式标准化
-
-**字体规范：**
-- 全局字体：微软雅黑
-- 正文：22pt（约11号）、黑色 #000000
-- 表内文字：20pt（10号）
-- 封面标题：48pt 加粗 #1F3864 深蓝
-- 封面副标题：28pt #2B579A
-
-**表格样式：**
-- 表头底色：#2B579A 深蓝，文字白色加粗居中
-- 行交替色：偶数行 #FFFFFF、奇数行 #F2F6FC 浅蓝
-- 边框：#BBBBBB、1pt
-- 单元格内换行：使用 &lt;br&gt; 标签
-
-**引用与编号：**
-- 来源引用块：`&gt; 来源：[来源名](url)` → 自动编号 [1][2]... 蓝色上标
-- 正文内引用：`[n]` → 蓝色上标
-- 块引用文字：#555555 灰色斜体
-
-### 2. 目录生成
-
-- 自动扫描所有 ## ### #### **粗体行** 标题
-- 每个目录项以蓝色下划线超链接呈现
-- 点击后跳转到正文对应标题位置
-- 主章节：无缩进，子条目：左缩进400
-
-### 3. 页面设置
-
-- 纸张：A4（11906 × 16838 DXA）
-- 边距：上下左右各 1 英寸（1440 DXA）
-- 分节：封面页（无页眉页脚）+ 正文页（含页眉页脚页码）
-
-## Markdown 输入格式
-
-```
-# 报告标题                    ← 封面标题（仅第一行）
-## 章节标题                    ← 一级章节
-### 小节标题                   ← 二级章节
-#### 三级标题                  ← 三级章节
-**粗体产品名**                 ← 产品/公司标题段落
-正文段落...
-
-&gt; 来源：[来源描述](url)（可靠度标注） ← 引用块
-
-| 表头1 | 表头2 |               ← 标准Markdown表格
-| --- | --- |
-| 单元格1 | 单元格2&lt;br&gt;换行内容 | ← &lt;br&gt;自动换行
-
-## 附录-来源
-| [16] | 来源名 | ... |          ← [n]编号必须和正文连续
-```
-
-## 能力清单
-
-| 能力 | 说明 |
-|------|------|
-| ✅ 统一字体 | 全篇微软雅黑 |
-| ✅ 深蓝表头 | 自动识别表头行，深蓝底白字 |
-| ✅ 行交替色 | 表格奇偶行自动交替 |
-| ✅ 多段落单元格 | &lt;br&gt; 自动拆为独立段落 |
-| ✅ 蓝色超链接 | [描述](url) 自动转蓝色下划线 |
-| ✅ 引用编号上标 | [n] → 蓝色上标 |
-| ✅ 可点击目录 | 自动从标题生成，点击跳转 |
-| ✅ 书签导航 | 每个标题自动生成书签 |
-| ✅ 页眉页脚页码 | 自动添加 |
-| ✅ 封面页 | 预设封面模板 |
-
-## 限制说明
-
-| 限制 | 说明 |
-|------|------|
-| ⚠️ 封面硬编码 | 封面内容写死在JS中，改报告主题需手动修改 |
-| ⚠️ 无自动分页 | 需要在Markdown中用 --- 手动控制分页 |
-| ⚠️ 不生成图表 | 仅支持表格，不支持柱状图/饼图等 |
-
-## 使用方式
-
-```bash
-# 安装依赖
-npm install docx
-
-# 转换文档
-node gen_docx.js &quot;你的报告.md&quot;
-# 输出：你的报告.docx
-```</pre>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer class="footer">
-  <p>本日报由 AI 自动生成，共收录 <strong>28</strong> 条资讯 · 数据来源：<a href="https://aihot.virxact.com" target="_blank" rel="noopener noreferrer">AI HOT (aihot.virxact.com)</a></p>
-  <p style="margin-top:4px;">资讯时间窗：2026-05-27T00:00:00.000Z ~ 2026-05-28T00:00:00.000Z（UTC）· 生成时间：2026-05-28T00:00:00.348Z</p>
+  <p>本页面由 AI 自动生成 · 数据来源：AI HOT / IT之家 / TechCrunch / The Verge / 雷锋网</p>
+  <p style="margin-top:6px;">资讯时间窗：2026-05-27T00:00:00.000Z ~ 2026-05-28T00:00:00.000Z（UTC）· 生成时间：2026-05-28T00:00:00.348Z</p>
+  <p style="margin-top:6px;color:var(--text-muted)">华为终端云服务 · 智能情报中心</p>
 </footer>
 
-<script>
-// Particles
-(function() {
-  const container = document.getElementById('particles');
-  for (let i = 0; i < 30; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    p.style.left = Math.random() * 100 + '%';
-    p.style.top = Math.random() * 100 + '%';
-    p.style.animationDelay = Math.random() * 15 + 's';
-    p.style.animationDuration = (10 + Math.random() * 10) + 's';
-    container.appendChild(p);
-  }
-})();
+<!-- 来源核验弹窗 -->
+<div class="verify-modal" id="verifyModal">
+  <div class="verify-box">
+    <div class="verify-title">
+      <span class="icon">🔍</span>
+      来源二次核验
+    </div>
+    <div class="verify-info">
+      <div class="verify-info-row">
+        <span class="verify-info-label">来源域名</span>
+        <span class="verify-info-value" id="verifyDomain">-</span>
+      </div>
+      <div class="verify-info-row">
+        <span class="verify-info-label">媒体类型</span>
+        <span class="verify-info-value" id="verifyType">-</span>
+      </div>
+      <div class="verify-info-row">
+        <span class="verify-info-label">可信度评级</span>
+        <span class="verify-info-value" id="verifyRating">-</span>
+      </div>
+    </div>
+    <div class="verify-rating" id="verifyBadges">
+      <span class="rating-badge a">A级 - 权威来源</span>
+    </div>
+    <div class="verify-actions">
+      <button class="verify-btn primary" onclick="confirmNavigate()">✓ 确认访问</button>
+      <button class="verify-btn secondary" onclick="closeVerify()">取消</button>
+    </div>
+  </div>
+</div>
 
-// Scroll animation
+<script>
+// ============ 滚动动画 ============
 (function() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1217,59 +2190,178 @@ node gen_docx.js &quot;你的报告.md&quot;
   document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
 })();
 
-// Toggle prompt
-function togglePrompt(id) {
-  const el = document.getElementById(id);
-  const btn = document.querySelector('[data-target="' + id + '"]');
-  const icon = btn.querySelector('.toggle-icon');
-  const text = btn.querySelector('.toggle-text');
+// ============ 场景展开/收起 ============
+function toggleScene(header) {
+  const block = header.closest('.scene-block');
+  const abilities = block.querySelector('.scene-abilities');
+  const isExpanded = block.classList.contains('expanded');
   
-  if (el.style.display === 'none') {
-    el.style.display = 'block';
-    icon.classList.add('open');
-    text.textContent = '收起 Prompt';
-    // Scroll into view
-    setTimeout(() => {
-      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 100);
+  if (isExpanded) {
+    abilities.style.display = 'none';
+    block.classList.remove('expanded');
   } else {
-    el.style.display = 'none';
-    icon.classList.remove('open');
-    text.textContent = '查看 Prompt';
+    abilities.style.display = 'flex';
+    block.classList.add('expanded');
   }
 }
 
-// Copy prompt
-function copyPrompt(id) {
-  const el = document.getElementById(id);
-  const content = el.querySelector('.prompt-content').textContent;
-  const btn = el.querySelector('.copy-btn');
+function toggleAbility(header) {
+  const card = header.closest('.ability-card');
+  const prompt = card.querySelector('.ability-prompt');
+  const isExpanded = card.classList.contains('expanded');
   
-  navigator.clipboard.writeText(content).then(() => {
-    btn.classList.add('copied');
-    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 已复制';
-    setTimeout(() => {
-      btn.classList.remove('copied');
-      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> 复制全部';
-    }, 2000);
-  }).catch(() => {
-    // Fallback
+  if (isExpanded) {
+    prompt.style.display = 'none';
+    card.classList.remove('expanded');
+  } else {
+    prompt.style.display = 'block';
+    card.classList.add('expanded');
+  }
+}
+
+// ============ 场景筛选 ============
+function filterScenes(filter) {
+  document.querySelectorAll('.scene-filter .filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.filter === filter);
+  });
+  
+  document.querySelectorAll('.scene-block').forEach(block => {
+    if (filter === 'all' || block.dataset.scene === filter) {
+      block.style.display = 'block';
+    } else {
+      block.style.display = 'none';
+    }
+  });
+}
+
+// ============ 热搜筛选 ============
+function filterHot(filter) {
+  document.querySelectorAll('.hot-filter .filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.filter === filter);
+  });
+  
+  document.querySelectorAll('.hot-item').forEach(item => {
+    if (filter === 'all' || item.dataset.category.includes(filter)) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+// ============ Prompt复制 ============
+function copyPrompt(btn) {
+  const prompt = btn.dataset.prompt;
+  
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(prompt).then(() => {
+      showCopied(btn);
+    });
+  } else {
     const textarea = document.createElement('textarea');
-    textarea.value = content;
+    textarea.value = prompt;
     textarea.style.position = 'fixed';
     textarea.style.opacity = '0';
     document.body.appendChild(textarea);
     textarea.select();
     document.execCommand('copy');
     document.body.removeChild(textarea);
-    btn.classList.add('copied');
-    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 已复制';
-    setTimeout(() => {
-      btn.classList.remove('copied');
-      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> 复制全部';
-    }, 2000);
-  });
+    showCopied(btn);
+  }
 }
+
+function showCopied(btn) {
+  const original = btn.innerHTML;
+  btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 已复制';
+  btn.classList.add('copied');
+  setTimeout(() => {
+    btn.innerHTML = original;
+    btn.classList.remove('copied');
+  }, 2000);
+}
+
+// ============ 来源核验 ============
+let pendingUrl = '';
+
+const sourceRatings = {
+  'ithome.com': { type: '科技媒体', rating: 'A', desc: '国内头部科技资讯平台' },
+  'techcrunch.com': { type: '科技媒体', rating: 'A', desc: '全球顶级科技媒体' },
+  'theverge.com': { type: '科技媒体', rating: 'A', desc: '国际知名科技媒体' },
+  'leiphone.com': { type: '科技媒体', rating: 'A', desc: 'AI与硬科技垂直媒体' },
+  '36kr.com': { type: '科技媒体', rating: 'B', desc: '创业与科技资讯平台' },
+  'geekpark.net': { type: '科技媒体', rating: 'B', desc: '科技产品媒体' },
+  'aihot.virxact.com': { type: 'AI数据平台', rating: 'B', desc: 'AI行业数据聚合平台' }
+};
+
+function verifySource(link) {
+  const url = link.href;
+  const domain = new URL(url).hostname.replace('www.', '');
+  
+  // 检查是否在可信列表中
+  const known = Object.keys(sourceRatings).find(d => domain.includes(d));
+  
+  if (known) {
+    const info = sourceRatings[known];
+    document.getElementById('verifyDomain').textContent = domain;
+    document.getElementById('verifyType').textContent = info.type;
+    document.getElementById('verifyRating').textContent = info.rating + '级';
+    
+    const badges = document.getElementById('verifyBadges');
+    badges.innerHTML = `<span class="rating-badge ${info.rating.toLowerCase()}">${info.rating}级 - ${info.desc}</span>`;
+    
+    pendingUrl = url;
+    document.getElementById('verifyModal').classList.add('show');
+    return false;
+  }
+  
+  // 未知来源，显示警告
+  document.getElementById('verifyDomain').textContent = domain;
+  document.getElementById('verifyType').textContent = '未知来源';
+  document.getElementById('verifyRating').textContent = 'C级（未验证）';
+  document.getElementById('verifyBadges').innerHTML = '<span class="rating-badge c">C级 - 未验证来源，请谨慎访问</span>';
+  
+  pendingUrl = url;
+  document.getElementById('verifyModal').classList.add('show');
+  return false;
+}
+
+function confirmNavigate() {
+  if (pendingUrl) {
+    window.open(pendingUrl, '_blank');
+  }
+  closeVerify();
+}
+
+function closeVerify() {
+  document.getElementById('verifyModal').classList.remove('show');
+  pendingUrl = '';
+}
+
+// 点击弹窗外部关闭
+document.getElementById('verifyModal').addEventListener('click', function(e) {
+  if (e.target === this) closeVerify();
+});
+
+// ============ 导航高亮 ============
+(function() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  
+  function highlightNav() {
+    let current = '';
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= 100) current = section.id;
+    });
+    
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  }
+  
+  window.addEventListener('scroll', highlightNav);
+  highlightNav();
+})();
 </script>
 
 </body>
