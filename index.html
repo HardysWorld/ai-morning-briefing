@@ -7,38 +7,34 @@
 <style>
 /* ============ 华为深色科技风设计系统 ============ */
 :root {
-  /* 主色调 - 华为云控制台风格 */
   --bg-primary: #0a0e1a;
   --bg-secondary: #0f1629;
   --bg-card: rgba(16, 24, 48, 0.85);
   --bg-hover: rgba(24, 36, 72, 0.9);
   
-  /* 强调色 */
   --accent-cyan: #00d4aa;
   --accent-blue: #0066ff;
   --accent-orange: #ff6b35;
   --accent-purple: #a78bfa;
   --accent-gold: #fbbf24;
   
-  /* 文字色 */
   --text-primary: #e8ecf4;
   --text-secondary: #8b95a8;
   --text-muted: #5a6378;
   
-  /* 边框与分割 */
   --border-subtle: rgba(0, 212, 170, 0.08);
   --border-glow: rgba(0, 212, 170, 0.25);
   --divider: rgba(255, 255, 255, 0.06);
   
-  /* 效果 */
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
   --shadow-glow: 0 0 20px rgba(0, 212, 170, 0.15);
   --radius: 12px;
   --radius-sm: 8px;
   
-  /* 字体 */
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-mono: "SF Mono", "Cascadia Code", "Consolas", monospace;
+  
+  --sidebar-width: 340px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -52,7 +48,6 @@ body {
   overflow-x: hidden;
 }
 
-/* 网格背景 */
 body::before {
   content: '';
   position: fixed;
@@ -69,7 +64,7 @@ body::before {
 .hero {
   position: relative;
   background: linear-gradient(135deg, #070b14 0%, #0a1020 40%, #0c1428 70%, #0a0e1a 100%);
-  padding: 80px 24px 64px;
+  padding: 64px 24px 48px;
   text-align: center;
   overflow: hidden;
   border-bottom: 1px solid var(--border-subtle);
@@ -110,26 +105,26 @@ body::before {
 }
 
 .hero h1 {
-  font-size: clamp(32px, 5vw, 52px);
+  font-size: clamp(28px, 4vw, 46px);
   font-weight: 800;
   background: linear-gradient(135deg, #00d4aa, #38bdf8, #0066ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   letter-spacing: -1px;
 }
 
 .hero-subtitle {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--text-secondary);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .hero-date {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-muted);
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   font-family: var(--font-mono);
 }
 
@@ -137,16 +132,15 @@ body::before {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
-  margin-bottom: 36px;
+  gap: 12px;
 }
 
 .stat-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
-  padding: 16px 24px;
-  min-width: 110px;
+  padding: 14px 20px;
+  min-width: 100px;
   backdrop-filter: blur(20px);
   transition: all 0.3s ease;
 }
@@ -158,7 +152,7 @@ body::before {
 }
 
 .stat-number {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 800;
   font-family: var(--font-mono);
   background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
@@ -168,23 +162,9 @@ body::before {
 }
 
 .stat-label {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-secondary);
   margin-top: 4px;
-}
-
-.total-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: linear-gradient(135deg, rgba(0, 212, 170, 0.15), rgba(0, 102, 255, 0.1));
-  border: 1px solid rgba(0, 212, 170, 0.3);
-  color: var(--accent-cyan);
-  font-size: 15px;
-  font-weight: 700;
-  padding: 12px 32px;
-  border-radius: 28px;
-  backdrop-filter: blur(10px);
 }
 
 /* ============ 导航栏 ============ */
@@ -192,7 +172,7 @@ body::before {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(10, 14, 26, 0.9);
+  background: rgba(10, 14, 26, 0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
   padding: 0 16px;
@@ -205,8 +185,8 @@ body::before {
 
 .nav-inner {
   display: flex;
-  gap: 6px;
-  padding: 12px 0;
+  gap: 4px;
+  padding: 10px 0;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -214,10 +194,10 @@ body::before {
 .nav-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 13px;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: 18px;
+  font-size: 12px;
   color: var(--text-secondary);
   text-decoration: none;
   transition: all 0.25s ease;
@@ -234,46 +214,52 @@ body::before {
 }
 
 .nav-count {
-  font-size: 11px;
+  font-size: 10px;
   background: rgba(0, 212, 170, 0.15);
   color: var(--accent-cyan);
-  padding: 2px 8px;
-  border-radius: 10px;
+  padding: 1px 7px;
+  border-radius: 8px;
   font-family: var(--font-mono);
 }
 
-/* ============ 主内容区 ============ */
-.main-content {
+/* ============ 主布局：内容区 + 侧边栏 ============ */
+.page-layout {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 40px 20px 60px;
+  padding: 32px 16px 60px;
+  display: flex;
+  gap: 28px;
   position: relative;
   z-index: 1;
+  align-items: flex-start;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
 }
 
 .section-block {
-  margin-bottom: 56px;
+  margin-bottom: 48px;
   scroll-margin-top: 70px;
 }
 
 .section-title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   color: var(--title-color, var(--text-primary));
-  padding-bottom: 12px;
+  padding-bottom: 10px;
   border-bottom: 1px solid var(--divider);
 }
 
-.section-icon {
-  font-size: 24px;
-}
+.section-icon { font-size: 22px; }
 
 .section-count {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
   color: var(--text-muted);
   margin-left: auto;
@@ -283,15 +269,15 @@ body::before {
 /* ============ 卡片网格 ============ */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
 }
 
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
-  padding: 24px;
+  padding: 20px;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -309,7 +295,7 @@ body::before {
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: var(--border-glow);
   box-shadow: var(--shadow-glow);
 }
@@ -318,9 +304,9 @@ body::before {
 
 .card-badge {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 13px;
+  top: 16px;
+  right: 16px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--badge-color, var(--accent-cyan));
   font-family: var(--font-mono);
@@ -328,30 +314,30 @@ body::before {
 }
 
 .card-title {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 1.5;
-  margin-bottom: 14px;
-  padding-right: 50px;
+  margin-bottom: 12px;
+  padding-right: 44px;
   color: var(--text-primary);
 }
 
 .card-meta {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: 10px;
+  margin-bottom: 10px;
   flex-wrap: wrap;
 }
 
 .source-chip {
   font-size: 11px;
-  padding: 4px 12px;
-  border-radius: 12px;
+  padding: 3px 10px;
+  border-radius: 10px;
   background: rgba(0, 212, 170, 0.08);
   color: var(--accent-cyan);
   border: 1px solid rgba(0, 212, 170, 0.15);
-  max-width: 200px;
+  max-width: 180px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -364,10 +350,10 @@ body::before {
 }
 
 .card-summary {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-secondary);
   line-height: 1.7;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -377,46 +363,39 @@ body::before {
 .card-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 13px;
+  gap: 5px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--link-color, var(--accent-cyan));
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
-.card-link:hover {
-  gap: 10px;
-  text-shadow: 0 0 10px rgba(0, 212, 170, 0.3);
-}
-
+.card-link:hover { gap: 8px; }
 .card-link .arrow { transition: transform 0.2s ease; }
 .card-link:hover .arrow { transform: translateX(3px); }
 
-/* ============ 自己.skill 场景分化 ============ */
-.scene-filter, .hot-filter {
+/* ============ 自己.skill ============ */
+.scene-filter {
   display: flex;
-  gap: 10px;
-  margin-bottom: 24px;
+  gap: 8px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
 }
 
 .filter-btn {
-  padding: 8px 18px;
-  border-radius: 20px;
+  padding: 7px 16px;
+  border-radius: 18px;
   border: 1px solid var(--border-subtle);
   background: var(--bg-card);
   color: var(--text-secondary);
-  font-size: 13px;
+  font-size: 12px;
   cursor: pointer;
   transition: all 0.25s ease;
   backdrop-filter: blur(10px);
 }
 
-.filter-btn:hover {
-  border-color: var(--border-glow);
-  color: var(--text-primary);
-}
+.filter-btn:hover { border-color: var(--border-glow); color: var(--text-primary); }
 
 .filter-btn.active {
   background: rgba(0, 212, 170, 0.12);
@@ -427,7 +406,7 @@ body::before {
 .scenes-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .scene-block {
@@ -439,28 +418,24 @@ body::before {
   backdrop-filter: blur(10px);
 }
 
-.scene-block:hover {
-  border-color: var(--border-glow);
-}
+.scene-block:hover { border-color: var(--border-glow); }
 
 .scene-header {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 20px 24px;
+  gap: 14px;
+  padding: 18px 22px;
   cursor: pointer;
   transition: all 0.25s ease;
   border-left: 3px solid var(--scene-color, var(--accent-cyan));
 }
 
-.scene-header:hover {
-  background: var(--bg-hover);
-}
+.scene-header:hover { background: var(--bg-hover); }
 
 .scene-icon {
-  font-size: 28px;
-  width: 48px;
-  height: 48px;
+  font-size: 26px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -471,42 +446,40 @@ body::before {
 .scene-info { flex: 1; }
 
 .scene-name {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .scene-desc {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-secondary);
 }
 
 .scene-toggle {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-muted);
   transition: transform 0.25s ease;
 }
 
-.scene-block.expanded .scene-toggle {
-  transform: rotate(180deg);
-}
+.scene-block.expanded .scene-toggle { transform: rotate(180deg); }
 
 .scene-count {
-  font-size: 12px;
+  font-size: 11px;
   background: rgba(0, 212, 170, 0.1);
   color: var(--accent-cyan);
-  padding: 4px 12px;
-  border-radius: 12px;
+  padding: 3px 10px;
+  border-radius: 10px;
   font-family: var(--font-mono);
-  margin-left: 8px;
+  margin-left: 6px;
 }
 
 .scene-abilities {
-  padding: 0 24px 20px;
+  padding: 0 22px 18px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .ability-card {
@@ -517,39 +490,31 @@ body::before {
   transition: all 0.25s ease;
 }
 
-.ability-card:hover {
-  border-color: rgba(0, 212, 170, 0.2);
-}
+.ability-card:hover { border-color: rgba(0, 212, 170, 0.2); }
 
 .ability-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
+  gap: 10px;
+  padding: 12px 16px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.ability-header:hover {
-  background: rgba(255, 255, 255, 0.03);
-}
+.ability-header:hover { background: rgba(255, 255, 255, 0.03); }
 
-.ability-icon {
-  font-size: 18px;
-  opacity: 0.8;
-}
-
+.ability-icon { font-size: 16px; opacity: 0.8; }
 .ability-info { flex: 1; }
 
 .ability-name {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 2px;
 }
 
 .ability-desc {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-secondary);
 }
 
@@ -559,12 +524,10 @@ body::before {
   transition: transform 0.2s ease;
 }
 
-.ability-card.expanded .ability-toggle {
-  transform: rotate(180deg);
-}
+.ability-card.expanded .ability-toggle { transform: rotate(180deg); }
 
 .ability-prompt {
-  padding: 0 18px 16px;
+  padding: 0 16px 14px;
   border-top: 1px solid var(--divider);
 }
 
@@ -572,147 +535,288 @@ body::before {
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
-  padding: 16px;
+  padding: 14px;
   font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1.8;
+  font-size: 11px;
+  line-height: 1.7;
   color: var(--text-secondary);
   white-space: pre-wrap;
-  max-height: 300px;
+  max-height: 350px;
   overflow-y: auto;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
-.prompt-content::-webkit-scrollbar {
-  width: 6px;
-}
-
-.prompt-content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.prompt-content::-webkit-scrollbar-thumb {
-  background: var(--border-subtle);
-  border-radius: 3px;
-}
+.prompt-content::-webkit-scrollbar { width: 5px; }
+.prompt-content::-webkit-scrollbar-track { background: transparent; }
+.prompt-content::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 3px; }
 
 .copy-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
+  gap: 5px;
+  padding: 6px 14px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-subtle);
   background: rgba(0, 212, 170, 0.08);
   color: var(--accent-cyan);
-  font-size: 12px;
+  font-size: 11px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.copy-btn:hover {
-  background: rgba(0, 212, 170, 0.15);
-  border-color: var(--border-glow);
+.copy-btn:hover { background: rgba(0, 212, 170, 0.15); border-color: var(--border-glow); }
+.copy-btn.copied { background: rgba(0, 212, 170, 0.2); color: #00ffaa; }
+
+/* ============ 其他技能库 ============ */
+.other-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
 }
 
-.copy-btn.copied {
-  background: rgba(0, 212, 170, 0.2);
-  color: #00ffaa;
-}
-
-/* ============ 热搜榜单 ============ */
-.hot-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  background: var(--divider);
+.other-skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
-  overflow: hidden;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  border-top: 2px solid var(--card-accent, var(--accent-cyan));
+}
+
+.other-skill-card:hover { border-color: var(--border-glow); box-shadow: var(--shadow-glow); }
+
+.osk-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.osk-icon {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+}
+
+.osk-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.osk-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.osk-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.skill-feature-tag {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 8px;
+  background: rgba(0, 212, 170, 0.06);
+  color: var(--text-secondary);
   border: 1px solid var(--border-subtle);
 }
 
-.hot-item {
+.osk-details { margin-top: 8px; }
+
+.osk-details summary {
+  font-size: 12px;
+  color: var(--accent-cyan);
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+.osk-prompt {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  max-height: 280px;
+  overflow-y: auto;
+  margin: 8px 0;
+}
+
+.osk-prompt::-webkit-scrollbar { width: 5px; }
+.osk-prompt::-webkit-scrollbar-track { background: transparent; }
+.osk-prompt::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 3px; }
+
+/* ============ 右侧热榜侧边栏 ============ */
+.hot-sidebar {
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  position: sticky;
+  top: 64px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  max-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+}
+
+.hot-sidebar-header {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 14px 20px;
-  background: var(--bg-card);
+  gap: 8px;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.08), rgba(251, 191, 36, 0.05));
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.hot-sidebar-icon { font-size: 18px; }
+
+.hot-sidebar-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.hot-sidebar-count {
+  font-size: 11px;
+  color: var(--accent-orange);
+  font-family: var(--font-mono);
+  background: rgba(255, 107, 53, 0.1);
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+.hot-sidebar-filter {
+  display: flex;
+  gap: 4px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--divider);
+  flex-wrap: wrap;
+}
+
+.hs-filter-btn {
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 10px;
+  cursor: pointer;
   transition: all 0.2s ease;
-  backdrop-filter: blur(10px);
+  white-space: nowrap;
 }
 
-.hot-item:hover {
-  background: var(--bg-hover);
+.hs-filter-btn:hover { border-color: var(--border-glow); color: var(--text-secondary); }
+
+.hs-filter-btn.active {
+  background: rgba(0, 212, 170, 0.1);
+  border-color: rgba(0, 212, 170, 0.3);
+  color: var(--accent-cyan);
 }
 
-.hot-rank {
-  font-size: 16px;
+.hot-side-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px 0;
+}
+
+.hot-side-list::-webkit-scrollbar { width: 4px; }
+.hot-side-list::-webkit-scrollbar-track { background: transparent; }
+.hot-side-list::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 2px; }
+
+.hot-side-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--divider);
+  transition: background 0.2s ease;
+}
+
+.hot-side-item:last-child { border-bottom: none; }
+.hot-side-item:hover { background: var(--bg-hover); }
+
+.hot-side-rank {
+  font-size: 13px;
   font-weight: 800;
   font-family: var(--font-mono);
   color: var(--text-muted);
-  min-width: 28px;
+  min-width: 24px;
   text-align: center;
+  flex-shrink: 0;
+  line-height: 1.3;
 }
 
-.hot-rank.top3 {
+.hot-side-rank.top3 {
   background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-size: 18px;
+  font-size: 14px;
 }
 
-.hot-content { flex: 1; min-width: 0; }
+.hot-side-content { flex: 1; min-width: 0; }
 
-.hot-title {
-  font-size: 14px;
+.hot-side-title {
+  font-size: 12px;
   font-weight: 500;
   color: var(--text-primary);
   text-decoration: none;
-  display: block;
-  margin-bottom: 6px;
-  transition: color 0.2s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  line-height: 1.5;
+  margin-bottom: 4px;
+  transition: color 0.2s ease;
 }
 
-.hot-title:hover {
-  color: var(--accent-cyan);
-}
+.hot-side-title:hover { color: var(--accent-cyan); }
 
-.hot-meta {
+.hot-side-meta {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
 }
 
-.hot-source {
-  font-size: 11px;
+.hot-side-source {
+  font-size: 10px;
   color: var(--text-muted);
   font-family: var(--font-mono);
 }
 
-.hot-category {
-  font-size: 11px;
-  padding: 2px 8px;
-  border-radius: 8px;
-  background: rgba(0, 212, 170, 0.08);
-  color: var(--accent-cyan);
-  border: 1px solid rgba(0, 212, 170, 0.15);
+.hot-side-cat {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: rgba(0, 212, 170, 0.06);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
 }
 
-.hot-disclaimer {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 16px;
-  padding: 12px 16px;
-  background: rgba(251, 191, 36, 0.05);
-  border: 1px solid rgba(251, 191, 36, 0.15);
-  border-radius: var(--radius-sm);
-  font-size: 12px;
+.hot-side-disclaimer {
+  padding: 10px 16px;
+  font-size: 10px;
   color: var(--text-muted);
+  border-top: 1px solid var(--divider);
+  text-align: center;
 }
 
 /* ============ 来源核验弹窗 ============ */
@@ -730,70 +834,56 @@ body::before {
   transition: opacity 0.3s ease;
 }
 
-.verify-modal.show {
-  opacity: 1;
-  pointer-events: all;
-}
+.verify-modal.show { opacity: 1; pointer-events: all; }
 
 .verify-box {
   background: var(--bg-secondary);
   border: 1px solid var(--border-glow);
   border-radius: var(--radius);
-  padding: 32px;
-  max-width: 480px;
+  padding: 28px;
+  max-width: 440px;
   width: 90%;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   transform: translateY(20px);
   transition: transform 0.3s ease;
 }
 
-.verify-modal.show .verify-box {
-  transform: translateY(0);
-}
+.verify-modal.show .verify-box { transform: translateY(0); }
 
 .verify-title {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.verify-title .icon {
-  font-size: 24px;
+  gap: 8px;
 }
 
 .verify-info {
   background: rgba(0, 212, 170, 0.05);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
-  padding: 16px;
-  margin-bottom: 20px;
+  padding: 14px;
+  margin-bottom: 16px;
 }
 
 .verify-info-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 13px;
+  margin-bottom: 6px;
+  font-size: 12px;
 }
 
 .verify-info-row:last-child { margin-bottom: 0; }
-
 .verify-info-label { color: var(--text-secondary); }
 .verify-info-value { color: var(--text-primary); font-weight: 500; }
 
-.verify-rating {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-}
+.verify-rating { display: flex; gap: 6px; margin-bottom: 18px; }
 
 .rating-badge {
-  padding: 6px 14px;
-  border-radius: 12px;
-  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 10px;
+  font-size: 11px;
   font-weight: 600;
 }
 
@@ -801,17 +891,14 @@ body::before {
 .rating-badge.b { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
 .rating-badge.c { background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
 
-.verify-actions {
-  display: flex;
-  gap: 12px;
-}
+.verify-actions { display: flex; gap: 10px; }
 
 .verify-btn {
   flex: 1;
-  padding: 12px 20px;
+  padding: 10px 18px;
   border-radius: var(--radius-sm);
   border: none;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -822,10 +909,7 @@ body::before {
   color: white;
 }
 
-.verify-btn.primary:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
+.verify-btn.primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
 .verify-btn.secondary {
   background: var(--bg-card);
@@ -833,32 +917,19 @@ body::before {
   color: var(--text-secondary);
 }
 
-.verify-btn.secondary:hover {
-  border-color: var(--border-glow);
-  color: var(--text-primary);
-}
+.verify-btn.secondary:hover { border-color: var(--border-glow); color: var(--text-primary); }
 
 /* ============ 页脚 ============ */
 .footer {
   text-align: center;
-  padding: 40px 20px 60px;
-  font-size: 12px;
+  padding: 32px 20px 48px;
+  font-size: 11px;
   color: var(--text-muted);
   border-top: 1px solid var(--divider);
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
-}
-
-.footer a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.footer a:hover {
-  color: var(--accent-cyan);
 }
 
 /* ============ 动画 ============ */
@@ -874,22 +945,37 @@ body::before {
 }
 
 /* ============ 响应式 ============ */
+@media (max-width: 1100px) {
+  .page-layout {
+    flex-direction: column;
+  }
+  .hot-sidebar {
+    width: 100%;
+    position: static;
+    max-height: none;
+    order: -1;
+  }
+  .hot-side-list {
+    max-height: 400px;
+  }
+}
+
 @media (max-width: 768px) {
-  .hero { padding: 56px 16px 48px; }
-  .hero h1 { font-size: 26px; }
-  .hero-stats { gap: 10px; }
-  .stat-card { padding: 12px 18px; min-width: 90px; }
-  .stat-number { font-size: 24px; }
+  .hero { padding: 48px 16px 36px; }
+  .hero h1 { font-size: 22px; }
+  .hero-stats { gap: 8px; }
+  .stat-card { padding: 10px 14px; min-width: 80px; }
+  .stat-number { font-size: 22px; }
   .card-grid { grid-template-columns: 1fr; }
-  .section-title { font-size: 18px; }
-  .main-content { padding: 28px 12px 40px; }
-  .scene-header { padding: 16px 18px; }
-  .hot-item { padding: 12px 16px; }
+  .other-skills-grid { grid-template-columns: 1fr; }
+  .section-title { font-size: 17px; }
+  .page-layout { padding: 20px 10px 40px; }
+  .scene-header { padding: 14px 16px; }
 }
 
 @media (max-width: 400px) {
-  .stat-card { padding: 10px 14px; min-width: 70px; }
-  .stat-number { font-size: 20px; }
+  .stat-card { padding: 8px 12px; min-width: 65px; }
+  .stat-number { font-size: 18px; }
 }
 </style>
 </head>
@@ -902,12 +988,16 @@ body::before {
       AI 智能工作台
     </div>
     <h1>华为终端云服务 · 智能情报中心</h1>
-    <div class="hero-subtitle">AI工具 × 科技热搜 × 行业日报 · 一站式智能工作台</div>
+    <div class="hero-subtitle">数字人格引擎 × 科技热搜 × AI日报 · 一站式智能工作台</div>
     <div class="hero-date">2026年5月28日 · 2026-05-28</div>
     <div class="hero-stats">
       <div class="stat-card">
         <div class="stat-number">14</div>
         <div class="stat-label">🧬 AI能力</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">5</div>
+        <div class="stat-label">🔧 技能库</div>
       </div>
       <div class="stat-card">
         <div class="stat-number">15</div>
@@ -931,26 +1021,23 @@ body::before {
         <div class="stat-label">💡 技巧与观点</div>
       </div>
     </div>
-    <div class="total-badge">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      今日共收录 57 条情报
-    </div>
   </div>
 </header>
 
 <nav class="nav-bar">
   <div class="nav-inner">
-    <a href="#yourself-skill" class="nav-link" style="--accent:#00d4aa">🧬 数字人格引擎<span class="nav-count">14</span></a>
-    <a href="#hot-news" class="nav-link" style="--accent:#ff6b35">🔥 科技热搜<span class="nav-count">15</span></a>
-    <a href="#ai-products" class="nav-link" style="--accent:#38bdf8">🚀 产品发布/更新<span class="nav-count">8</span></a>
-<a href="#industry" class="nav-link" style="--accent:#a78bfa">📡 行业动态<span class="nav-count">8</span></a>
-<a href="#paper" class="nav-link" style="--accent:#fbbf24">📄 论文研究<span class="nav-count">4</span></a>
-<a href="#tip" class="nav-link" style="--accent:#fb923c">💡 技巧与观点<span class="nav-count">8</span></a>
+    <a href="#yourself-skill" class="nav-link">🧬 数字人格引擎<span class="nav-count">14</span></a>
+    <a href="#other-skills" class="nav-link">🔧 技能库<span class="nav-count">5</span></a>
+    <a href="#ai-products" class="nav-link">🚀 产品发布/更新<span class="nav-count">8</span></a>
+<a href="#industry" class="nav-link">📡 行业动态<span class="nav-count">8</span></a>
+<a href="#paper" class="nav-link">📄 论文研究<span class="nav-count">4</span></a>
+<a href="#tip" class="nav-link">💡 技巧与观点<span class="nav-count">8</span></a>
   </div>
 </nav>
 
-<main class="main-content">
-  
+<div class="page-layout">
+  <main class="main-content">
+    
   <section id="yourself-skill" class="section-block">
     <h2 class="section-title" style="--title-color:#00d4aa">
       <span class="section-icon">🧬</span>
@@ -971,7 +1058,7 @@ body::before {
           <div class="scene-desc">职场沟通、项目管理、汇报呈现、决策分析</div>
         </div>
         <span class="scene-toggle">▼</span>
-        <span class="scene-count">4</span>
+        <span class="scene-count">7</span>
       </div>
       <div class="scene-abilities" style="display:none;">
         
@@ -985,30 +1072,414 @@ body::before {
           <span class="ability-toggle">▼</span>
         </div>
         <div class="ability-prompt" style="display:none;">
-          <div class="prompt-content">你是一位Prompt Engineering专家。请将以下用户需求转化为一个结构清晰、可执行的AI提示词：
+          <div class="prompt-content"># 提示词生成器
 
-【用户需求】：{{user_input}}
+## 定位
+当用户说&quot;帮我写个prompt&quot;、&quot;怎么让AI做X&quot;时，用这个能力把模糊需求变成高质量提示词。
 
-要求：
-1. 使用「角色-任务-约束-输出格式」四段式结构
-2. 明确指定AI的专业身份和知识边界
-3. 列出必须遵守的行为规则和禁止项
-4. 定义输出格式（表格/列表/段落/Mermaid）
-5. 添加质量自检清单
+## 核心流程
 
-输出：直接给出优化后的提示词，无需解释。</div>
-          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位Prompt Engineering专家。请将以下用户需求转化为一个结构清晰、可执行的AI提示词：
+### 第1步：需求挖掘（反问3个问题）
+1. **目标**：你想让AI产出什么？（文章/代码/分析/创意/决策）
+2. **受众**：给谁看？有什么背景知识？
+3. **格式**：期望的输出形式？（表格/列表/段落/Mermaid图/JSON）
 
-【用户需求】：{{user_input}}
+### 第2步：四段式结构化
+```
+【角色】你是一位[专业身份]，擅长[核心能力]，拥有[领域经验]
+【任务】请完成以下任务：[具体可执行的任务描述]
+【约束】必须遵守：1.xxx 2.xxx 3.xxx；禁止：1.xxx 2.xxx
+【输出】格式要求：[表格/列表/段落/Mermaid]；字数：[范围]；语言：[中/英]
+```
 
-要求：
-1. 使用「角色-任务-约束-输出格式」四段式结构
-2. 明确指定AI的专业身份和知识边界
-3. 列出必须遵守的行为规则和禁止项
-4. 定义输出格式（表格/列表/段落/Mermaid）
-5. 添加质量自检清单
+### 第3步：质量自检
+- [ ] 角色是否具体到专业领域？
+- [ ] 任务是否可执行而非&quot;帮我分析&quot;？
+- [ ] 约束是否覆盖了关键边界？
+- [ ] 输出格式是否明确？
 
-输出：直接给出优化后的提示词，无需解释。">
+## 高级技巧
+- **少样本示例**：在任务中附1-2个输入→输出范例
+- **思维链**：加&quot;请逐步推理，先分析再输出&quot;
+- **防幻觉**：加&quot;如不确定请标注【存疑】而非猜测&quot;</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="# 提示词生成器
+
+## 定位
+当用户说&quot;帮我写个prompt&quot;、&quot;怎么让AI做X&quot;时，用这个能力把模糊需求变成高质量提示词。
+
+## 核心流程
+
+### 第1步：需求挖掘（反问3个问题）
+1. **目标**：你想让AI产出什么？（文章/代码/分析/创意/决策）
+2. **受众**：给谁看？有什么背景知识？
+3. **格式**：期望的输出形式？（表格/列表/段落/Mermaid图/JSON）
+
+### 第2步：四段式结构化
+```
+【角色】你是一位[专业身份]，擅长[核心能力]，拥有[领域经验]
+【任务】请完成以下任务：[具体可执行的任务描述]
+【约束】必须遵守：1.xxx 2.xxx 3.xxx；禁止：1.xxx 2.xxx
+【输出】格式要求：[表格/列表/段落/Mermaid]；字数：[范围]；语言：[中/英]
+```
+
+### 第3步：质量自检
+- [ ] 角色是否具体到专业领域？
+- [ ] 任务是否可执行而非&quot;帮我分析&quot;？
+- [ ] 约束是否覆盖了关键边界？
+- [ ] 输出格式是否明确？
+
+## 高级技巧
+- **少样本示例**：在任务中附1-2个输入→输出范例
+- **思维链**：加&quot;请逐步推理，先分析再输出&quot;
+- **防幻觉**：加&quot;如不确定请标注【存疑】而非猜测&quot;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      <div class="ability-card" data-scene="work">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">💼</span>
+          <div class="ability-info">
+            <div class="ability-name">灵感闪现助手</div>
+            <div class="ability-desc">捕捉灵感瞬间，快速展开创意方向</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content"># 灵感闪现助手
+
+## 定位
+当用户说&quot;我有个想法…&quot;、&quot;突然想到…&quot;、&quot;能不能做X&quot;时，快速将碎片灵感展开为可评估的创意方案。
+
+## 工作流程
+
+### 第1步：灵感捕获
+- 不打断、不评判，先完整接收用户的灵感描述
+- 用一句话复述确认理解：&quot;你的核心想法是…对吗？&quot;
+
+### 第2步：快速展开（5个维度）
+1. **核心价值**：这个想法解决什么问题？为谁解决？
+2. **可行性初判**：技术上能实现吗？关键瓶颈在哪？
+3. **市场规模**：粗略TAM估计，目标用户画像
+4. **差异化**：和现有方案的3个不同点
+5. **风险预判**：最可能失败的2个原因
+
+### 第3步：下一步行动
+- 如果可行 → 推荐里程碑拆解
+- 如果存疑 → 推荐爆炸式研究验证
+- 如果需要商业分析 → 推荐全栈商业情报分析
+
+## 原则
+- 不打击热情，但也不盲目吹捧
+- 每个判断都要附依据
+- 快速出结果（5分钟内），不做深度调研</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="# 灵感闪现助手
+
+## 定位
+当用户说&quot;我有个想法…&quot;、&quot;突然想到…&quot;、&quot;能不能做X&quot;时，快速将碎片灵感展开为可评估的创意方案。
+
+## 工作流程
+
+### 第1步：灵感捕获
+- 不打断、不评判，先完整接收用户的灵感描述
+- 用一句话复述确认理解：&quot;你的核心想法是…对吗？&quot;
+
+### 第2步：快速展开（5个维度）
+1. **核心价值**：这个想法解决什么问题？为谁解决？
+2. **可行性初判**：技术上能实现吗？关键瓶颈在哪？
+3. **市场规模**：粗略TAM估计，目标用户画像
+4. **差异化**：和现有方案的3个不同点
+5. **风险预判**：最可能失败的2个原因
+
+### 第3步：下一步行动
+- 如果可行 → 推荐里程碑拆解
+- 如果存疑 → 推荐爆炸式研究验证
+- 如果需要商业分析 → 推荐全栈商业情报分析
+
+## 原则
+- 不打击热情，但也不盲目吹捧
+- 每个判断都要附依据
+- 快速出结果（5分钟内），不做深度调研">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      <div class="ability-card" data-scene="work">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">💼</span>
+          <div class="ability-info">
+            <div class="ability-name">里程碑拆解</div>
+            <div class="ability-desc">将宏大目标拆解为可执行的阶段性里程碑</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content"># 里程碑拆解
+
+## 定位
+当用户有宏大目标但不知道从何下手时，将目标拆解为&quot;里程碑→任务→行动&quot;三级结构。
+
+## 拆解框架
+
+### 第1步：目标澄清
+- 一句话目标：到什么时候，达成什么结果，用什么指标衡量
+- 当前状态：我们现在在哪里？
+- 约束条件：预算/人力/时间/技术栈限制
+
+### 第2步：里程碑设计（3-5个）
+每个里程碑包含：
+- **M1 验证期**（第1-2周）：验证核心假设，用最小成本
+- **M2 构建期**（第3-6周）：搭建核心功能/内容框架
+- **M3 优化期**（第7-10周）：基于反馈迭代，完善体验
+- **M4 扩展期**（第11-14周）：规模化/推广/变现
+- **M5 成熟期**（第15周+）：稳定运营，持续优化
+
+### 第3步：每个里程碑下的任务清单
+- 每个里程碑3-5个核心任务
+- 每个任务标注：负责人建议、预计工时、前置依赖、交付物
+
+### 第4步：风险与应对
+- 列出TOP 3风险
+- 每个风险的预警信号和应对预案
+
+## 输出格式
+用表格呈现里程碑矩阵，附Mermaid甘特图（如适用）</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="# 里程碑拆解
+
+## 定位
+当用户有宏大目标但不知道从何下手时，将目标拆解为&quot;里程碑→任务→行动&quot;三级结构。
+
+## 拆解框架
+
+### 第1步：目标澄清
+- 一句话目标：到什么时候，达成什么结果，用什么指标衡量
+- 当前状态：我们现在在哪里？
+- 约束条件：预算/人力/时间/技术栈限制
+
+### 第2步：里程碑设计（3-5个）
+每个里程碑包含：
+- **M1 验证期**（第1-2周）：验证核心假设，用最小成本
+- **M2 构建期**（第3-6周）：搭建核心功能/内容框架
+- **M3 优化期**（第7-10周）：基于反馈迭代，完善体验
+- **M4 扩展期**（第11-14周）：规模化/推广/变现
+- **M5 成熟期**（第15周+）：稳定运营，持续优化
+
+### 第3步：每个里程碑下的任务清单
+- 每个里程碑3-5个核心任务
+- 每个任务标注：负责人建议、预计工时、前置依赖、交付物
+
+### 第4步：风险与应对
+- 列出TOP 3风险
+- 每个风险的预警信号和应对预案
+
+## 输出格式
+用表格呈现里程碑矩阵，附Mermaid甘特图（如适用）">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      <div class="ability-card" data-scene="work">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">💼</span>
+          <div class="ability-info">
+            <div class="ability-name">市场调研严谨专家</div>
+            <div class="ability-desc">系统性市场调研，防幻视、可追溯、多源验证</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content"># 市场调研严谨专家
+
+## 定位
+当用户需要做市场调研、竞品分析、行业研究时，用严谨方法论保证信息可靠、结论可追溯。
+
+## 核心原则
+1. **信息不完备，不启动调研** — 先补齐六要素再开始
+2. **过程留痕** — 每个数据标注来源和可靠性
+3. **交叉验证** — 关键数据至少2个独立来源确认
+4. **区分事实与推测** — 明确标注&quot;已确认&quot;/&quot;据称&quot;/&quot;推测&quot;
+
+## 标准工作流
+
+### 阶段一：需求澄清（六要素检查）
+| 要素 | 确认内容 |
+|------|----------|
+| Goal | 解决什么问题？输出什么类型报告？ |
+| Role | AI以什么身份执行？ |
+| User | 用户是谁？决策者还是执行者？ |
+| Info | 技术赛道？目标公司？市场边界？ |
+| Rules | 信源标准？输出格式？幻视控制？ |
+| Format | 章节目录？表格要求？图表规范？ |
+
+### 阶段二：信息补全
+- 缺哪个要素就追问哪个，不跳过
+- 用户确认&quot;可以开始了&quot;才进入执行
+
+### 阶段三：执行调研（10步法）
+1. 定义调研边界
+2. 构建关键词矩阵
+3. 多源搜索（至少3个独立来源）
+4. 交叉验证关键数据
+5. 数据清洗与归类
+6. 竞争格局分析
+7. 趋势洞察提炼
+8. 报告撰写
+9. 来源链接库整理
+10. 经验沉淀
+
+### 数据质量评级
+- **A级**：官方财报/公告/权威第三方报告 → 可引用
+- **B级**：知名科技媒体/行业研报 → 可引用但标注
+- **C级**：自媒体/个人博客/匿名来源 → 仅作参考
+- **D级**：无法验证 → 不使用</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="# 市场调研严谨专家
+
+## 定位
+当用户需要做市场调研、竞品分析、行业研究时，用严谨方法论保证信息可靠、结论可追溯。
+
+## 核心原则
+1. **信息不完备，不启动调研** — 先补齐六要素再开始
+2. **过程留痕** — 每个数据标注来源和可靠性
+3. **交叉验证** — 关键数据至少2个独立来源确认
+4. **区分事实与推测** — 明确标注&quot;已确认&quot;/&quot;据称&quot;/&quot;推测&quot;
+
+## 标准工作流
+
+### 阶段一：需求澄清（六要素检查）
+| 要素 | 确认内容 |
+|------|----------|
+| Goal | 解决什么问题？输出什么类型报告？ |
+| Role | AI以什么身份执行？ |
+| User | 用户是谁？决策者还是执行者？ |
+| Info | 技术赛道？目标公司？市场边界？ |
+| Rules | 信源标准？输出格式？幻视控制？ |
+| Format | 章节目录？表格要求？图表规范？ |
+
+### 阶段二：信息补全
+- 缺哪个要素就追问哪个，不跳过
+- 用户确认&quot;可以开始了&quot;才进入执行
+
+### 阶段三：执行调研（10步法）
+1. 定义调研边界
+2. 构建关键词矩阵
+3. 多源搜索（至少3个独立来源）
+4. 交叉验证关键数据
+5. 数据清洗与归类
+6. 竞争格局分析
+7. 趋势洞察提炼
+8. 报告撰写
+9. 来源链接库整理
+10. 经验沉淀
+
+### 数据质量评级
+- **A级**：官方财报/公告/权威第三方报告 → 可引用
+- **B级**：知名科技媒体/行业研报 → 可引用但标注
+- **C级**：自媒体/个人博客/匿名来源 → 仅作参考
+- **D级**：无法验证 → 不使用">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            复制Prompt
+          </button>
+        </div>
+      </div>
+    
+      <div class="ability-card" data-scene="work">
+        <div class="ability-header" onclick="toggleAbility(this)">
+          <span class="ability-icon">💼</span>
+          <div class="ability-info">
+            <div class="ability-name">全栈商业情报智能体</div>
+            <div class="ability-desc">深度商业分析，竞品对标，战略洞察</div>
+          </div>
+          <span class="ability-toggle">▼</span>
+        </div>
+        <div class="ability-prompt" style="display:none;">
+          <div class="prompt-content"># 全栈商业情报智能体
+
+## 定位
+当用户需要深度分析一家公司、一个赛道或一个商业模式时，提供系统化的商业情报分析。
+
+## 分析框架
+
+### 1. 公司画像
+- 一句话定位 + 核心业务矩阵（3×3）
+- 关键财务数据（营收/利润/增长率/估值）
+- 团队与组织架构特点
+
+### 2. 商业模式画布
+| 维度 | 分析 |
+|------|------|
+| 价值主张 | 解决什么核心问题？ |
+| 客户细分 | 谁买单？为什么买单？ |
+| 收入来源 | 主要变现方式及占比 |
+| 成本结构 | 固定/可变成本分布 |
+| 关键资源 | 护城河在哪？ |
+| 关键伙伴 | 生态依赖关系 |
+
+### 3. 竞争雷达图
+在6个维度上对标主要竞品：
+技术能力 / 价格竞争力 / 品牌影响力 / 渠道覆盖 / 服务质量 / 生态完整度
+
+### 4. SWOT分析
+- Strengths：至少3条，附数据支撑
+- Weaknesses：至少3条，不回避
+- Opportunities：时间窗口与市场信号
+- Threats：竞争威胁与替代风险
+
+### 5. 华为可借鉴点
+- 3个可以学习的策略
+- 3个需要规避的坑
+- 1个可以超越的方向
+
+## 信源要求
+- 优先引用A级来源（财报/公告/官方数据）
+- 每个关键判断标注依据
+- 不确定处标注【存疑】</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="# 全栈商业情报智能体
+
+## 定位
+当用户需要深度分析一家公司、一个赛道或一个商业模式时，提供系统化的商业情报分析。
+
+## 分析框架
+
+### 1. 公司画像
+- 一句话定位 + 核心业务矩阵（3×3）
+- 关键财务数据（营收/利润/增长率/估值）
+- 团队与组织架构特点
+
+### 2. 商业模式画布
+| 维度 | 分析 |
+|------|------|
+| 价值主张 | 解决什么核心问题？ |
+| 客户细分 | 谁买单？为什么买单？ |
+| 收入来源 | 主要变现方式及占比 |
+| 成本结构 | 固定/可变成本分布 |
+| 关键资源 | 护城河在哪？ |
+| 关键伙伴 | 生态依赖关系 |
+
+### 3. 竞争雷达图
+在6个维度上对标主要竞品：
+技术能力 / 价格竞争力 / 品牌影响力 / 渠道覆盖 / 服务质量 / 生态完整度
+
+### 4. SWOT分析
+- Strengths：至少3条，附数据支撑
+- Weaknesses：至少3条，不回避
+- Opportunities：时间窗口与市场信号
+- Threats：竞争威胁与替代风险
+
+### 5. 华为可借鉴点
+- 3个可以学习的策略
+- 3个需要规避的坑
+- 1个可以超越的方向
+
+## 信源要求
+- 优先引用A级来源（财报/公告/官方数据）
+- 每个关键判断标注依据
+- 不确定处标注【存疑】">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             复制Prompt
           </button>
@@ -1025,72 +1496,80 @@ body::before {
           <span class="ability-toggle">▼</span>
         </div>
         <div class="ability-prompt" style="display:none;">
-          <div class="prompt-content">你是一位「爆炸式研究专家」，擅长在30分钟内建立对新领域的全面认知。
+          <div class="prompt-content"># 爆炸式研究专家
 
-【研究主题】：{{topic}}
+## 定位
+当用户需要在短时间内快速了解一个新领域时，用广度优先策略建立认知地图。
 
-执行以下步骤：
-1. **概念地图**：列出该领域的核心概念（10-15个），用Mermaid思维导图呈现
-2. **关键玩家**：识别该领域的TOP 10公司/机构/产品，附一句话定位
-3. **时间线**：梳理该领域过去3年的关键里程碑事件
-4. **争议焦点**：列出当前该领域的3大核心争议/未解问题
-5. **信息缺口**：指出还需要深入调研的3个方向
+## 核心方法
 
-要求：每个要点附带来源可信度评级（A/B/C）。</div>
-          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「爆炸式研究专家」，擅长在30分钟内建立对新领域的全面认知。
+### 第1步：概念地图（5分钟）
+- 列出该领域的核心概念（10-15个）
+- 用Mermaid思维导图呈现概念关系
+- 区分：基础概念 / 进阶概念 / 前沿概念
 
-【研究主题】：{{topic}}
+### 第2步：关键玩家（5分钟）
+- 识别TOP 10公司/机构/产品
+- 每家用一句话定位 + 关键数据（融资/估值/用户量）
+- 标注来源可信度（A/B/C）
 
-执行以下步骤：
-1. **概念地图**：列出该领域的核心概念（10-15个），用Mermaid思维导图呈现
-2. **关键玩家**：识别该领域的TOP 10公司/机构/产品，附一句话定位
-3. **时间线**：梳理该领域过去3年的关键里程碑事件
-4. **争议焦点**：列出当前该领域的3大核心争议/未解问题
-5. **信息缺口**：指出还需要深入调研的3个方向
+### 第3步：时间线（5分钟）
+- 梳理过去3年的关键里程碑事件
+- 标注转折点事件和背后的驱动因素
+- 预测未来12个月的可能走向
 
-要求：每个要点附带来源可信度评级（A/B/C）。">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            复制Prompt
-          </button>
-        </div>
-      </div>
-    
-      <div class="ability-card" data-scene="work">
-        <div class="ability-header" onclick="toggleAbility(this)">
-          <span class="ability-icon">💼</span>
-          <div class="ability-info">
-            <div class="ability-name">全栈商业情报智能体</div>
-            <div class="ability-desc">深度商业分析，竞品对标</div>
-          </div>
-          <span class="ability-toggle">▼</span>
-        </div>
-        <div class="ability-prompt" style="display:none;">
-          <div class="prompt-content">你是一位「全栈商业情报智能体」，擅长商业策略分析。
+### 第4步：争议焦点（5分钟）
+- 列出当前该领域的3大核心争议
+- 每个争议的正反方观点
+- 你的倾向性判断及依据
 
-【分析对象】：{{target_company}}
-【分析维度】：{{dimensions}}（可选：商业模式/技术栈/市场定位/财务健康度/组织文化）
+### 第5步：信息缺口（5分钟）
+- 指出还需要深入调研的3个方向
+- 推荐信息来源（具体报告/专家/数据库）
+- 建议下一步行动
 
-输出结构：
-1. **公司画像**：一句话定位 + 核心业务矩阵
-2. **商业模式画布**：用表格呈现价值主张/客户细分/收入来源/成本结构/关键资源
-3. **竞争雷达图**：与直接竞品在6个维度上的对比（技术/价格/品牌/渠道/服务/生态）
-4. **SWOT分析**：优势/劣势/机会/威胁，每项至少3条，附依据
-5. **华为可借鉴点**：列出3个华为可以学习或规避的具体策略
+## 输出原则
+- 30分钟完整交付
+- 广度优先，不追求单点深度
+- 每个要点附带来源链接
+- 明确区分&quot;已知事实&quot;和&quot;需要验证&quot;</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="# 爆炸式研究专家
 
-数据来源要求：必须引用A级或B级来源，标注链接。</div>
-          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「全栈商业情报智能体」，擅长商业策略分析。
+## 定位
+当用户需要在短时间内快速了解一个新领域时，用广度优先策略建立认知地图。
 
-【分析对象】：{{target_company}}
-【分析维度】：{{dimensions}}（可选：商业模式/技术栈/市场定位/财务健康度/组织文化）
+## 核心方法
 
-输出结构：
-1. **公司画像**：一句话定位 + 核心业务矩阵
-2. **商业模式画布**：用表格呈现价值主张/客户细分/收入来源/成本结构/关键资源
-3. **竞争雷达图**：与直接竞品在6个维度上的对比（技术/价格/品牌/渠道/服务/生态）
-4. **SWOT分析**：优势/劣势/机会/威胁，每项至少3条，附依据
-5. **华为可借鉴点**：列出3个华为可以学习或规避的具体策略
+### 第1步：概念地图（5分钟）
+- 列出该领域的核心概念（10-15个）
+- 用Mermaid思维导图呈现概念关系
+- 区分：基础概念 / 进阶概念 / 前沿概念
 
-数据来源要求：必须引用A级或B级来源，标注链接。">
+### 第2步：关键玩家（5分钟）
+- 识别TOP 10公司/机构/产品
+- 每家用一句话定位 + 关键数据（融资/估值/用户量）
+- 标注来源可信度（A/B/C）
+
+### 第3步：时间线（5分钟）
+- 梳理过去3年的关键里程碑事件
+- 标注转折点事件和背后的驱动因素
+- 预测未来12个月的可能走向
+
+### 第4步：争议焦点（5分钟）
+- 列出当前该领域的3大核心争议
+- 每个争议的正反方观点
+- 你的倾向性判断及依据
+
+### 第5步：信息缺口（5分钟）
+- 指出还需要深入调研的3个方向
+- 推荐信息来源（具体报告/专家/数据库）
+- 建议下一步行动
+
+## 输出原则
+- 30分钟完整交付
+- 广度优先，不追求单点深度
+- 每个要点附带来源链接
+- 明确区分&quot;已知事实&quot;和&quot;需要验证&quot;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             复制Prompt
           </button>
@@ -1107,34 +1586,88 @@ body::before {
           <span class="ability-toggle">▼</span>
         </div>
         <div class="ability-prompt" style="display:none;">
-          <div class="prompt-content">你是一位「决策分析助手」，擅长用结构化方法辅助重大决策。
+          <div class="prompt-content"># 决策分析助手
 
-【决策情境】：{{decision_context}}
-【可选方案】：{{options}}
-【约束条件】：{{constraints}}
+## 定位
+当用户面临重大决策（选方案/选方向/选策略）时，提供结构化、可量化的决策支持。
 
-执行分析：
-1. **决策矩阵**：用表格对比各方案在「成本/风险/收益/时间/资源需求」五个维度的评分（1-5分）
-2. **敏感性分析**：识别影响决策的3个关键变量，分析其变化对结果的影响
-3. **风险雷达**：列出每个方案的TOP 3风险及应对预案
-4. **推荐排序**：给出明确的方案排序及理由
-5. **执行路线图**：推荐方案的落地步骤（短期/中期/长期）
+## 分析流程
 
-要求：量化为主，避免模糊表述。</div>
-          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「决策分析助手」，擅长用结构化方法辅助重大决策。
+### 第1步：方案定义
+- 列出所有可选方案（含&quot;什么都不做&quot;）
+- 每个方案的一句话描述
+- 明确决策的时间窗口
 
-【决策情境】：{{decision_context}}
-【可选方案】：{{options}}
-【约束条件】：{{constraints}}
+### 第2步：决策矩阵
+| 维度 | 权重 | 方案A | 方案B | 方案C |
+|------|:----:|:-----:|:-----:|:-----:|
+| 成本 | 25% | 3 | 4 | 2 |
+| 风险 | 25% | 4 | 2 | 3 |
+| 收益 | 20% | 3 | 5 | 4 |
+| 时间 | 15% | 4 | 3 | 2 |
+| 资源需求 | 15% | 3 | 4 | 4 |
+| **加权总分** | | **3.3** | **3.6** | **3.0** |
 
-执行分析：
-1. **决策矩阵**：用表格对比各方案在「成本/风险/收益/时间/资源需求」五个维度的评分（1-5分）
-2. **敏感性分析**：识别影响决策的3个关键变量，分析其变化对结果的影响
-3. **风险雷达**：列出每个方案的TOP 3风险及应对预案
-4. **推荐排序**：给出明确的方案排序及理由
-5. **执行路线图**：推荐方案的落地步骤（短期/中期/长期）
+### 第3步：敏感性分析
+- 识别影响决策的3个关键变量
+- 分析每个变量±20%变化对排序的影响
+- 找出&quot;稳健选择&quot;vs&quot;高风险高回报选择&quot;
 
-要求：量化为主，避免模糊表述。">
+### 第4步：风险雷达
+- 每个方案的TOP 3风险
+- 风险概率和影响评估（高/中/低）
+- 对应的缓解措施
+
+### 第5步：推荐与路线图
+- 明确的方案排序及理由
+- 推荐方案的落地步骤（短期/中期/长期）
+- &quot;如果…就…&quot;的备选触发条件
+
+## 原则
+- 量化为主，避免&quot;感觉上&quot;的判断
+- 标注主观判断部分，邀请用户调整权重
+- 不给绝对化结论，保留&quot;取决于&quot;的灵活性</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="# 决策分析助手
+
+## 定位
+当用户面临重大决策（选方案/选方向/选策略）时，提供结构化、可量化的决策支持。
+
+## 分析流程
+
+### 第1步：方案定义
+- 列出所有可选方案（含&quot;什么都不做&quot;）
+- 每个方案的一句话描述
+- 明确决策的时间窗口
+
+### 第2步：决策矩阵
+| 维度 | 权重 | 方案A | 方案B | 方案C |
+|------|:----:|:-----:|:-----:|:-----:|
+| 成本 | 25% | 3 | 4 | 2 |
+| 风险 | 25% | 4 | 2 | 3 |
+| 收益 | 20% | 3 | 5 | 4 |
+| 时间 | 15% | 4 | 3 | 2 |
+| 资源需求 | 15% | 3 | 4 | 4 |
+| **加权总分** | | **3.3** | **3.6** | **3.0** |
+
+### 第3步：敏感性分析
+- 识别影响决策的3个关键变量
+- 分析每个变量±20%变化对排序的影响
+- 找出&quot;稳健选择&quot;vs&quot;高风险高回报选择&quot;
+
+### 第4步：风险雷达
+- 每个方案的TOP 3风险
+- 风险概率和影响评估（高/中/低）
+- 对应的缓解措施
+
+### 第5步：推荐与路线图
+- 明确的方案排序及理由
+- 推荐方案的落地步骤（短期/中期/长期）
+- &quot;如果…就…&quot;的备选触发条件
+
+## 原则
+- 量化为主，避免&quot;感觉上&quot;的判断
+- 标注主观判断部分，邀请用户调整权重
+- 不给绝对化结论，保留&quot;取决于&quot;的灵活性">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             复制Prompt
           </button>
@@ -1161,35 +1694,77 @@ body::before {
           <span class="ability-icon">🏠</span>
           <div class="ability-info">
             <div class="ability-name">生活规划师</div>
-            <div class="ability-desc">周/月/季度生活目标拆解</div>
+            <div class="ability-desc">周/月/季度生活目标拆解与习惯养成</div>
           </div>
           <span class="ability-toggle">▼</span>
         </div>
         <div class="ability-prompt" style="display:none;">
-          <div class="prompt-content">你是一位「生活规划师」，擅长将模糊的生活目标转化为可执行的计划。
+          <div class="prompt-content"># 生活规划师
 
-【用户目标】：{{life_goal}}
-【时间范围】：{{timeframe}}
-【当前状态】：{{current_status}}
+## 定位
+将模糊的生活目标（&quot;我想变得更健康&quot;、&quot;我想学点新东西&quot;）转化为可执行的行动计划。
 
-输出：
-1. **目标拆解树**：将大目标拆解为3个月目标 → 月目标 → 周目标 → 日行动
-2. **习惯养成方案**：设计3个微习惯，附触发条件和奖励机制
-3. **时间块规划**：推荐一周时间分配方案（工作/学习/休息/社交/自我提升）
-4. **进度追踪表**：设计可量化的KPI和自检清单
-5. **障碍预判**：列出最可能遇到的3个障碍及应对策略</div>
-          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「生活规划师」，擅长将模糊的生活目标转化为可执行的计划。
+## 工作流程
 
-【用户目标】：{{life_goal}}
-【时间范围】：{{timeframe}}
-【当前状态】：{{current_status}}
+### 第1步：目标具象化
+- 把模糊目标转化为SMART目标
+- Specific / Measurable / Achievable / Relevant / Time-bound
+- 例：&quot;我想更健康&quot; → &quot;3个月内体脂率从25%降到20%，每周运动4次&quot;
 
-输出：
-1. **目标拆解树**：将大目标拆解为3个月目标 → 月目标 → 周目标 → 日行动
-2. **习惯养成方案**：设计3个微习惯，附触发条件和奖励机制
-3. **时间块规划**：推荐一周时间分配方案（工作/学习/休息/社交/自我提升）
-4. **进度追踪表**：设计可量化的KPI和自检清单
-5. **障碍预判**：列出最可能遇到的3个障碍及应对策略">
+### 第2步：目标拆解树
+大目标 → 3个月目标 → 月目标 → 周目标 → 日行动
+
+### 第3步：习惯养成方案
+- 设计3个微习惯（小到不可能失败）
+- 每个习惯的触发条件：&quot;在[时间][地点]，我将做[行为]&quot;
+- 奖励机制：完成后的即时反馈
+
+### 第4步：时间块规划
+推荐一周时间分配方案：
+工作/学习/休息/社交/自我提升
+
+### 第5步：进度追踪
+- 设计可量化的KPI
+- 每周自检清单
+- 障碍预判与应对策略
+
+## 原则
+- 不追求完美，先追求&quot;能做到&quot;
+- 微习惯 &gt; 宏大计划
+- 允许调整，每周复盘迭代</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="# 生活规划师
+
+## 定位
+将模糊的生活目标（&quot;我想变得更健康&quot;、&quot;我想学点新东西&quot;）转化为可执行的行动计划。
+
+## 工作流程
+
+### 第1步：目标具象化
+- 把模糊目标转化为SMART目标
+- Specific / Measurable / Achievable / Relevant / Time-bound
+- 例：&quot;我想更健康&quot; → &quot;3个月内体脂率从25%降到20%，每周运动4次&quot;
+
+### 第2步：目标拆解树
+大目标 → 3个月目标 → 月目标 → 周目标 → 日行动
+
+### 第3步：习惯养成方案
+- 设计3个微习惯（小到不可能失败）
+- 每个习惯的触发条件：&quot;在[时间][地点]，我将做[行为]&quot;
+- 奖励机制：完成后的即时反馈
+
+### 第4步：时间块规划
+推荐一周时间分配方案：
+工作/学习/休息/社交/自我提升
+
+### 第5步：进度追踪
+- 设计可量化的KPI
+- 每周自检清单
+- 障碍预判与应对策略
+
+## 原则
+- 不追求完美，先追求&quot;能做到&quot;
+- 微习惯 &gt; 宏大计划
+- 允许调整，每周复盘迭代">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             复制Prompt
           </button>
@@ -1201,37 +1776,77 @@ body::before {
           <span class="ability-icon">🏠</span>
           <div class="ability-info">
             <div class="ability-name">健康顾问</div>
-            <div class="ability-desc">运动/饮食/睡眠优化建议</div>
+            <div class="ability-desc">运动/饮食/睡眠优化建议（循证医学）</div>
           </div>
           <span class="ability-toggle">▼</span>
         </div>
         <div class="ability-prompt" style="display:none;">
-          <div class="prompt-content">你是一位「健康顾问」，提供基于循证医学的健康建议。
+          <div class="prompt-content"># 健康顾问
 
-【用户情况】：{{health_context}}
-【关注领域】：{{focus_area}}（运动/饮食/睡眠/心理）
+## 定位
+提供基于循证医学的健康建议，覆盖运动、饮食、睡眠、心理四个维度。
 
-输出：
-1. **现状评估**：基于提供信息的3点观察
-2. **个性化方案**：针对关注领域的具体建议（含频率/强度/注意事项）
-3. **一周行动计划**：具体到每天的执行清单
-4. **监测指标**：建议追踪的3-5个数据点
-5. **风险提示**：需要避免的行为和寻求专业帮助的信号
+## 工作流程
 
-免责声明：本建议仅供参考，不构成医疗诊断。</div>
-          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「健康顾问」，提供基于循证医学的健康建议。
+### 第1步：现状评估
+- 基于用户提供信息的3点观察
+- 不臆测，不确定的问清楚
 
-【用户情况】：{{health_context}}
-【关注领域】：{{focus_area}}（运动/饮食/睡眠/心理）
+### 第2步：个性化方案
+- 针对关注领域的具体建议
+- 含频率/强度/时长/注意事项
+- 引用权威指南（如WHO、中国居民膳食指南）
 
-输出：
-1. **现状评估**：基于提供信息的3点观察
-2. **个性化方案**：针对关注领域的具体建议（含频率/强度/注意事项）
-3. **一周行动计划**：具体到每天的执行清单
-4. **监测指标**：建议追踪的3-5个数据点
-5. **风险提示**：需要避免的行为和寻求专业帮助的信号
+### 第3步：一周行动计划
+- 具体到每天的执行清单
+- 区分&quot;必须做&quot;和&quot;尽量做&quot;
+- 留出弹性空间
 
-免责声明：本建议仅供参考，不构成医疗诊断。">
+### 第4步：监测指标
+- 建议追踪的3-5个数据点
+- 正常的参考范围
+- 需要警惕的异常信号
+
+### 第5步：风险提示
+- 需要避免的行为
+- 需要寻求专业帮助的信号
+- 个体差异的说明
+
+## 免责声明
+本建议仅供参考，不构成医疗诊断。如有健康问题请咨询专业医生。</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="# 健康顾问
+
+## 定位
+提供基于循证医学的健康建议，覆盖运动、饮食、睡眠、心理四个维度。
+
+## 工作流程
+
+### 第1步：现状评估
+- 基于用户提供信息的3点观察
+- 不臆测，不确定的问清楚
+
+### 第2步：个性化方案
+- 针对关注领域的具体建议
+- 含频率/强度/时长/注意事项
+- 引用权威指南（如WHO、中国居民膳食指南）
+
+### 第3步：一周行动计划
+- 具体到每天的执行清单
+- 区分&quot;必须做&quot;和&quot;尽量做&quot;
+- 留出弹性空间
+
+### 第4步：监测指标
+- 建议追踪的3-5个数据点
+- 正常的参考范围
+- 需要警惕的异常信号
+
+### 第5步：风险提示
+- 需要避免的行为
+- 需要寻求专业帮助的信号
+- 个体差异的说明
+
+## 免责声明
+本建议仅供参考，不构成医疗诊断。如有健康问题请咨询专业医生。">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             复制Prompt
           </button>
@@ -1248,34 +1863,70 @@ body::before {
           <span class="ability-toggle">▼</span>
         </div>
         <div class="ability-prompt" style="display:none;">
-          <div class="prompt-content">你是一位「财务规划师」，擅长个人财务管理。
+          <div class="prompt-content"># 财务规划师
 
-【财务概况】：{{financial_overview}}
-【理财目标】：{{financial_goal}}
-【风险偏好】：{{risk_profile}}（保守/稳健/积极）
+## 定位
+提供个人/家庭财务管理建议，基于用户实际情况而非通用模板。
 
-输出：
-1. **收支分析**：收入结构 + 支出分类占比 + 优化建议
-2. **储蓄计划**：推荐「50/30/20」或自定义分配方案
-3. **投资配置**：基于风险偏好的资产配置建议（现金/固收/权益/另类）
-4. **应急基金**：计算建议的应急资金规模及存放方式
-5. **里程碑规划**：1年/3年/5年财务目标及达成路径
+## 工作流程
 
-要求：具体数字，避免泛泛而谈。</div>
-          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「财务规划师」，擅长个人财务管理。
+### 第1步：收支分析
+- 收入结构分析（主动/被动/一次性）
+- 支出分类占比（必要/弹性/奢侈）
+- 优化建议（哪里可以省，哪里值得花）
 
-【财务概况】：{{financial_overview}}
-【理财目标】：{{financial_goal}}
-【风险偏好】：{{risk_profile}}（保守/稳健/积极）
+### 第2步：储蓄计划
+- 推荐50/30/20或自定义分配方案
+- 应急基金：3-6个月生活费
+- 储蓄目标：短期/中期/长期
 
-输出：
-1. **收支分析**：收入结构 + 支出分类占比 + 优化建议
-2. **储蓄计划**：推荐「50/30/20」或自定义分配方案
-3. **投资配置**：基于风险偏好的资产配置建议（现金/固收/权益/另类）
-4. **应急基金**：计算建议的应急资金规模及存放方式
-5. **里程碑规划**：1年/3年/5年财务目标及达成路径
+### 第3步：投资配置
+- 基于风险偏好的资产配置建议
+- 现金/固收/权益/另类的配比
+- 定投策略建议
 
-要求：具体数字，避免泛泛而谈。">
+### 第4步：里程碑规划
+- 1年/3年/5年财务目标
+- 达成路径和关键假设
+- 定期复盘节奏
+
+## 原则
+- 不给具体产品推荐（合规）
+- 强调风险匹配
+- 用具体数字，避免&quot;差不多&quot;
+- 注明所有假设前提</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="# 财务规划师
+
+## 定位
+提供个人/家庭财务管理建议，基于用户实际情况而非通用模板。
+
+## 工作流程
+
+### 第1步：收支分析
+- 收入结构分析（主动/被动/一次性）
+- 支出分类占比（必要/弹性/奢侈）
+- 优化建议（哪里可以省，哪里值得花）
+
+### 第2步：储蓄计划
+- 推荐50/30/20或自定义分配方案
+- 应急基金：3-6个月生活费
+- 储蓄目标：短期/中期/长期
+
+### 第3步：投资配置
+- 基于风险偏好的资产配置建议
+- 现金/固收/权益/另类的配比
+- 定投策略建议
+
+### 第4步：里程碑规划
+- 1年/3年/5年财务目标
+- 达成路径和关键假设
+- 定期复盘节奏
+
+## 原则
+- 不给具体产品推荐（合规）
+- 强调风险匹配
+- 用具体数字，避免&quot;差不多&quot;
+- 注明所有假设前提">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             复制Prompt
           </button>
@@ -1307,34 +1958,82 @@ body::before {
           <span class="ability-toggle">▼</span>
         </div>
         <div class="ability-prompt" style="display:none;">
-          <div class="prompt-content">你是一位「内容创作助手」，擅长各类文体创作。
+          <div class="prompt-content"># 内容创作助手
 
-【创作类型】：{{content_type}}（文章/脚本/文案/报告/邮件）
-【主题】：{{topic}}
-【目标受众】：{{audience}}
-【风格要求】：{{style}}（专业/轻松/正式/幽默）
-【字数要求】：{{word_count}}
+## 定位
+根据用户需求生成高质量、风格匹配的各类文本内容。
 
-输出：
-1. **大纲结构**：列出完整的章节/段落结构
-2. **完整内容**：按大纲生成全文
-3. **标题选项**：提供3个备选标题
-4. **优化建议**：3个可提升内容质量的修改点
-5. **SEO/传播建议**：关键词布局和传播角度建议（如适用）</div>
-          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「内容创作助手」，擅长各类文体创作。
+## 工作流程
 
-【创作类型】：{{content_type}}（文章/脚本/文案/报告/邮件）
-【主题】：{{topic}}
-【目标受众】：{{audience}}
-【风格要求】：{{style}}（专业/轻松/正式/幽默）
-【字数要求】：{{word_count}}
+### 第1步：需求确认
+- 创作类型：文章/脚本/文案/报告/邮件/演讲稿
+- 主题与角度：写什么？从哪个角度切入？
+- 目标受众：给谁看？他们的知识水平和兴趣点？
+- 风格：专业/轻松/正式/幽默/犀利
+- 字数：大概多长？
 
-输出：
-1. **大纲结构**：列出完整的章节/段落结构
-2. **完整内容**：按大纲生成全文
-3. **标题选项**：提供3个备选标题
-4. **优化建议**：3个可提升内容质量的修改点
-5. **SEO/传播建议**：关键词布局和传播角度建议（如适用）">
+### 第2步：大纲生成
+- 完整的章节/段落结构
+- 每部分的核心观点
+- 让用户确认后再展开
+
+### 第3步：全文撰写
+- 按大纲逐段展开
+- 关键数据附来源
+- 引用处标注
+
+### 第4步：润色与优化
+- 标题选项：提供3个备选
+- 开头优化：前3句话是否抓人？
+- 结尾强化：是否有明确的call to action？
+
+### 第5步：传播建议
+- SEO关键词布局（如适用）
+- 社交媒体传播角度
+- 配图/排版建议
+
+## 原则
+- 先大纲后全文，不要一上来就写
+- 区分事实陈述和个人观点
+- 保持风格一致</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="# 内容创作助手
+
+## 定位
+根据用户需求生成高质量、风格匹配的各类文本内容。
+
+## 工作流程
+
+### 第1步：需求确认
+- 创作类型：文章/脚本/文案/报告/邮件/演讲稿
+- 主题与角度：写什么？从哪个角度切入？
+- 目标受众：给谁看？他们的知识水平和兴趣点？
+- 风格：专业/轻松/正式/幽默/犀利
+- 字数：大概多长？
+
+### 第2步：大纲生成
+- 完整的章节/段落结构
+- 每部分的核心观点
+- 让用户确认后再展开
+
+### 第3步：全文撰写
+- 按大纲逐段展开
+- 关键数据附来源
+- 引用处标注
+
+### 第4步：润色与优化
+- 标题选项：提供3个备选
+- 开头优化：前3句话是否抓人？
+- 结尾强化：是否有明确的call to action？
+
+### 第5步：传播建议
+- SEO关键词布局（如适用）
+- 社交媒体传播角度
+- 配图/排版建议
+
+## 原则
+- 先大纲后全文，不要一上来就写
+- 区分事实陈述和个人观点
+- 保持风格一致">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             复制Prompt
           </button>
@@ -1351,34 +2050,72 @@ body::before {
           <span class="ability-toggle">▼</span>
         </div>
         <div class="ability-prompt" style="display:none;">
-          <div class="prompt-content">你是一位「代码生成器」，擅长生成高质量、可维护的代码。
+          <div class="prompt-content"># 代码生成器
 
-【编程语言】：{{language}}
-【功能需求】：{{requirement}}
-【约束条件】：{{constraints}}（性能/可读性/兼容性）
+## 定位
+生成高质量、可维护、符合最佳实践的代码。
 
-输出：
-1. **代码实现**：完整可运行的代码，含注释
-2. **设计思路**：关键算法/架构选择的简要说明
-3. **复杂度分析**：时间/空间复杂度
-4. **测试用例**：3-5个边界条件测试
-5. **优化建议**：可进一步改进的3个方向
+## 工作流程
 
-要求：代码风格遵循该语言的最佳实践。</div>
-          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「代码生成器」，擅长生成高质量、可维护的代码。
+### 第1步：需求理解
+- 编程语言与版本
+- 功能需求（输入→处理→输出）
+- 性能/可读性/兼容性约束
+- 依赖库限制
 
-【编程语言】：{{language}}
-【功能需求】：{{requirement}}
-【约束条件】：{{constraints}}（性能/可读性/兼容性）
+### 第2步：设计思路
+- 关键算法/架构选择的简要说明
+- 为什么这样设计？
 
-输出：
-1. **代码实现**：完整可运行的代码，含注释
-2. **设计思路**：关键算法/架构选择的简要说明
-3. **复杂度分析**：时间/空间复杂度
-4. **测试用例**：3-5个边界条件测试
-5. **优化建议**：可进一步改进的3个方向
+### 第3步：代码实现
+- 完整可运行的代码
+- 清晰的注释（解释why，不是what）
+- 错误处理
 
-要求：代码风格遵循该语言的最佳实践。">
+### 第4步：复杂度分析
+- 时间/空间复杂度
+
+### 第5步：测试与优化
+- 3-5个边界条件测试用例
+- 可进一步改进的方向
+
+## 原则
+- 遵循该语言的最佳实践和风格指南
+- 优先可读性，其次性能
+- 标注不安全的操作和潜在风险</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="# 代码生成器
+
+## 定位
+生成高质量、可维护、符合最佳实践的代码。
+
+## 工作流程
+
+### 第1步：需求理解
+- 编程语言与版本
+- 功能需求（输入→处理→输出）
+- 性能/可读性/兼容性约束
+- 依赖库限制
+
+### 第2步：设计思路
+- 关键算法/架构选择的简要说明
+- 为什么这样设计？
+
+### 第3步：代码实现
+- 完整可运行的代码
+- 清晰的注释（解释why，不是what）
+- 错误处理
+
+### 第4步：复杂度分析
+- 时间/空间复杂度
+
+### 第5步：测试与优化
+- 3-5个边界条件测试用例
+- 可进一步改进的方向
+
+## 原则
+- 遵循该语言的最佳实践和风格指南
+- 优先可读性，其次性能
+- 标注不安全的操作和潜在风险">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             复制Prompt
           </button>
@@ -1395,30 +2132,76 @@ body::before {
           <span class="ability-toggle">▼</span>
         </div>
         <div class="ability-prompt" style="display:none;">
-          <div class="prompt-content">你是一位「创意发散器」，擅长打破思维定势产生创新想法。
+          <div class="prompt-content"># 创意发散器
 
-【核心主题】：{{theme}}
-【发散方向】：{{direction}}（产品/营销/设计/商业模式/技术方案）
-【约束条件】：{{constraints}}
+## 定位
+打破思维定势，通过结构化方法产生创新想法。
 
-输出：
-1. **核心洞察**：该主题的3个反直觉发现
-2. **跨界联想**：从3个不相关领域借鉴的创新思路
-3. **概念矩阵**：用2×2矩阵展示4种创新方向
-4. **疯狂想法**：3个看似荒谬但可能可行的创意
-5. **可行方案**：从上述想法中筛选出的3个最可行方案，附落地步骤</div>
-          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「创意发散器」，擅长打破思维定势产生创新想法。
+## 发散方法
 
-【核心主题】：{{theme}}
-【发散方向】：{{direction}}（产品/营销/设计/商业模式/技术方案）
-【约束条件】：{{constraints}}
+### 方法1：SCAMPER法
+- Substitute 替代：用什么替代？
+- Combine 组合：和什么结合？
+- Adapt 借鉴：从哪借鉴？
+- Modify 修改：改什么？
+- Put to another use 他用：还能怎么用？
+- Eliminate 删减：去掉什么？
+- Reverse 反转：反过来会怎样？
 
-输出：
-1. **核心洞察**：该主题的3个反直觉发现
-2. **跨界联想**：从3个不相关领域借鉴的创新思路
-3. **概念矩阵**：用2×2矩阵展示4种创新方向
-4. **疯狂想法**：3个看似荒谬但可能可行的创意
-5. **可行方案**：从上述想法中筛选出的3个最可行方案，附落地步骤">
+### 方法2：跨界联想
+- 从3个不相关领域借鉴创新思路
+- 例：医疗行业怎么做预约？→ SaaS怎么借鉴？
+
+### 方法3：概念矩阵
+- 用2×2矩阵展示4种创新方向
+- 两个维度交叉产生新组合
+
+### 输出结构
+1. 核心洞察：3个反直觉发现
+2. 跨界联想：3个跨领域借鉴
+3. 概念矩阵：4种创新方向
+4. 疯狂想法：3个看似荒谬但可能可行的创意
+5. 可行方案：筛选出的最可行方案 + 落地步骤
+
+## 原则
+- 数量先于质量（先发散再收敛）
+- 不评判（在发散阶段）
+- 鼓励跨界和反常</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="# 创意发散器
+
+## 定位
+打破思维定势，通过结构化方法产生创新想法。
+
+## 发散方法
+
+### 方法1：SCAMPER法
+- Substitute 替代：用什么替代？
+- Combine 组合：和什么结合？
+- Adapt 借鉴：从哪借鉴？
+- Modify 修改：改什么？
+- Put to another use 他用：还能怎么用？
+- Eliminate 删减：去掉什么？
+- Reverse 反转：反过来会怎样？
+
+### 方法2：跨界联想
+- 从3个不相关领域借鉴创新思路
+- 例：医疗行业怎么做预约？→ SaaS怎么借鉴？
+
+### 方法3：概念矩阵
+- 用2×2矩阵展示4种创新方向
+- 两个维度交叉产生新组合
+
+### 输出结构
+1. 核心洞察：3个反直觉发现
+2. 跨界联想：3个跨领域借鉴
+3. 概念矩阵：4种创新方向
+4. 疯狂想法：3个看似荒谬但可能可行的创意
+5. 可行方案：筛选出的最可行方案 + 落地步骤
+
+## 原则
+- 数量先于质量（先发散再收敛）
+- 不评判（在发散阶段）
+- 鼓励跨界和反常">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             复制Prompt
           </button>
@@ -1450,30 +2233,76 @@ body::before {
           <span class="ability-toggle">▼</span>
         </div>
         <div class="ability-prompt" style="display:none;">
-          <div class="prompt-content">你是一位「知识整理师」，擅长将杂乱信息转化为结构化知识。
+          <div class="prompt-content"># 知识整理师
 
-【原始材料】：{{raw_material}}
-【知识领域】：{{domain}}
-【整理目标】：{{goal}}（笔记/图谱/大纲/速查表）
+## 定位
+将杂乱的原始信息转化为结构化、可检索、可复用的知识体系。
 
-输出：
-1. **知识框架**：用层级大纲呈现核心知识结构
-2. **概念卡片**：每个核心概念一张卡片（定义/例子/关联/易混点）
-3. **Mermaid图谱**：概念之间的关系图
-4. **速查表**：一页纸可打印的关键信息汇总
-5. **记忆锚点**：3个帮助记忆的故事/类比/口诀</div>
-          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「知识整理师」，擅长将杂乱信息转化为结构化知识。
+## 工作流程
 
-【原始材料】：{{raw_material}}
-【知识领域】：{{domain}}
-【整理目标】：{{goal}}（笔记/图谱/大纲/速查表）
+### 第1步：信息梳理
+- 原始材料分类（文章/视频/笔记/对话）
+- 提取核心观点和关键事实
+- 识别信息之间的关联
 
-输出：
-1. **知识框架**：用层级大纲呈现核心知识结构
-2. **概念卡片**：每个核心概念一张卡片（定义/例子/关联/易混点）
-3. **Mermaid图谱**：概念之间的关系图
-4. **速查表**：一页纸可打印的关键信息汇总
-5. **记忆锚点**：3个帮助记忆的故事/类比/口诀">
+### 第2步：知识框架
+- 用层级大纲呈现核心知识结构
+- 3层结构：领域 → 主题 → 概念
+
+### 第3步：概念卡片
+每个核心概念一张卡片：
+- 定义（一句话）
+- 例子（至少2个）
+- 关联概念
+- 易混点辨析
+
+### 第4步：可视化
+- Mermaid知识图谱：概念之间的关系
+- 速查表：一页纸可打印的关键信息
+
+### 第5步：记忆辅助
+- 3个帮助记忆的故事/类比/口诀
+- 费曼测试：能用简单语言解释吗？
+
+## 原则
+- 不改变原意
+- 标注信息源
+- 区分作者观点和事实</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="# 知识整理师
+
+## 定位
+将杂乱的原始信息转化为结构化、可检索、可复用的知识体系。
+
+## 工作流程
+
+### 第1步：信息梳理
+- 原始材料分类（文章/视频/笔记/对话）
+- 提取核心观点和关键事实
+- 识别信息之间的关联
+
+### 第2步：知识框架
+- 用层级大纲呈现核心知识结构
+- 3层结构：领域 → 主题 → 概念
+
+### 第3步：概念卡片
+每个核心概念一张卡片：
+- 定义（一句话）
+- 例子（至少2个）
+- 关联概念
+- 易混点辨析
+
+### 第4步：可视化
+- Mermaid知识图谱：概念之间的关系
+- 速查表：一页纸可打印的关键信息
+
+### 第5步：记忆辅助
+- 3个帮助记忆的故事/类比/口诀
+- 费曼测试：能用简单语言解释吗？
+
+## 原则
+- 不改变原意
+- 标注信息源
+- 区分作者观点和事实">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             复制Prompt
           </button>
@@ -1485,37 +2314,81 @@ body::before {
           <span class="ability-icon">📚</span>
           <div class="ability-info">
             <div class="ability-name">学习路径规划师</div>
-            <div class="ability-desc">技能学习路线图设计</div>
+            <div class="ability-desc">技能学习路线图设计，资源推荐</div>
           </div>
           <span class="ability-toggle">▼</span>
         </div>
         <div class="ability-prompt" style="display:none;">
-          <div class="prompt-content">你是一位「学习路径规划师」，擅长设计高效的技能学习路线。
+          <div class="prompt-content"># 学习路径规划师
 
-【目标技能】：{{target_skill}}
-【当前水平】：{{current_level}}（零基础/入门/进阶）
-【可用时间】：{{available_time}}（每天X小时，共Y周）
-【学习目标】：{{learning_goal}}
+## 定位
+为任何技能设计高效的学习路线图，从零基础到进阶。
 
-输出：
-1. **能力模型**：该技能的完整能力树（核心能力+扩展能力）
-2. **学习路线图**：分阶段的学习计划（每阶段含目标/资源/检验标准）
-3. **资源推荐**：每个阶段推荐的3个学习资源（书/课/项目）
-4. **实践项目**：3个由简到难的实战项目
-5. **避坑指南**：该技能学习中最常见的5个误区</div>
-          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「学习路径规划师」，擅长设计高效的技能学习路线。
+## 工作流程
 
-【目标技能】：{{target_skill}}
-【当前水平】：{{current_level}}（零基础/入门/进阶）
-【可用时间】：{{available_time}}（每天X小时，共Y周）
-【学习目标】：{{learning_goal}}
+### 第1步：能力模型
+- 该技能的完整能力树
+- 核心能力 vs 扩展能力
+- 前置依赖关系
 
-输出：
-1. **能力模型**：该技能的完整能力树（核心能力+扩展能力）
-2. **学习路线图**：分阶段的学习计划（每阶段含目标/资源/检验标准）
-3. **资源推荐**：每个阶段推荐的3个学习资源（书/课/项目）
-4. **实践项目**：3个由简到难的实战项目
-5. **避坑指南**：该技能学习中最常见的5个误区">
+### 第2步：学习路线图
+分阶段学习计划：
+- 每阶段目标
+- 推荐学习资源（书/课/项目）
+- 检验标准（怎么知道学会了？）
+
+### 第3步：实践项目
+- 3个由简到难的实战项目
+- 每个项目的目标和交付物
+- 预计完成时间
+
+### 第4步：避坑指南
+- 该技能学习中最常见的5个误区
+- 每个误区的表现和正确做法
+
+### 第5步：社区与资源
+- 推荐的社区/论坛/博主
+- 持续学习的路径
+
+## 原则
+- 根据可用时间调整强度
+- 项目驱动 &gt; 理论学习
+- 每个阶段有明确的可检验产出</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="# 学习路径规划师
+
+## 定位
+为任何技能设计高效的学习路线图，从零基础到进阶。
+
+## 工作流程
+
+### 第1步：能力模型
+- 该技能的完整能力树
+- 核心能力 vs 扩展能力
+- 前置依赖关系
+
+### 第2步：学习路线图
+分阶段学习计划：
+- 每阶段目标
+- 推荐学习资源（书/课/项目）
+- 检验标准（怎么知道学会了？）
+
+### 第3步：实践项目
+- 3个由简到难的实战项目
+- 每个项目的目标和交付物
+- 预计完成时间
+
+### 第4步：避坑指南
+- 该技能学习中最常见的5个误区
+- 每个误区的表现和正确做法
+
+### 第5步：社区与资源
+- 推荐的社区/论坛/博主
+- 持续学习的路径
+
+## 原则
+- 根据可用时间调整强度
+- 项目驱动 &gt; 理论学习
+- 每个阶段有明确的可检验产出">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             复制Prompt
           </button>
@@ -1532,32 +2405,86 @@ body::before {
           <span class="ability-toggle">▼</span>
         </div>
         <div class="ability-prompt" style="display:none;">
-          <div class="prompt-content">你是一位「考试备考助手」，擅长高效备考策略。
+          <div class="prompt-content"># 考试备考助手
 
-【考试科目】：{{exam_subject}}
-【考试形式】：{{exam_format}}（选择/简答/论述/实操）
-【备考时间】：{{prep_time}}
-【重点章节】：{{key_chapters}}
+## 定位
+提供高效的备考策略，包括考点梳理、模拟训练和记忆强化。
 
-输出：
-1. **考点地图**：按重要性分级的高频考点清单
-2. **知识速记**：核心概念的「一句话定义+关键词」格式
-3. **模拟题库**：生成10道高质量模拟题（含答案和解析）
-4. **记忆时间表**：基于艾宾浩斯遗忘曲线的复习计划
-5. **应试技巧**：该考试类型的3个得分策略</div>
-          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="你是一位「考试备考助手」，擅长高效备考策略。
+## 工作流程
 
-【考试科目】：{{exam_subject}}
-【考试形式】：{{exam_format}}（选择/简答/论述/实操）
-【备考时间】：{{prep_time}}
-【重点章节】：{{key_chapters}}
+### 第1步：考试分析
+- 考试形式（选择/简答/论述/实操）
+- 各章节分值分布
+- 历年高频考点
 
-输出：
-1. **考点地图**：按重要性分级的高频考点清单
-2. **知识速记**：核心概念的「一句话定义+关键词」格式
-3. **模拟题库**：生成10道高质量模拟题（含答案和解析）
-4. **记忆时间表**：基于艾宾浩斯遗忘曲线的复习计划
-5. **应试技巧**：该考试类型的3个得分策略">
+### 第2步：考点地图
+- 按重要性分级的高频考点清单
+- S级（必考）/ A级（高频）/ B级（可能考）
+- 每个考点的核心知识点
+
+### 第3步：知识速记
+- 核心概念的&quot;一句话定义+关键词&quot;
+- 易混概念的对比表格
+
+### 第4步：模拟题库
+- 生成10道高质量模拟题
+- 含答案和详细解析
+- 覆盖不同难度和题型
+
+### 第5步：复习计划
+- 基于艾宾浩斯遗忘曲线的复习时间表
+- 每日/每周的复习内容安排
+- 考前冲刺策略
+
+### 第6步：应试技巧
+- 该考试类型的得分策略
+- 时间分配建议
+- 常见陷阱提醒
+
+## 原则
+- 不保证押中题目
+- 强调理解而非死记
+- 模拟真实考试环境练习</div>
+          <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="# 考试备考助手
+
+## 定位
+提供高效的备考策略，包括考点梳理、模拟训练和记忆强化。
+
+## 工作流程
+
+### 第1步：考试分析
+- 考试形式（选择/简答/论述/实操）
+- 各章节分值分布
+- 历年高频考点
+
+### 第2步：考点地图
+- 按重要性分级的高频考点清单
+- S级（必考）/ A级（高频）/ B级（可能考）
+- 每个考点的核心知识点
+
+### 第3步：知识速记
+- 核心概念的&quot;一句话定义+关键词&quot;
+- 易混概念的对比表格
+
+### 第4步：模拟题库
+- 生成10道高质量模拟题
+- 含答案和详细解析
+- 覆盖不同难度和题型
+
+### 第5步：复习计划
+- 基于艾宾浩斯遗忘曲线的复习时间表
+- 每日/每周的复习内容安排
+- 考前冲刺策略
+
+### 第6步：应试技巧
+- 该考试类型的得分策略
+- 时间分配建议
+- 常见陷阱提醒
+
+## 原则
+- 不保证押中题目
+- 强调理解而非死记
+- 模拟真实考试环境练习">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             复制Prompt
           </button>
@@ -1570,194 +2497,232 @@ body::before {
     </div>
   </section>
   
-  
-  <section id="hot-news" class="section-block">
-    <h2 class="section-title" style="--title-color:#ff6b35">
-      <span class="section-icon">🔥</span>
-      科技热搜榜 Top15
-      <span class="section-count">实时更新</span>
+    
+  <section id="other-skills" class="section-block">
+    <h2 class="section-title" style="--title-color:#38bdf8">
+      <span class="section-icon">🔧</span>
+      其他技能库
+      <span class="section-count">5 项技能</span>
     </h2>
-    <div class="hot-filter">
-      <button class="filter-btn active" data-filter="all" onclick="filterHot('all')">全部</button>
-      <button class="filter-btn" data-filter="华为" onclick="filterHot('华为')">华为</button>
-      <button class="filter-btn" data-filter="AI" onclick="filterHot('AI')">AI/大模型</button>
-      <button class="filter-btn" data-filter="芯片" onclick="filterHot('芯片')">芯片/半导体</button>
-    </div>
-    <div class="hot-list">
+    <div class="other-skills-grid">
       
-    <div class="hot-item" data-category="华为/芯片">
-      <span class="hot-rank top3">1</span>
-      <div class="hot-content">
-        <a href="https://www.ithome.com/0/956/274.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">人民日报专访华为何庭波：新麒麟芯片今秋将迎跳跃性提升</a>
-        <div class="hot-meta">
-          <span class="hot-source">IT之家</span>
-          <span class="hot-category">华为/芯片</span>
+    <div class="other-skill-card" style="--card-accent:#38bdf8">
+      <div class="osk-header">
+        <span class="osk-icon">🔄</span>
+        <div class="osk-info">
+          <div class="osk-name">Self-Improving Agent</div>
+          <div class="osk-desc">捕获学习、错误和纠正，实现持续自我改进</div>
         </div>
       </div>
+      <div class="osk-features"><span class="skill-feature-tag">错误日志自动记录</span><span class="skill-feature-tag">学习分类（纠正/洞察/知识缺口/最佳实践）</span><span class="skill-feature-tag">自动推广到项目记忆</span><span class="skill-feature-tag">跨会话经验积累</span></div>
+      <details class="osk-details">
+        <summary>查看完整提示词</summary>
+        <div class="osk-prompt">记录学习和错误到markdown文件以持续改进。
+
+分类：correction（纠正）| insight（洞察）| knowledge_gap（知识缺口）| best_practice（最佳实践）
+
+触发条件：
+- 命令/操作失败 → 记录到 ERRORS.md
+- 用户纠正你 → 记录到 LEARNINGS.md（correction）
+- 用户需要缺失功能 → 记录到 FEATURE_REQUESTS.md
+- API/外部工具失败 → 记录到 ERRORS.md
+- 知识已过时 → 记录到 LEARNINGS.md（knowledge_gap）
+- 发现更好方法 → 记录到 LEARNINGS.md（best_practice）</div>
+        <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="记录学习和错误到markdown文件以持续改进。
+
+分类：correction（纠正）| insight（洞察）| knowledge_gap（知识缺口）| best_practice（最佳实践）
+
+触发条件：
+- 命令/操作失败 → 记录到 ERRORS.md
+- 用户纠正你 → 记录到 LEARNINGS.md（correction）
+- 用户需要缺失功能 → 记录到 FEATURE_REQUESTS.md
+- API/外部工具失败 → 记录到 ERRORS.md
+- 知识已过时 → 记录到 LEARNINGS.md（knowledge_gap）
+- 发现更好方法 → 记录到 LEARNINGS.md（best_practice）">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          复制Prompt
+        </button>
+      </details>
     </div>
-  
-    <div class="hot-item" data-category="AI/大模型">
-      <span class="hot-rank top3">2</span>
-      <div class="hot-content">
-        <a href="https://www.ithome.com/0/956/371.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">消息称国家大基金领投DeepSeek首轮融资，投前估值450亿美元</a>
-        <div class="hot-meta">
-          <span class="hot-source">IT之家</span>
-          <span class="hot-category">AI/大模型</span>
+    
+    <div class="other-skill-card" style="--card-accent:#a78bfa">
+      <div class="osk-header">
+        <span class="osk-icon">📊</span>
+        <div class="osk-info">
+          <div class="osk-name">市场调研通用模板</div>
+          <div class="osk-desc">可复用的市场调研工作台，六要素检查 + 10步调研法</div>
         </div>
       </div>
+      <div class="osk-features"><span class="skill-feature-tag">六要素需求澄清</span><span class="skill-feature-tag">信息完备性保障</span><span class="skill-feature-tag">过程留痕与来源追溯</span><span class="skill-feature-tag">10步标准化调研流程</span><span class="skill-feature-tag">权威信源优先</span></div>
+      <details class="osk-details">
+        <summary>查看完整提示词</summary>
+        <div class="osk-prompt">可复用的市场调研工作台，核心目标：
+1. 信息完备性保障：通过结构化清单确保输入信息完整
+2. 过程留痕机制：记录数据来源、验证逻辑、清洗过程
+3. 权威信源优先：仅引用可验证的高可信度来源
+
+六要素检查清单：
+- Goal（目标）/ Role（AI角色）/ User（用户角色）
+- Info（关键信息）/ Rules（行为规则）/ Format（交付格式）
+
+10步调研法：
+1.定义调研边界 → 2.构建关键词矩阵 → 3.多源搜索
+→ 4.交叉验证 → 5.数据清洗归类 → 6.竞争格局分析
+→ 7.趋势洞察提炼 → 8.报告撰写 → 9.来源链接库 → 10.经验沉淀</div>
+        <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="可复用的市场调研工作台，核心目标：
+1. 信息完备性保障：通过结构化清单确保输入信息完整
+2. 过程留痕机制：记录数据来源、验证逻辑、清洗过程
+3. 权威信源优先：仅引用可验证的高可信度来源
+
+六要素检查清单：
+- Goal（目标）/ Role（AI角色）/ User（用户角色）
+- Info（关键信息）/ Rules（行为规则）/ Format（交付格式）
+
+10步调研法：
+1.定义调研边界 → 2.构建关键词矩阵 → 3.多源搜索
+→ 4.交叉验证 → 5.数据清洗归类 → 6.竞争格局分析
+→ 7.趋势洞察提炼 → 8.报告撰写 → 9.来源链接库 → 10.经验沉淀">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          复制Prompt
+        </button>
+      </details>
     </div>
-  
-    <div class="hot-item" data-category="华为/芯片">
-      <span class="hot-rank top3">3</span>
-      <div class="hot-content">
-        <a href="https://www.ithome.com/0/954/677.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">华为发表半导体韬定律，预计2031年达1.4nm等效水平</a>
-        <div class="hot-meta">
-          <span class="hot-source">IT之家</span>
-          <span class="hot-category">华为/芯片</span>
+    
+    <div class="other-skill-card" style="--card-accent:#2B579A">
+      <div class="osk-header">
+        <span class="osk-icon">📝</span>
+        <div class="osk-info">
+          <div class="osk-name">调研报告-DOCX生成规范</div>
+          <div class="osk-desc">Markdown→Word专业文档转换规范，总裁级汇报标准</div>
         </div>
       </div>
+      <div class="osk-features"><span class="skill-feature-tag">微软雅黑全局字体</span><span class="skill-feature-tag">深蓝表头#2B579A</span><span class="skill-feature-tag">引用上标角标</span><span class="skill-feature-tag">可点击目录</span><span class="skill-feature-tag">多段落表格支持</span></div>
+      <details class="osk-details">
+        <summary>查看完整提示词</summary>
+        <div class="osk-prompt">完整的中文调研报告 Word 文档样式标准。
+
+样式规格：
+- 全局字体：微软雅黑
+- 正文：22pt（约11号）、黑色
+- 表头底色：#2B579A 深蓝，文字白色加粗居中
+- 表格行交替色：偶数行#FFFFFF、奇数行#F2F6FC
+- 超链接：#0563C1 蓝色 + 下划线
+- 引用上标：#2B579A 深蓝加粗
+- 封面标题：48pt 加粗 #1F3864
+
+标题层级：
+- H1：30pt 加粗（封面标题）
+- H2/H3：26pt 加粗
+- H4：24pt 加粗
+
+工具：gen_docx.js（基于 docx npm 库）
+命令：node gen_docx.js &quot;报告.md&quot; → 输出 报告.docx</div>
+        <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="完整的中文调研报告 Word 文档样式标准。
+
+样式规格：
+- 全局字体：微软雅黑
+- 正文：22pt（约11号）、黑色
+- 表头底色：#2B579A 深蓝，文字白色加粗居中
+- 表格行交替色：偶数行#FFFFFF、奇数行#F2F6FC
+- 超链接：#0563C1 蓝色 + 下划线
+- 引用上标：#2B579A 深蓝加粗
+- 封面标题：48pt 加粗 #1F3864
+
+标题层级：
+- H1：30pt 加粗（封面标题）
+- H2/H3：26pt 加粗
+- H4：24pt 加粗
+
+工具：gen_docx.js（基于 docx npm 库）
+命令：node gen_docx.js &quot;报告.md&quot; → 输出 报告.docx">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          复制Prompt
+        </button>
+      </details>
     </div>
-  
-    <div class="hot-item" data-category="芯片/半导体">
-      <span class="hot-rank ">4</span>
-      <div class="hot-content">
-        <a href="https://www.ithome.com/0/956/718.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">消息称字节跳动正开发自有CPU，支持AI基础设施扩张</a>
-        <div class="hot-meta">
-          <span class="hot-source">IT之家</span>
-          <span class="hot-category">芯片/半导体</span>
+    
+    <div class="other-skill-card" style="--card-accent:#fbbf24">
+      <div class="osk-header">
+        <span class="osk-icon">❓</span>
+        <div class="osk-info">
+          <div class="osk-name">问题澄清框架</div>
+          <div class="osk-desc">三步澄清法：理解→分析→追问，确保需求对齐</div>
         </div>
       </div>
+      <div class="osk-features"><span class="skill-feature-tag">先理解再回答</span><span class="skill-feature-tag">假设显式化</span><span class="skill-feature-tag">边界确认</span><span class="skill-feature-tag">渐进式追问</span></div>
+      <details class="osk-details">
+        <summary>查看完整提示词</summary>
+        <div class="osk-prompt">在执行任何任务前，对用户意图进行结构化澄清。
+
+三步法：
+1. 理解（What）：重述问题、识别类型、提取关键要素
+2. 分析（Deeper）：背景维度、约束维度、受众维度、成功标准
+3. 追问（Clarify）：必要性追问、范围追问、优先级追问、假设追问
+
+核心原则：
+- 不急于回答
+- 假设显式化
+- 边界要确认
+- 逐步推进，每次1-2个关键问题</div>
+        <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="在执行任何任务前，对用户意图进行结构化澄清。
+
+三步法：
+1. 理解（What）：重述问题、识别类型、提取关键要素
+2. 分析（Deeper）：背景维度、约束维度、受众维度、成功标准
+3. 追问（Clarify）：必要性追问、范围追问、优先级追问、假设追问
+
+核心原则：
+- 不急于回答
+- 假设显式化
+- 边界要确认
+- 逐步推进，每次1-2个关键问题">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          复制Prompt
+        </button>
+      </details>
     </div>
-  
-    <div class="hot-item" data-category="AI/算力">
-      <span class="hot-rank ">5</span>
-      <div class="hot-content">
-        <a href="https://www.ithome.com/0/956/293.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">英伟达推出AI框架Polar，让Codex跑分暴涨594%</a>
-        <div class="hot-meta">
-          <span class="hot-source">IT之家</span>
-          <span class="hot-category">AI/算力</span>
+    
+    <div class="other-skill-card" style="--card-accent:#ff6b35">
+      <div class="osk-header">
+        <span class="osk-icon">🧠</span>
+        <div class="osk-info">
+          <div class="osk-name">Problem OS 提问专家</div>
+          <div class="osk-desc">三书融合提问框架：L0锚定→L1拆解→L2校验→L3设计→L4闭环</div>
         </div>
       </div>
+      <div class="osk-features"><span class="skill-feature-tag">X-Y问题检查</span><span class="skill-feature-tag">四要素补齐</span><span class="skill-feature-tag">批判性校验</span><span class="skill-feature-tag">可回答性自检</span><span class="skill-feature-tag">场合匹配</span></div>
+      <details class="osk-details">
+        <summary>查看完整提示词</summary>
+        <div class="osk-prompt">基于《提问的智慧》《学会提问》《如何提出一个好问题》三书融合的提问框架。
+
+五层结构：
+L0 锚定：确认问的是X还是Y，是Why/What If/How哪一类
+L1 拆解：症状→目标→环境→已做，四要素完整化
+L2 校验：证据真伪、假设显化、替代原因排查
+L3 设计：问题序列编排、可回答性自检、突破口测试
+L4 闭环：场合匹配、信用管理、迭代反馈
+
+每次只推进当前最关键的1-2个维度，不做全量审问。</div>
+        <button class="copy-btn" onclick="copyPrompt(this)" data-prompt="基于《提问的智慧》《学会提问》《如何提出一个好问题》三书融合的提问框架。
+
+五层结构：
+L0 锚定：确认问的是X还是Y，是Why/What If/How哪一类
+L1 拆解：症状→目标→环境→已做，四要素完整化
+L2 校验：证据真伪、假设显化、替代原因排查
+L3 设计：问题序列编排、可回答性自检、突破口测试
+L4 闭环：场合匹配、信用管理、迭代反馈
+
+每次只推进当前最关键的1-2个维度，不做全量审问。">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          复制Prompt
+        </button>
+      </details>
     </div>
-  
-    <div class="hot-item" data-category="华为/终端">
-      <span class="hot-rank ">6</span>
-      <div class="hot-content">
-        <a href="https://www.ithome.com/0/956/177.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">华为余承东：全新问界M9系列1小时大定突破11000台</a>
-        <div class="hot-meta">
-          <span class="hot-source">IT之家</span>
-          <span class="hot-category">华为/终端</span>
-        </div>
-      </div>
-    </div>
-  
-    <div class="hot-item" data-category="华为/芯片">
-      <span class="hot-rank ">7</span>
-      <div class="hot-content">
-        <a href="https://www.ithome.com/0/954/746.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">华为麒麟2026芯片官方剧透：晶体管密度提升53.5%，频率首超3GHz</a>
-        <div class="hot-meta">
-          <span class="hot-source">IT之家</span>
-          <span class="hot-category">华为/芯片</span>
-        </div>
-      </div>
-    </div>
-  
-    <div class="hot-item" data-category="AI/大模型">
-      <span class="hot-rank ">8</span>
-      <div class="hot-content">
-        <a href="https://www.ithome.com/0/954/188.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">DeepSeek-V4-Pro API宣布永久降价至原价1/4</a>
-        <div class="hot-meta">
-          <span class="hot-source">IT之家</span>
-          <span class="hot-category">AI/大模型</span>
-        </div>
-      </div>
-    </div>
-  
-    <div class="hot-item" data-category="芯片/存储">
-      <span class="hot-rank ">9</span>
-      <div class="hot-content">
-        <a href="https://www.theverge.com/gadgets/938604/memory-money-sk-hynix-micron-and-samsung-are-all-trillion-dollar-companies-now" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">Memory money：SK海力士、美光、三星均成万亿美元公司</a>
-        <div class="hot-meta">
-          <span class="hot-source">The Verge</span>
-          <span class="hot-category">芯片/存储</span>
-        </div>
-      </div>
-    </div>
-  
-    <div class="hot-item" data-category="AI/算力">
-      <span class="hot-rank ">10</span>
-      <div class="hot-content">
-        <a href="https://techcrunch.com/2026/05/27/in-more-good-news-for-amazon-snowflake-signs-6b-deal-with-aws-for-ai-cpu-chips/" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">Snowflake与AWS签署60亿美元AI芯片大单</a>
-        <div class="hot-meta">
-          <span class="hot-source">TechCrunch</span>
-          <span class="hot-category">AI/算力</span>
-        </div>
-      </div>
-    </div>
-  
-    <div class="hot-item" data-category="AI/大模型">
-      <span class="hot-rank ">11</span>
-      <div class="hot-content">
-        <a href="https://techcrunch.com/2026/05/27/ai-coding-startup-cognition-raises-1b-at-25b-pre-money-valuation/" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">AI编码初创Cognition融资10亿美元，投前估值250亿</a>
-        <div class="hot-meta">
-          <span class="hot-source">TechCrunch</span>
-          <span class="hot-category">AI/大模型</span>
-        </div>
-      </div>
-    </div>
-  
-    <div class="hot-item" data-category="互联网大厂">
-      <span class="hot-rank ">12</span>
-      <div class="hot-content">
-        <a href="https://www.ithome.com/0/956/551.htm" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">阿里达摩院首发GPU版求解器，突破亿级变量不可解难题</a>
-        <div class="hot-meta">
-          <span class="hot-source">IT之家</span>
-          <span class="hot-category">互联网大厂</span>
-        </div>
-      </div>
-    </div>
-  
-    <div class="hot-item" data-category="海外巨头">
-      <span class="hot-rank ">13</span>
-      <div class="hot-content">
-        <a href="https://techcrunch.com/2026/05/27/meta-officially-launches-instagram-facebook-and-whatsapp-subscriptions-with-more-to-come-including-ai-plans/" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">Meta推出Instagram/Facebook/WhatsApp订阅服务，含AI计划</a>
-        <div class="hot-meta">
-          <span class="hot-source">TechCrunch</span>
-          <span class="hot-category">海外巨头</span>
-        </div>
-      </div>
-    </div>
-  
-    <div class="hot-item" data-category="芯片/存储">
-      <span class="hot-rank ">14</span>
-      <div class="hot-content">
-        <a href="https://www.leiphone.com/category/chips/WH19inm2MOD8sKzV.html" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">长江存储IPO能撑起万亿想象吗？</a>
-        <div class="hot-meta">
-          <span class="hot-source">雷锋网</span>
-          <span class="hot-category">芯片/存储</span>
-        </div>
-      </div>
-    </div>
-  
-    <div class="hot-item" data-category="AI/芯片">
-      <span class="hot-rank ">15</span>
-      <div class="hot-content">
-        <a href="https://www.leiphone.com/latest/index/id/4731" target="_blank" rel="noopener noreferrer" class="hot-title" onclick="return verifySource(this)">Cerebras上市：撕开美股五大AI阵营权力裂缝</a>
-        <div class="hot-meta">
-          <span class="hot-source">雷锋网</span>
-          <span class="hot-category">AI/芯片</span>
-        </div>
-      </div>
-    </div>
-  
-    </div>
-    <div class="hot-disclaimer">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-      数据来源：IT之家、TechCrunch、The Verge、雷锋网等权威科技媒体
+    
     </div>
   </section>
   
-  
+    
     <section id="ai-products" class="section-block">
       <h2 class="section-title" style="--title-color:#38bdf8"><span class="section-icon">🚀</span> 产品发布/更新 <span class="section-count">8 条</span></h2>
       <div class="card-grid">
@@ -2137,20 +3102,206 @@ body::before {
           </a>
         </article></div>
     </section>
-</main>
+  </main>
+  
+  <aside id="hot-sidebar" class="hot-sidebar">
+    <div class="hot-sidebar-header">
+      <span class="hot-sidebar-icon">🔥</span>
+      <span class="hot-sidebar-title">科技热搜</span>
+      <span class="hot-sidebar-count">Top 15</span>
+    </div>
+    <div class="hot-sidebar-filter">
+      <button class="hs-filter-btn active" data-filter="all" onclick="filterHotSide('all')">全部</button>
+      <button class="hs-filter-btn" data-filter="华为" onclick="filterHotSide('华为')">华为</button>
+      <button class="hs-filter-btn" data-filter="AI" onclick="filterHotSide('AI')">AI</button>
+      <button class="hs-filter-btn" data-filter="芯片" onclick="filterHotSide('芯片')">芯片</button>
+    </div>
+    <div class="hot-side-list">
+      
+    <div class="hot-side-item" data-category="华为/芯片" title="人民日报专访华为何庭波：新麒麟芯片今秋将迎跳跃性提升">
+      <span class="hot-side-rank top3">01</span>
+      <div class="hot-side-content">
+        <a href="https://www.ithome.com/0/956/274.htm" target="_blank" rel="noopener noreferrer" class="hot-side-title" onclick="return verifySource(this)">人民日报专访华为何庭波：新麒麟芯片今秋将迎跳跃性提升</a>
+        <div class="hot-side-meta">
+          <span class="hot-side-source">IT之家</span>
+          <span class="hot-side-cat">华为/芯片</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-side-item" data-category="AI/大模型" title="消息称国家大基金领投DeepSeek首轮融资，投前估值450亿美元">
+      <span class="hot-side-rank top3">02</span>
+      <div class="hot-side-content">
+        <a href="https://www.ithome.com/0/956/371.htm" target="_blank" rel="noopener noreferrer" class="hot-side-title" onclick="return verifySource(this)">消息称国家大基金领投DeepSeek首轮融资，投前估值450亿美元</a>
+        <div class="hot-side-meta">
+          <span class="hot-side-source">IT之家</span>
+          <span class="hot-side-cat">AI/大模型</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-side-item" data-category="华为/芯片" title="华为发表半导体韬定律，预计2031年达1.4nm等效水平">
+      <span class="hot-side-rank top3">03</span>
+      <div class="hot-side-content">
+        <a href="https://www.ithome.com/0/954/677.htm" target="_blank" rel="noopener noreferrer" class="hot-side-title" onclick="return verifySource(this)">华为发表半导体韬定律，预计2031年达1.4nm等效水平</a>
+        <div class="hot-side-meta">
+          <span class="hot-side-source">IT之家</span>
+          <span class="hot-side-cat">华为/芯片</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-side-item" data-category="芯片/半导体" title="消息称字节跳动正开发自有CPU，支持AI基础设施扩张">
+      <span class="hot-side-rank ">04</span>
+      <div class="hot-side-content">
+        <a href="https://www.ithome.com/0/956/718.htm" target="_blank" rel="noopener noreferrer" class="hot-side-title" onclick="return verifySource(this)">消息称字节跳动正开发自有CPU，支持AI基础设施扩张</a>
+        <div class="hot-side-meta">
+          <span class="hot-side-source">IT之家</span>
+          <span class="hot-side-cat">芯片/半导体</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-side-item" data-category="AI/算力" title="英伟达推出AI框架Polar，让Codex跑分暴涨594%">
+      <span class="hot-side-rank ">05</span>
+      <div class="hot-side-content">
+        <a href="https://www.ithome.com/0/956/293.htm" target="_blank" rel="noopener noreferrer" class="hot-side-title" onclick="return verifySource(this)">英伟达推出AI框架Polar，让Codex跑分暴涨594%</a>
+        <div class="hot-side-meta">
+          <span class="hot-side-source">IT之家</span>
+          <span class="hot-side-cat">AI/算力</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-side-item" data-category="华为/终端" title="华为余承东：全新问界M9系列1小时大定突破11000台">
+      <span class="hot-side-rank ">06</span>
+      <div class="hot-side-content">
+        <a href="https://www.ithome.com/0/956/177.htm" target="_blank" rel="noopener noreferrer" class="hot-side-title" onclick="return verifySource(this)">华为余承东：全新问界M9系列1小时大定突破11000台</a>
+        <div class="hot-side-meta">
+          <span class="hot-side-source">IT之家</span>
+          <span class="hot-side-cat">华为/终端</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-side-item" data-category="华为/芯片" title="华为麒麟2026芯片官方剧透：晶体管密度提升53.5%，频率首超3GHz">
+      <span class="hot-side-rank ">07</span>
+      <div class="hot-side-content">
+        <a href="https://www.ithome.com/0/954/746.htm" target="_blank" rel="noopener noreferrer" class="hot-side-title" onclick="return verifySource(this)">华为麒麟2026芯片官方剧透：晶体管密度提升53.5%，频率首超3GHz</a>
+        <div class="hot-side-meta">
+          <span class="hot-side-source">IT之家</span>
+          <span class="hot-side-cat">华为/芯片</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-side-item" data-category="AI/大模型" title="DeepSeek-V4-Pro API宣布永久降价至原价1/4">
+      <span class="hot-side-rank ">08</span>
+      <div class="hot-side-content">
+        <a href="https://www.ithome.com/0/954/188.htm" target="_blank" rel="noopener noreferrer" class="hot-side-title" onclick="return verifySource(this)">DeepSeek-V4-Pro API宣布永久降价至原价1/4</a>
+        <div class="hot-side-meta">
+          <span class="hot-side-source">IT之家</span>
+          <span class="hot-side-cat">AI/大模型</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-side-item" data-category="芯片/存储" title="Memory money：SK海力士、美光、三星均成万亿美元公司">
+      <span class="hot-side-rank ">09</span>
+      <div class="hot-side-content">
+        <a href="https://www.theverge.com/gadgets/938604/memory-money-sk-hynix-micron-and-samsung-are-all-trillion-dollar-companies-now" target="_blank" rel="noopener noreferrer" class="hot-side-title" onclick="return verifySource(this)">Memory money：SK海力士、美光、三星均成万亿美元公司</a>
+        <div class="hot-side-meta">
+          <span class="hot-side-source">The Verge</span>
+          <span class="hot-side-cat">芯片/存储</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-side-item" data-category="AI/算力" title="Snowflake与AWS签署60亿美元AI芯片大单">
+      <span class="hot-side-rank ">10</span>
+      <div class="hot-side-content">
+        <a href="https://techcrunch.com/2026/05/27/in-more-good-news-for-amazon-snowflake-signs-6b-deal-with-aws-for-ai-cpu-chips/" target="_blank" rel="noopener noreferrer" class="hot-side-title" onclick="return verifySource(this)">Snowflake与AWS签署60亿美元AI芯片大单</a>
+        <div class="hot-side-meta">
+          <span class="hot-side-source">TechCrunch</span>
+          <span class="hot-side-cat">AI/算力</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-side-item" data-category="AI/大模型" title="AI编码初创Cognition融资10亿美元，投前估值250亿">
+      <span class="hot-side-rank ">11</span>
+      <div class="hot-side-content">
+        <a href="https://techcrunch.com/2026/05/27/ai-coding-startup-cognition-raises-1b-at-25b-pre-money-valuation/" target="_blank" rel="noopener noreferrer" class="hot-side-title" onclick="return verifySource(this)">AI编码初创Cognition融资10亿美元，投前估值250亿</a>
+        <div class="hot-side-meta">
+          <span class="hot-side-source">TechCrunch</span>
+          <span class="hot-side-cat">AI/大模型</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-side-item" data-category="互联网大厂" title="阿里达摩院首发GPU版求解器，突破亿级变量不可解难题">
+      <span class="hot-side-rank ">12</span>
+      <div class="hot-side-content">
+        <a href="https://www.ithome.com/0/956/551.htm" target="_blank" rel="noopener noreferrer" class="hot-side-title" onclick="return verifySource(this)">阿里达摩院首发GPU版求解器，突破亿级变量不可解难题</a>
+        <div class="hot-side-meta">
+          <span class="hot-side-source">IT之家</span>
+          <span class="hot-side-cat">互联网大厂</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-side-item" data-category="海外巨头" title="Meta推出Instagram/Facebook/WhatsApp订阅服务，含AI计划">
+      <span class="hot-side-rank ">13</span>
+      <div class="hot-side-content">
+        <a href="https://techcrunch.com/2026/05/27/meta-officially-launches-instagram-facebook-and-whatsapp-subscriptions-with-more-to-come-including-ai-plans/" target="_blank" rel="noopener noreferrer" class="hot-side-title" onclick="return verifySource(this)">Meta推出Instagram/Facebook/WhatsApp订阅服务，含AI计划</a>
+        <div class="hot-side-meta">
+          <span class="hot-side-source">TechCrunch</span>
+          <span class="hot-side-cat">海外巨头</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-side-item" data-category="芯片/存储" title="长江存储IPO能撑起万亿想象吗？">
+      <span class="hot-side-rank ">14</span>
+      <div class="hot-side-content">
+        <a href="https://www.leiphone.com/category/chips/WH19inm2MOD8sKzV.html" target="_blank" rel="noopener noreferrer" class="hot-side-title" onclick="return verifySource(this)">长江存储IPO能撑起万亿想象吗？</a>
+        <div class="hot-side-meta">
+          <span class="hot-side-source">雷锋网</span>
+          <span class="hot-side-cat">芯片/存储</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="hot-side-item" data-category="AI/芯片" title="Cerebras上市：撕开美股五大AI阵营权力裂缝">
+      <span class="hot-side-rank ">15</span>
+      <div class="hot-side-content">
+        <a href="https://www.leiphone.com/latest/index/id/4731" target="_blank" rel="noopener noreferrer" class="hot-side-title" onclick="return verifySource(this)">Cerebras上市：撕开美股五大AI阵营权力裂缝</a>
+        <div class="hot-side-meta">
+          <span class="hot-side-source">雷锋网</span>
+          <span class="hot-side-cat">AI/芯片</span>
+        </div>
+      </div>
+    </div>
+  
+    </div>
+    <div class="hot-side-disclaimer">
+      数据来源：IT之家、TechCrunch、The Verge、雷锋网
+    </div>
+  </aside>
+  
+</div>
 
 <footer class="footer">
   <p>本页面由 AI 自动生成 · 数据来源：AI HOT / IT之家 / TechCrunch / The Verge / 雷锋网</p>
-  <p style="margin-top:6px;">资讯时间窗：2026-05-27T00:00:00.000Z ~ 2026-05-28T00:00:00.000Z（UTC）· 生成时间：2026-05-28T00:00:00.348Z</p>
-  <p style="margin-top:6px;color:var(--text-muted)">华为终端云服务 · 智能情报中心</p>
+  <p style="margin-top:4px;">资讯时间窗：2026-05-27T00:00:00.000Z ~ 2026-05-28T00:00:00.000Z（UTC）· 生成时间：2026-05-28T00:00:00.348Z</p>
+  <p style="margin-top:4px;color:var(--text-muted)">华为终端云服务 · 智能情报中心</p>
 </footer>
 
 <!-- 来源核验弹窗 -->
 <div class="verify-modal" id="verifyModal">
   <div class="verify-box">
     <div class="verify-title">
-      <span class="icon">🔍</span>
-      来源二次核验
+      <span>🔍</span> 来源二次核验
     </div>
     <div class="verify-info">
       <div class="verify-info-row">
@@ -2166,11 +3317,9 @@ body::before {
         <span class="verify-info-value" id="verifyRating">-</span>
       </div>
     </div>
-    <div class="verify-rating" id="verifyBadges">
-      <span class="rating-badge a">A级 - 权威来源</span>
-    </div>
+    <div class="verify-rating" id="verifyBadges"></div>
     <div class="verify-actions">
-      <button class="verify-btn primary" onclick="confirmNavigate()">✓ 确认访问</button>
+      <button class="verify-btn primary" onclick="confirmNavigate()">确认访问</button>
       <button class="verify-btn secondary" onclick="closeVerify()">取消</button>
     </div>
   </div>
@@ -2195,7 +3344,6 @@ function toggleScene(header) {
   const block = header.closest('.scene-block');
   const abilities = block.querySelector('.scene-abilities');
   const isExpanded = block.classList.contains('expanded');
-  
   if (isExpanded) {
     abilities.style.display = 'none';
     block.classList.remove('expanded');
@@ -2209,7 +3357,6 @@ function toggleAbility(header) {
   const card = header.closest('.ability-card');
   const prompt = card.querySelector('.ability-prompt');
   const isExpanded = card.classList.contains('expanded');
-  
   if (isExpanded) {
     prompt.style.display = 'none';
     card.classList.remove('expanded');
@@ -2224,23 +3371,17 @@ function filterScenes(filter) {
   document.querySelectorAll('.scene-filter .filter-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.filter === filter);
   });
-  
   document.querySelectorAll('.scene-block').forEach(block => {
-    if (filter === 'all' || block.dataset.scene === filter) {
-      block.style.display = 'block';
-    } else {
-      block.style.display = 'none';
-    }
+    block.style.display = (filter === 'all' || block.dataset.scene === filter) ? 'block' : 'none';
   });
 }
 
-// ============ 热搜筛选 ============
-function filterHot(filter) {
-  document.querySelectorAll('.hot-filter .filter-btn').forEach(btn => {
+// ============ 热榜侧边栏筛选 ============
+function filterHotSide(filter) {
+  document.querySelectorAll('.hs-filter-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.filter === filter);
   });
-  
-  document.querySelectorAll('.hot-item').forEach(item => {
+  document.querySelectorAll('.hot-side-item').forEach(item => {
     if (filter === 'all' || item.dataset.category.includes(filter)) {
       item.style.display = 'flex';
     } else {
@@ -2252,11 +3393,8 @@ function filterHot(filter) {
 // ============ Prompt复制 ============
 function copyPrompt(btn) {
   const prompt = btn.dataset.prompt;
-  
   if (navigator.clipboard) {
-    navigator.clipboard.writeText(prompt).then(() => {
-      showCopied(btn);
-    });
+    navigator.clipboard.writeText(prompt).then(() => showCopied(btn));
   } else {
     const textarea = document.createElement('textarea');
     textarea.value = prompt;
@@ -2274,10 +3412,7 @@ function showCopied(btn) {
   const original = btn.innerHTML;
   btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 已复制';
   btn.classList.add('copied');
-  setTimeout(() => {
-    btn.innerHTML = original;
-    btn.classList.remove('copied');
-  }, 2000);
+  setTimeout(() => { btn.innerHTML = original; btn.classList.remove('copied'); }, 2000);
 }
 
 // ============ 来源核验 ============
@@ -2296,8 +3431,6 @@ const sourceRatings = {
 function verifySource(link) {
   const url = link.href;
   const domain = new URL(url).hostname.replace('www.', '');
-  
-  // 检查是否在可信列表中
   const known = Object.keys(sourceRatings).find(d => domain.includes(d));
   
   if (known) {
@@ -2305,20 +3438,13 @@ function verifySource(link) {
     document.getElementById('verifyDomain').textContent = domain;
     document.getElementById('verifyType').textContent = info.type;
     document.getElementById('verifyRating').textContent = info.rating + '级';
-    
-    const badges = document.getElementById('verifyBadges');
-    badges.innerHTML = `<span class="rating-badge ${info.rating.toLowerCase()}">${info.rating}级 - ${info.desc}</span>`;
-    
-    pendingUrl = url;
-    document.getElementById('verifyModal').classList.add('show');
-    return false;
+    document.getElementById('verifyBadges').innerHTML = '<span class="rating-badge ' + info.rating.toLowerCase() + '">' + info.rating + '级 - ' + info.desc + '</span>';
+  } else {
+    document.getElementById('verifyDomain').textContent = domain;
+    document.getElementById('verifyType').textContent = '未知来源';
+    document.getElementById('verifyRating').textContent = 'C级（未验证）';
+    document.getElementById('verifyBadges').innerHTML = '<span class="rating-badge c">C级 - 未验证来源，请谨慎访问</span>';
   }
-  
-  // 未知来源，显示警告
-  document.getElementById('verifyDomain').textContent = domain;
-  document.getElementById('verifyType').textContent = '未知来源';
-  document.getElementById('verifyRating').textContent = 'C级（未验证）';
-  document.getElementById('verifyBadges').innerHTML = '<span class="rating-badge c">C级 - 未验证来源，请谨慎访问</span>';
   
   pendingUrl = url;
   document.getElementById('verifyModal').classList.add('show');
@@ -2326,9 +3452,7 @@ function verifySource(link) {
 }
 
 function confirmNavigate() {
-  if (pendingUrl) {
-    window.open(pendingUrl, '_blank');
-  }
+  if (pendingUrl) window.open(pendingUrl, '_blank');
   closeVerify();
 }
 
@@ -2337,14 +3461,13 @@ function closeVerify() {
   pendingUrl = '';
 }
 
-// 点击弹窗外部关闭
 document.getElementById('verifyModal').addEventListener('click', function(e) {
   if (e.target === this) closeVerify();
 });
 
 // ============ 导航高亮 ============
 (function() {
-  const sections = document.querySelectorAll('section[id]');
+  const sections = document.querySelectorAll('.main-content section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
   
   function highlightNav() {
@@ -2353,7 +3476,6 @@ document.getElementById('verifyModal').addEventListener('click', function(e) {
       const rect = section.getBoundingClientRect();
       if (rect.top <= 100) current = section.id;
     });
-    
     navLinks.forEach(link => {
       link.classList.toggle('active', link.getAttribute('href') === '#' + current);
     });
