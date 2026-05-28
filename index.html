@@ -266,79 +266,159 @@ body::before {
   font-family: var(--font-mono);
 }
 
-/* ============ 使用教程 ============ */
+/* ============ 使用教程 - 流程图 ============ */
 .tutorial-subtitle {
   font-size: 13px;
   color: var(--text-secondary);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   margin-top: -12px;
 }
 
-.tutorial-container {
+.flowchart-container {
   display: flex;
   flex-direction: column;
   gap: 0;
-}
-
-.tutorial-step {
-  display: flex;
-  gap: 16px;
-  padding: 20px 24px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius);
-  margin-bottom: 0;
   position: relative;
-  backdrop-filter: blur(10px);
+  padding-left: 24px;
 }
 
-.tutorial-step:not(:last-child) {
-  border-radius: var(--radius) var(--radius) 0 0;
-  border-bottom: none;
+.flowchart-container::before {
+  content: '';
+  position: absolute;
+  left: 47px;
+  top: 40px;
+  bottom: 60px;
+  width: 2px;
+  background: linear-gradient(180deg, 
+    var(--accent-cyan) 0%, 
+    var(--accent-purple) 33%, 
+    var(--accent-orange) 66%, 
+    var(--accent-blue) 100%);
+  opacity: 0.3;
+  border-radius: 1px;
 }
 
-.tutorial-step:last-child {
-  border-radius: 0 0 var(--radius) var(--radius);
+.flow-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 0 0 32px 0;
+  position: relative;
 }
 
-.tutorial-step:first-child {
-  border-radius: var(--radius) var(--radius) 0 0;
+.flow-step-last {
+  padding-bottom: 0;
 }
 
-.tutorial-step:only-child {
-  border-radius: var(--radius);
+/* 流程节点 */
+.flow-node {
+  position: relative;
+  z-index: 2;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+  border: 2px solid var(--node-color, var(--accent-cyan));
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), 0 0 0 4px var(--bg-primary), 0 0 15px var(--node-color, var(--accent-cyan));
+  transition: all 0.3s ease;
 }
 
-.tutorial-step-num {
-  font-size: 24px;
-  font-weight: 800;
+.flow-node:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4), 0 0 0 4px var(--bg-primary), 0 0 25px var(--node-color, var(--accent-cyan));
+}
+
+.flow-node-start {
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 212, 170, 0.15), rgba(0, 212, 170, 0.05));
+}
+
+.flow-node-end {
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(56, 189, 248, 0.05));
+}
+
+.flow-node-branch {
+  border-radius: 8px;
+  transform: rotate(45deg);
+  width: 50px;
+  height: 50px;
+}
+
+.flow-node-branch .flow-node-icon,
+.flow-node-branch .flow-node-num,
+.flow-node-branch .flow-node-title {
+  transform: rotate(-45deg);
+}
+
+.flow-node-process {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(251, 191, 36, 0.05));
+}
+
+.flow-node-icon {
+  font-size: 18px;
+  line-height: 1;
+  margin-bottom: 1px;
+}
+
+.flow-node-num {
+  font-size: 9px;
+  font-weight: 700;
   font-family: var(--font-mono);
-  color: var(--step-color, var(--text-muted));
-  min-width: 44px;
-  text-align: center;
+  color: var(--node-color, var(--accent-cyan));
+  opacity: 0.8;
   line-height: 1;
 }
 
-.tutorial-step-body {
+.flow-node-title {
+  display: none;
+}
+
+/* 节点详情卡片 */
+.flow-detail {
   flex: 1;
-  min-width: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  margin-top: 4px;
 }
 
-.tutorial-step-title {
-  font-size: 15px;
-  font-weight: 700;
+.flow-detail::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 20px;
+  width: 14px;
+  height: 14px;
+  background: var(--bg-card);
+  border-left: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  transform: rotate(45deg);
+}
+
+.flow-detail:hover {
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-glow);
+}
+
+.flow-detail-desc {
+  font-size: 13px;
   color: var(--text-primary);
-  margin-bottom: 4px;
-}
-
-.tutorial-step-desc {
-  font-size: 12px;
-  color: var(--text-secondary);
+  font-weight: 500;
   margin-bottom: 8px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
-.tutorial-step-example {
+.flow-detail-example {
   font-size: 11px;
   color: var(--text-muted);
   background: rgba(255, 255, 255, 0.03);
@@ -346,9 +426,17 @@ body::before {
   border-radius: var(--radius-sm);
   margin-bottom: 10px;
   border-left: 2px solid var(--border-glow);
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
 }
 
-.tutorial-step-tools {
+.flow-example-icon {
+  flex-shrink: 0;
+  font-size: 12px;
+}
+
+.flow-detail-tools {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -361,24 +449,63 @@ body::before {
   background: rgba(0, 212, 170, 0.08);
   color: var(--accent-cyan);
   border: 1px solid rgba(0, 212, 170, 0.15);
+  transition: all 0.2s ease;
 }
 
-.tutorial-arrow {
+.tutorial-tool-tag:hover {
+  background: rgba(0, 212, 170, 0.15);
+  transform: translateY(-1px);
+}
+
+/* 连接线 */
+.flow-connector {
   position: absolute;
-  bottom: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 16px;
-  color: var(--accent-cyan);
-  z-index: 2;
-  background: var(--bg-primary);
-  width: 28px;
-  height: 28px;
+  left: 47px;
+  top: 56px;
+  bottom: 0;
+  width: 2px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: 1px solid var(--border-subtle);
+}
+
+.flow-arrow-line {
+  flex: 1;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent-cyan), transparent);
+  opacity: 0.4;
+}
+
+.flow-arrow-head {
+  font-size: 10px;
+  color: var(--accent-cyan);
+  opacity: 0.6;
+  margin-top: -2px;
+}
+
+/* 流程图响应式 */
+@media (max-width: 768px) {
+  .flowchart-container {
+    padding-left: 16px;
+  }
+  .flowchart-container::before {
+    left: 39px;
+  }
+  .flow-node {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+  .flow-node-icon {
+    font-size: 16px;
+  }
+  .flow-connector {
+    left: 39px;
+    top: 48px;
+  }
+  .flow-detail::before {
+    top: 16px;
+  }
 }
 
 /* ============ 卡片网格 ============ */
@@ -1175,59 +1302,94 @@ body::before {
       <span class="section-count">5步工作流</span>
     </h2>
     <div class="tutorial-subtitle">从模糊输入到专业输出的完整工作流</div>
-    <div class="tutorial-container">
+    <div class="flowchart-container">
       
-    <div class="tutorial-step">
-      <div class="tutorial-step-num" style="--step-color:#5a6378">01</div>
-      <div class="tutorial-step-body">
-        <div class="tutorial-step-title">模糊输入</div>
-        <div class="tutorial-step-desc">用自然语言描述你的需求，不需要精确</div>
-        <div class="tutorial-step-example">💡 "帮我调研一下AI Coding市场"</div>
+    <div class="flow-step ">
+      <div class="flow-node flow-node-start" style="--node-color:#5a6378">
+        <div class="flow-node-icon">💬</div>
+        <div class="flow-node-num">01</div>
+        <div class="flow-node-title">模糊输入</div>
+      </div>
+      <div class="flow-detail">
+        <div class="flow-detail-desc">用自然语言描述你的需求，不需要精确</div>
+        <div class="flow-detail-example"><span class="flow-example-icon">💡</span> "帮我调研一下AI Coding市场"</div>
         
       </div>
-      <div class="tutorial-arrow">↓</div>
-    </div>
-    
-    <div class="tutorial-step">
-      <div class="tutorial-step-num" style="--step-color:#fbbf24">02</div>
-      <div class="tutorial-step-body">
-        <div class="tutorial-step-title">需求清晰化</div>
-        <div class="tutorial-step-desc">通过问题澄清框架或Problem OS，将模糊需求结构化</div>
-        <div class="tutorial-step-example">💡 澄清目标市场、时间范围、输出格式、信源标准</div>
-        <div class="tutorial-step-tools"><span class="tutorial-tool-tag">问题澄清框架</span><span class="tutorial-tool-tag">Problem OS 提问专家</span></div>
+      
+      <div class="flow-connector">
+        <div class="flow-arrow-line"></div>
+        <div class="flow-arrow-head">▼</div>
       </div>
-      <div class="tutorial-arrow">↓</div>
+      
     </div>
     
-    <div class="tutorial-step">
-      <div class="tutorial-step-num" style="--step-color:#a78bfa">03</div>
-      <div class="tutorial-step-body">
-        <div class="tutorial-step-title">关键词提炼</div>
-        <div class="tutorial-step-desc">从澄清后的需求中提取核心关键词和搜索维度</div>
-        <div class="tutorial-step-example">💡 AI Coding → 代码生成、智能补全、Devin、Cursor、市场规模</div>
-        <div class="tutorial-step-tools"><span class="tutorial-tool-tag">提示词生成器</span></div>
+    <div class="flow-step ">
+      <div class="flow-node flow-node-process" style="--node-color:#fbbf24">
+        <div class="flow-node-icon">🔍</div>
+        <div class="flow-node-num">02</div>
+        <div class="flow-node-title">需求清晰化</div>
       </div>
-      <div class="tutorial-arrow">↓</div>
-    </div>
-    
-    <div class="tutorial-step">
-      <div class="tutorial-step-num" style="--step-color:#00d4aa">04</div>
-      <div class="tutorial-step-body">
-        <div class="tutorial-step-title">模块触发</div>
-        <div class="tutorial-step-desc">根据任务类型选择对应的技能模块进行深度执行</div>
-        <div class="tutorial-step-example">💡 市场调研→市场调研严谨专家 | 商业分析→全栈商业情报智能体 | 快速认知→爆炸式研究专家</div>
-        <div class="tutorial-step-tools"><span class="tutorial-tool-tag">市场调研严谨专家</span><span class="tutorial-tool-tag">全栈商业情报智能体</span><span class="tutorial-tool-tag">爆炸式研究专家</span><span class="tutorial-tool-tag">里程碑拆解</span><span class="tutorial-tool-tag">灵感闪现助手</span></div>
+      <div class="flow-detail">
+        <div class="flow-detail-desc">通过问题澄清框架或Problem OS，将模糊需求结构化</div>
+        <div class="flow-detail-example"><span class="flow-example-icon">💡</span> 澄清目标市场、时间范围、输出格式、信源标准</div>
+        <div class="flow-detail-tools"><span class="tutorial-tool-tag">问题澄清框架</span><span class="tutorial-tool-tag">Problem OS 提问专家</span></div>
       </div>
-      <div class="tutorial-arrow">↓</div>
+      
+      <div class="flow-connector">
+        <div class="flow-arrow-line"></div>
+        <div class="flow-arrow-head">▼</div>
+      </div>
+      
     </div>
     
-    <div class="tutorial-step">
-      <div class="tutorial-step-num" style="--step-color:#38bdf8">05</div>
-      <div class="tutorial-step-body">
-        <div class="tutorial-step-title">核验与封装</div>
-        <div class="tutorial-step-desc">用Self-Improving进行质量核验，用DOCX规范进行格式封装</div>
-        <div class="tutorial-step-example">💡 检查数据来源可信度、纠正偏差 → 按微软雅黑/深蓝表头标准生成Word文档</div>
-        <div class="tutorial-step-tools"><span class="tutorial-tool-tag">Self-Improving Agent</span><span class="tutorial-tool-tag">调研报告-DOCX生成规范</span></div>
+    <div class="flow-step ">
+      <div class="flow-node flow-node-process" style="--node-color:#a78bfa">
+        <div class="flow-node-icon">⚡</div>
+        <div class="flow-node-num">03</div>
+        <div class="flow-node-title">关键词提炼</div>
+      </div>
+      <div class="flow-detail">
+        <div class="flow-detail-desc">从澄清后的需求中提取核心关键词和搜索维度</div>
+        <div class="flow-detail-example"><span class="flow-example-icon">💡</span> AI Coding → 代码生成、智能补全、Devin、Cursor、市场规模</div>
+        <div class="flow-detail-tools"><span class="tutorial-tool-tag">提示词生成器</span></div>
+      </div>
+      
+      <div class="flow-connector">
+        <div class="flow-arrow-line"></div>
+        <div class="flow-arrow-head">▼</div>
+      </div>
+      
+    </div>
+    
+    <div class="flow-step ">
+      <div class="flow-node flow-node-branch" style="--node-color:#00d4aa">
+        <div class="flow-node-icon">🧩</div>
+        <div class="flow-node-num">04</div>
+        <div class="flow-node-title">模块触发</div>
+      </div>
+      <div class="flow-detail">
+        <div class="flow-detail-desc">根据任务类型选择对应的技能模块进行深度执行</div>
+        <div class="flow-detail-example"><span class="flow-example-icon">💡</span> 市场调研→市场调研严谨专家 | 商业分析→全栈商业情报智能体 | 快速认知→爆炸式研究专家</div>
+        <div class="flow-detail-tools"><span class="tutorial-tool-tag">市场调研严谨专家</span><span class="tutorial-tool-tag">全栈商业情报智能体</span><span class="tutorial-tool-tag">爆炸式研究专家</span><span class="tutorial-tool-tag">里程碑拆解</span><span class="tutorial-tool-tag">灵感闪现助手</span></div>
+      </div>
+      
+      <div class="flow-connector">
+        <div class="flow-arrow-line"></div>
+        <div class="flow-arrow-head">▼</div>
+      </div>
+      
+    </div>
+    
+    <div class="flow-step flow-step-last">
+      <div class="flow-node flow-node-end" style="--node-color:#38bdf8">
+        <div class="flow-node-icon">✅</div>
+        <div class="flow-node-num">05</div>
+        <div class="flow-node-title">核验与封装</div>
+      </div>
+      <div class="flow-detail">
+        <div class="flow-detail-desc">用Self-Improving进行质量核验，用DOCX规范进行格式封装</div>
+        <div class="flow-detail-example"><span class="flow-example-icon">💡</span> 检查数据来源可信度、纠正偏差 → 按微软雅黑/深蓝表头标准生成Word文档</div>
+        <div class="flow-detail-tools"><span class="tutorial-tool-tag">Self-Improving Agent</span><span class="tutorial-tool-tag">调研报告-DOCX生成规范</span></div>
       </div>
       
     </div>
